@@ -1,0 +1,9 @@
+[2026-04-15 17:29:37] ==== Sync run start ====
+[2026-04-15 17:29:37] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-15 17:29:38] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients
+[2026-04-15 17:46:45] ==== Sync run start ====
+[2026-04-15 17:46:45] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Client/Front-End-Dev/TBWA Work Sithe/2026
+[2026-04-15 17:52:11] ==== Sync run start ====
+[2026-04-15 17:52:11] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-15 17:52:14] Mounted successfully: /Volumes/TBWA_JHB_Clients
+[2026-04-15 17:52:14] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026

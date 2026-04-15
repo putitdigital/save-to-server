@@ -1,0 +1,14 @@
+.git/
+.DS_Store
+node_modules/
+venv/
+.venv/
+dist/
+build/
+logs/
+00 PERSONAL/
+02 PLUG-IN/
+
+# Add any private files/folders you do not want on the server
+# .env
+# secrets/

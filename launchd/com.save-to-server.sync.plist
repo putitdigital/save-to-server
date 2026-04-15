@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+  <key>Label</key>
+  <string>com.save-to-server.sync</string>
+
+  <key>ProgramArguments</key>
+  <array>
+    <string>/bin/zsh</string>
+    <string>/Users/sithembiso.sangweni/Documents/GitHub/save-to-server/scripts/sync_to_smb.sh</string>
+  </array>
+
+  <!-- Run every 300 seconds (5 minutes). Change as needed. -->
+  <key>StartInterval</key>
+  <integer>300</integer>
+
+  <!-- Run once when the agent is loaded -->
+  <key>RunAtLoad</key>
+  <true/>
+
+  <key>StandardOutPath</key>
+  <string>/Users/sithembiso.sangweni/Documents/GitHub/save-to-server/logs/launchd.out.log</string>
+  <key>StandardErrorPath</key>
+  <string>/Users/sithembiso.sangweni/Documents/GitHub/save-to-server/logs/launchd.err.log</string>
+</dict>
+</plist>
