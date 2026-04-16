@@ -10,8 +10,24 @@ It uses:
 - rsync for fast incremental sync
 - launchd for automatic scheduling
 
+## Quick Start (No Coding Needed)
+
+1. Double-click `Start Sync.command`.
+2. Pick an option from the menu:
+	- `Sync now`
+	- `Check sync status`
+	- `Set local workspace folder` (opens a desktop folder picker)
+	- `Install auto-sync`
+3. Keep using the same menu whenever needed.
+
+This is the easiest way to use the project.
+
 ## Files
 
+- run.sh: Short launcher for sync/status commands
+- easy.sh: Guided menu for non-technical users
+- Start Sync.command: Double-click launcher to open the guided menu
+- .local.env: Auto-created local settings (for selected workspace folder)
 - scripts/sync_to_smb.sh: Mounts SMB share and runs rsync
 - .syncignore: Ignore patterns for files/folders not to sync
 - launchd/com.save-to-server.sync.plist: launchd agent template (every 5 minutes)
@@ -35,11 +51,19 @@ When prompted:
 
 Make the script executable:
 
-chmod +x scripts/sync_to_smb.sh
+chmod +x ./run.sh
 
 Run sync:
 
-./scripts/sync_to_smb.sh
+./run.sh
+
+Check sync status (one command):
+
+./run.sh status
+
+List paths currently ignored by `.syncignore`:
+
+./ignore
 
 Logs are written to:
 
@@ -49,7 +73,7 @@ Logs are written to:
 
 You can override defaults with environment variables:
 
-LOCAL_SOURCE="/path/to/source" DEST_SUBPATH="some/folder/on/share" ./scripts/sync_to_smb.sh
+LOCAL_SOURCE="/path/to/source" DEST_SUBPATH="some/folder/on/share" ./run.sh
 
 ## 3.1) Delete behavior
 
@@ -57,7 +81,7 @@ By default, the sync only adds and updates files on the server. It does not dele
 
 If you ever want mirrored delete behavior, run with:
 
-DELETE_REMOTE="true" ./scripts/sync_to_smb.sh
+DELETE_REMOTE="true" ./run.sh
 
 ## 4) Enable automatic background sync (launchd)
 

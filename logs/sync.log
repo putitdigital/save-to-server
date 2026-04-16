@@ -7,3 +7,643 @@
 [2026-04-15 17:52:11] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
 [2026-04-15 17:52:14] Mounted successfully: /Volumes/TBWA_JHB_Clients
 [2026-04-15 17:52:14] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+[2026-04-15 20:01:22] ==== Sync run start ====
+[2026-04-15 20:01:22] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-15 20:01:22] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+[2026-04-16 09:36:11] ==== Sync run start ====
+[2026-04-16 09:36:11] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-16 09:36:12] Mounted successfully: /Volumes/TBWA_JHB_Clients
+[2026-04-16 09:36:13] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 1416 files
+./
+01 MCDONALDS/
+01 MCDONALDS/951921Q/
+01 MCDONALDS/951921Q/00 Rec/
+01 MCDONALDS/951921Q/00 Rec/00 fonts/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/Blue Chip/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/Go Digital Now/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/JCDecaux/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/Links/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/Tractor Outdoor/
+01 MCDONALDS/951921Q/00 Rec/PSD Files/
+01 MCDONALDS/951921Q/00 Rec/PSD Files/Stills/
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links.zip
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/BOT Tag A.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/BOT Tag E.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/BOT Tag EA.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Copyrights Left.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Copyrights Right.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Logo.psd
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Toys1.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Toys2.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Toys3.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Visual1.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Visual2.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Visual3.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Visual4.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Visual5.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/Visual6.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/WebBannerLeft.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/WebBannerRight.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/BOT Tag A.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/BOT Tag E.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/BOT Tag EA.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Copyrights Left.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Copyrights Right.ai
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Logo.psd
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Toys1.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Toys2.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Toys3.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Visual1.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Visual2.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Visual3.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Visual4.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Visual5.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/Visual6.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/WebBannerLeft.psb
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/WebBannerRight.psb
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Crayola_AWS_NonDigi/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Crayola_AWS_NonDigi/Non Digi/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Crayola_AWS_NonDigi/Non Digi/29471_McD_GL_POP_Crayola_2025_NonDigi_HU.mp4
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/ARTWORK/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/ARTWORK/CG7134_CRAYOLA_EXTERNAL_POSTER_2.ai
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/ARTWORK/Links/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/ARTWORK/Links/.metadata/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/EXTERNAL POSTER/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/EXTERNAL POSTER/ARTWORK/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/EXTERNAL POSTER/ARTWORK/Links/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/EXTERNAL POSTER/ARTWORK/Links/.metadata/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/South Africa Poster 68x98 EA.indd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/IDML/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/IDML/South Africa Poster 68x98 EA.idml
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/PDF/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/PDF/South Africa Poster 68x98 EA.pdf
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/__MACOSX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/__MACOSX/Posters/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/__MACOSX/Posters/IDML/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/__MACOSX/Posters/PDF/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/1x1/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/1x1/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/1x1/Clean/McD_Crayola_Social_12__1x1_12fps_V8_CLEAN.mov
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/1x1/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/1x1/Titled/McD_Crayola_Social_12__1x1_12fps_V8.mp4
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/9x16/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/9x16/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/9x16/Clean/McD_Crayola_Social_12__9x16_12fps_V8_CLEAN.mov
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/9x16/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/9x16/Titled/McD_Crayola_Social_12__9x16_12fps_V8.mp4
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/1x1/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/1x1/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/1x1/Clean/McD_Crayola_Social_6__1x1_12fps_V8_CLEAN.mov
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/1x1/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/1x1/Titled/McD_Crayola_Social_6__1x1_12fps_V8.mp4
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/9x16/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/9x16/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/9x16/Clean/McD_Crayola_Social_6__9x16_12fps_V8_CLEAN.mov
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/9x16/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/9x16/Titled/McD_Crayola_Social_6__9x16_12fps_V8.mp4
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/McD_Crayola_Social_V8.aep
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/McD_Crayola_Social_V8Report.txt
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Adobe After Effects Auto-Save/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Adobe After Effects Auto-Save/McD_Crayola_Social_V8 auto-save 1.aep
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/References/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/References/JPEG Frames/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/References/JPEG Frames/G2_.jpg
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/References/JPEG Frames/G8_.jpg
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/SFX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/SFX/Space Rider_30_Broadcast Ready.aif
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Spaceship.png
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Alien Monster Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Alien Monster Layers/Alien Monster.psd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/BG Stars Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/BG Stars Layers/BG Stars.psd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/End Frame Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/End Frame Layers/MC bag.psb
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Family Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Family Layers/Family.psd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Happy Meal Spaceship Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Happy Meal Spaceship Layers/Happy Meal Spaceship.psd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Pencils/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Pencils/Colored Pencils_V2-01.png
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Pencils/Colored Pencils_V2-02.png
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Pencils/Colored Pencils_V2-03.png
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Planet Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Planet Layers/Planet.psd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Planet McDonalds Lockup Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Planet McDonalds Lockup Layers/Planet McDonalds Lockup.psd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Stars Swoosh Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Stars Swoosh Layers/Stars Swoosh.psd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Text Rough Texture Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Text Rough Texture Layers/Text Rough Texture.psd
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/1x1/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/1x1/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/1x1/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/9x16/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/9x16/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/9x16/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/1x1/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/1x1/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/1x1/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/9x16/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/9x16/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/9x16/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/References/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/References/JPEG Frames/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/SFX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Alien Monster Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/BG Stars Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/End Frame Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Family Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Happy Meal Spaceship Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Pencils/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Planet Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Planet McDonalds Lockup Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Stars Swoosh Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Text Rough Texture Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/29471_McD_GL_POP_Crayola_2025_Collect.aep
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/29471_McD_GL_POP_Crayola_2025_CollectReport.txt
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/Crayola_Tablet_v2.ai
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/2_Images/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/2_Images/PEN_update.png
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/3_AI/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/3_AI/Bring_your_art_to_life Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/3_AI/Bring_your_art_to_life Layers/Bring_your_art_to_life.ai
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/3_AI/Get_Outline Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/3_AI/Get_Outline Layers/Get_Outline.ai
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/CTA_Full_Colour_V16.psb
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/Creative_Text_Flat.psd
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/Galaxy_BG_Flat_02.psd
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/29471_Crayola_HM_Box_Rocket_Drawing_V15 Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/29471_Crayola_HM_Box_Rocket_Drawing_V15 Layers/29471_Crayola_HM_Box_Rocket_Drawing_V15.psd
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/29471_Crayola_WS_Storyboard_v8 Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/29471_Crayola_WS_Storyboard_v8 Layers/29471_Crayola_WS_Storyboard_v8.psb
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/CTA_Full_Colour_V16_layered Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/CTA_Full_Colour_V16_layered Layers/CTA_Full_Colour_V16_layered.psd
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/Smile_Sketch Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/Smile_Sketch Layers/Smile_Sketch .psd
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/Adobe After Effects Auto-Save/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/Adobe After Effects Auto-Save/29471_McD_GL_POP_Crayola_2025_Collect auto-save 1.aep
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/Adobe After Effects Auto-Save/29471_McD_GL_POP_Crayola_2025_Collect auto-save 2.aep
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/Adobe After Effects Auto-Save/29471_McD_GL_POP_Crayola_2025_Collect auto-save 3.aep
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/Adobe After Effects Auto-Save/29471_McD_GL_POP_Crayola_2025_Collect auto-save 4.aep
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/Adobe After Effects Auto-Save/29471_McD_GL_POP_Crayola_2025_Collect auto-save 5.aep
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/MP4s/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/MP4s/29471_McD_GL_POP_Crayola_2025_Digi_v5.mp4
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/MP4s/29471_McD_GL_POP_Crayola_2025_NonDigi_v5.mp4
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL25_Crayola_WS_UPLOAD/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL25_Crayola_WS_UPLOAD/._.DS_Store
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL25_Crayola_WS_UPLOAD/AE/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL25_Crayola_WS_UPLOAD/AE/._.DS_Store
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/._Crayola_Tablet_v2.ai
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/__MACOSX/29471_GL2[2026-04-16 10:15:22] ==== Sync run start ====
+[2026-04-16 10:15:22] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-16 10:15:22] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 1435 files
+./
+01 MCDONALDS/
+01 MCDONALDS/951921Q/
+01 MCDONALDS/951921Q/00 Rec/
+01 MCDONALDS/951921Q/00 Rec/00 fonts/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/Blue Chip/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/Go Digital Now/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/JCDecaux/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/Links/
+01 MCDONALDS/951921Q/00 Rec/McD Happy Meal x Crocs - Static DOOH/Tractor Outdoor/
+01 MCDONALDS/951921Q/00 Rec/PSD Files/
+01 MCDONALDS/951921Q/00 Rec/PSD Files/Stills/
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links 2/
+01 MCDONALDS/951921Q/00 Rec/RE_Chase Message_ Brief for Job 951921Q (MCDONALD20260108015542/Links/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Crayola_AWS_NonDigi/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Crayola_AWS_NonDigi/Non Digi/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/ARTWORK/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/ARTWORK/Links/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/EXTERNAL POSTER/ARTWORK/Links/.metadata/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/EXTERNAL POSTER/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/EXTERNAL POSTER/ARTWORK/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/EXTERNAL POSTER/ARTWORK/Links/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/EXTERNAL POSTER/__MACOSX/EXTERNAL POSTER/ARTWORK/Links/.metadata/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/IDML/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/Posters/PDF/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/__MACOSX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/__MACOSX/Posters/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/__MACOSX/Posters/IDML/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Posters/__MACOSX/Posters/PDF/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/1x1/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/1x1/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/1x1/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/9x16/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/9x16/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/12s/9x16/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/1x1/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/1x1/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/1x1/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/9x16/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/9x16/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/6s/9x16/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Adobe After Effects Auto-Save/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/References/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/References/JPEG Frames/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/SFX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Alien Monster Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/BG Stars Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/End Frame Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Family Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Happy Meal Spaceship Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Pencils/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Planet Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Planet McDonalds Lockup Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Stars Swoosh Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/Social/Crayola Social Project Files/Static Elements/Text Rough Texture Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/1x1/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/1x1/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/1x1/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/9x16/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/9x16/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/12s/9x16/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/1x1/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/1x1/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/1x1/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/9x16/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/9x16/Clean/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/6s/9x16/Titled/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/References/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/References/JPEG Frames/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/SFX/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Alien Monster Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/BG Stars Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/End Frame Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Family Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Happy Meal Spaceship Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Pencils/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Planet Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Planet McDonalds Lockup Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Stars Swoosh Layers/
+01 MCDONALDS/951921Q/00 Rec/Slide 5 Asset gathering folder for social/Social Media Bespoke 6 & 12�\#200\#235/__MACOSX/Social/Crayola Social Project Files/Static Elements/Text Rough Texture Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/2_Images/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/3_AI/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/3_AI/Bring_your_art_to_life Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/3_AI/Get_Outline Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/29471_Crayola_HM_Box_Rocket_Drawing_V15 Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/29471_Crayola_WS_Storyboard_v8 Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/CTA_Full_Colour_V16_layered Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/(Footage)/ASSETS/4_PSD/Smile_Sketch Layers/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/29471_GL25_Crayola_WS_UPLOAD/AE/29471_McD_GL_POP_Crayola_2025_Collect folder/Adobe After Effects Auto-Save/
+01 MCDONALDS/951921Q/00 Rec/slide 9 Crayola outstanding working files/AWS Non Digi/29471_GL25_Crayola_WS_UPLOAD/2947[2026-04-16 10:29:00] ==== Sync run start ====
+[2026-04-16 10:29:01] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-16 10:29:01] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 3 files
+./
+TEST 01/
+auto upload/
+
+sent 175 bytes  received 38 bytes  518 bytes/sec
+total size is 0  speedup is 0.00
+[2026-04-16 10:29:03] Sync finished
+[2026-04-16 10:29:03] ==== Sync run end ====
+[2026-04-16 10:31:00] ==== Sync run start ====
+[2026-04-16 10:31:01] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-16 10:31:01] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 170 files
+./
+TEST UPLOAD/
+TEST UPLOAD/952515Q/
+TEST UPLOAD/952515Q/00 rec/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)_ 2026 Savanna Namibia - We see you 2026 Digital Bann 5.zip
+TEST UPLOAD/952515Q/00 rec/Copy of IAB_Display_Chaselist_Media_Plan.xlsx
+TEST UPLOAD/952515Q/00 rec/TBWA Hunt Lascaris (Johannesburg) a Division of TBWA South Africa (Pty) Ltd - JA - 952515Q_2Q.pdf
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/1080x1920.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/160x600.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/300x1050.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/300x250-09.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/300x250.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/300x600.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/320x100.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/320x50.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/336x280.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/728x90.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/970x250.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/970x90.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Billboard 970x250.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Half Page 300x600.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Interstitial 1080x1920.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Large Mobile Banner 320x100.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Large Rectangle 336X280.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Leaderboard 728x90.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Medium Rectangle 300x250.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Medium Rectangle MPU 300x250.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Mobile Banner 320x50.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Portrait 300x1050.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Super Leaderboard 970x90.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Wide Skyscraper 160x600.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/1080x1920.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/160x600.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/300x1050.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/300x250-09.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/300x250.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/300x600.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/320x100.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/320x50.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/336x280.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/728x90.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/970x250.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/970x90.gif
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Billboard 970x250.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Half Page 300x600.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Interstitial 1080x1920.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Large Mobile Banner 320x100.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Large Rectangle 336X280.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Leaderboard 728x90.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Medium Rectangle 300x250.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Medium Rectangle MPU 300x250.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Mobile Banner 320x50.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Portrait 300x1050.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Super Leaderboard 970x90.jpg
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Wide Skyscraper 160x600.jpg
+TEST UPLOAD/952515Q/01 openfile/
+TEST UPLOAD/952515Q/01 openfile/Screenshot 2026-04-14 at 15.32.35.png
+TEST UPLOAD/952515Q/01 openfile/Untitled-2.ai
+TEST UPLOAD/952515Q/01 openfile/Untitled-2.ai.zip
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna.psd
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/Assets.zip
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/1080x1920.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/160x600.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/300x1050.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/300x250-09.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/300x250.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/300x600.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/320x100.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/320x50.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/336x280.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/728x90.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/970x250.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/970x90.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Billboard 970x250.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Half Page 300x600.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Interstitial 1080x1920.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Large Mobile Banner 320x100.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Large Rectangle 336X280.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Leaderboard 728x90.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Medium Rectangle 300x250.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Medium Rectangle MPU 300x250.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Mobile Banner 320x50.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Portrait 300x1050.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Super Leaderboard 970x90.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/Wide Skyscraper 160x600.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/Assets/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/Assets/ARA NAM.png
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/Assets/Savanna-ST-29-11-12-5148 copy 2.png
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/Assets/Vector Smart Object.png
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/1080x1920.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/160x600.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/300x1050.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/300x250-09.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/300x250.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/300x600.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/320x100.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/320x50.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/336x280.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/728x90.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/970x250.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/970x90.gif
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Billboard 970x250.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Half Page 300x600.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Interstitial 1080x1920.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Large Mobile Banner 320x100.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Large Rectangle 336X280.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Leaderboard 728x90.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Medium Rectangle 300x250.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Medium Rectangle MPU 300x250.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Mobile Banner 320x50.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Portrait 300x1050.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Super Leaderboard 970x90.jpg
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/Wide Skyscraper 160x600.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Billboard 970x250.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Half Page 300x600.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Interstitial 1080x1920.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Large Mobile Banner 320x100.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Large Rectangle 336X280.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Leaderboard 728x90.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Medium Rectangle 300x250.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Medium Rectangle MPU 300x250.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Mobile Banner 320x50.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Portrait 300x1050.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Super Leaderboard 970x90.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/Wide Skyscraper 160x600.png
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Billboard 970x250.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Half Page 300x600.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Interstitial 1080x1920.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Large Mobile Banner 320x100.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Large Rectangle 336X280.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Leaderboard 728x90.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Medium Rectangle 300x250.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Medium Rectangle MPU 300x250.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Mobile Banner 320x50.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Portrait 300x1050.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Super Leaderboard 970x90.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/Wide Skyscraper 160x600.jpg
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/1080x1920.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/160x600.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/300x1050.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/300x250-01.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/300x250-02.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/300x600.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/320x100.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/320x50.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/336x280.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/728x90.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/970x250.gif
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/970x90.gif
+
+sent 358M bytes  received 3344 bytes  1602k bytes/sec
+total size is 357M  speedup is 1.00
+[2026-04-16 10:34:51] Sync finished
+[2026-04-16 10:34:51] ==== Sync run end ====
+[2026-04-16 10:38:13] ==== Sync run start ====
+[2026-04-16 10:38:13] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-16 10:38:14] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 183 files
+./
+TEST UPLOAD 2/
+TEST UPLOAD 2/02 Export/
+TEST UPLOAD 2/02 Export/1080x1920.gif
+TEST UPLOAD 2/02 Export/160x600.gif
+TEST UPLOAD 2/02 Export/300x1050.gif
+TEST UPLOAD 2/02 Export/300x250.gif
+TEST UPLOAD 2/02 Export/300x600.gif
+TEST UPLOAD 2/02 Export/320x100.gif
+TEST UPLOAD 2/02 Export/320x50.gif
+TEST UPLOAD 2/02 Export/336x280.gif
+TEST UPLOAD 2/02 Export/728x90.gif
+TEST UPLOAD 2/02 Export/970x250.gif
+TEST UPLOAD 2/02 Export/970x90.gif
+TEST UPLOAD/
+TEST UPLOAD/952515Q/
+TEST UPLOAD/952515Q/00 rec/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/
+TEST UPLOAD/952515Q/00 rec/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/
+TEST UPLOAD/952515Q/01 openfile/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/GIFS 2/images/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004) 2026 Savanna Namibia - We see you 2026 | Digital Bann/JPEGS 02/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/Assets/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/GIFS/images/
+TEST UPLOAD/952515Q/01 openfile/952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004)2026 Savanna Namibia - We see you 2026 Digital Banner/JPEGS/
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/01 PNG/
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/02 JPG/
+TEST UPLOAD/952515Q/02 Export 952515Q (NAMIBIA BREWERIES LTD) - NAMIBIA BREWERIES - SAVANNA(0330-004), 2026 Savanna Namibia - We see you 2026 | Digital Bann 5/03 GIFs/
+
+sent 2027k bytes  received 688 bytes  44565 bytes/sec
+total size is 359M  speedup is 177.23
+[2026-04-16 10:39:05] Sync finished
+[2026-04-16 10:39:05] ==== Sync run end ====
+[2026-04-16 12:25:05] ==== Sync run start ====
+[2026-04-16 12:25:05] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-16 12:25:05] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 1 files
+./
+
+sent 95 bytes  received 26 bytes  643 bytes/sec
+total size is 0  speedup is 0.00
+[2026-04-16 12:25:05] Sync finished
+[2026-04-16 12:25:05] ==== Sync run end ====
+[2026-04-16 12:37:18] ==== Sync run start ====
+[2026-04-16 12:37:18] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-16 12:37:18] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 11 files
+./
+save-to-server/
+save-to-server/.gitattributes
+save-to-server/.syncignore
+save-to-server/README.md
+save-to-server/inforfailback.md
+save-to-server/run.sh
+save-to-server/launchd/
+save-to-server/launchd/com.save-to-server.sync.plist
+save-to-server/scripts/
+save-to-server/scripts/sync_to_smb.sh
+
+sent 9376 bytes  received 198 bytes  1189 bytes/sec
+total size is 8413  speedup is 0.88
+[2026-04-16 12:37:27] Sync finished
+[2026-04-16 12:37:27] ==== Sync run end ====
+[2026-04-16 13:26:31] ==== Sync run start ====
+[2026-04-16 13:26:31] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-16 13:26:31] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 12 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 735 bytes  received 92 bytes  370 bytes/sec
+total size is 9041  speedup is 10,93
+[2026-04-16 13:26:34] Sync finished
+[2026-04-16 13:26:34] ==== Sync run end ====
+[2026-04-16 13:43:24] ==== Sync run start ====
+[2026-04-16 13:43:24] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-16 13:43:24] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 12 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 735 bytes  received 92 bytes  413 bytes/sec
+total size is 9041  speedup is 10,93
+[2026-04-16 13:43:27] Sync finished
+[2026-04-16 13:43:27] ==== Sync run end ====

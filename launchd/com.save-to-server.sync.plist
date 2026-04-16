@@ -8,7 +8,7 @@
   <key>ProgramArguments</key>
   <array>
     <string>/bin/zsh</string>
-    <string>/Users/sithembiso.sangweni/Documents/GitHub/save-to-server/scripts/sync_to_smb.sh</string>
+    <string>/Users/sithembiso.sangweni/Library/Application Support/save-to-server/sync_to_smb.sh</string>
   </array>
 
   <!-- Run every 300 seconds (5 minutes). Change as needed. -->
@@ -20,8 +20,8 @@
   <true/>
 
   <key>StandardOutPath</key>
-  <string>/Users/sithembiso.sangweni/Documents/GitHub/save-to-server/logs/launchd.out.log</string>
+  <string>/Users/sithembiso.sangweni/Library/Application Support/save-to-server/logs/launchd.out.log</string>
   <key>StandardErrorPath</key>
-  <string>/Users/sithembiso.sangweni/Documents/GitHub/save-to-server/logs/launchd.err.log</string>
+  <string>/Users/sithembiso.sangweni/Library/Application Support/save-to-server/logs/launchd.err.log</string>
 </dict>
 </plist>

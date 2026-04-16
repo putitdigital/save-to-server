@@ -8,7 +8,9 @@ build/
 logs/
 00 PERSONAL/
 02 PLUG-IN/
-
+01 MCDONALDS/
+03 WINDHOEK/
+04 Savannah/
 # Add any private files/folders you do not want on the server
 # .env
 # secrets/

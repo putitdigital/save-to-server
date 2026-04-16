@@ -5,6 +5,12 @@ set -euo pipefail
 # Local folder to sync from (default: OneDrive 2026 folder)
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 WORKSPACE_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
+
+# Optional user-local overrides from easy.sh desktop prompt.
+if [[ -f "$WORKSPACE_DIR/.local.env" ]]; then
+  source "$WORKSPACE_DIR/.local.env"
+fi
+
 DEFAULT_LOCAL_SOURCE="/Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026"
 LOCAL_SOURCE="${LOCAL_SOURCE:-$DEFAULT_LOCAL_SOURCE}"
 
@@ -19,6 +25,16 @@ DELETE_REMOTE="${DELETE_REMOTE:-false}"
 EXCLUDE_FILE="${EXCLUDE_FILE:-$WORKSPACE_DIR/.syncignore}"
 LOG_DIR="${LOG_DIR:-$WORKSPACE_DIR/logs}"
 LOG_FILE="$LOG_DIR/sync.log"
+PID_FILE="$LOG_DIR/sync.pid"
+
+RUN_USER="$(/usr/bin/id -un 2>/dev/null || echo unknown)"
+RUN_FULL_NAME="$(/usr/bin/id -F 2>/dev/null || true)"
+
+if [[ -n "$RUN_FULL_NAME" && "$RUN_FULL_NAME" != "$RUN_USER" ]]; then
+  LOG_ACTOR="$RUN_FULL_NAME ($RUN_USER)"
+else
+  LOG_ACTOR="$RUN_USER"
+fi
 
 mkdir -p "$LOG_DIR"
 
@@ -27,7 +43,29 @@ timestamp() {
 }
 
 log() {
-  echo "[$(timestamp)] $1" | tee -a "$LOG_FILE"
+  echo "[$(timestamp)] [user: $LOG_ACTOR] $1" | tee -a "$LOG_FILE"
+}
+
+cleanup_pid_file() {
+  rm -f "$PID_FILE"
+}
+
+print_status() {
+  if [[ -f "$PID_FILE" ]]; then
+    local pid
+    pid="$(cat "$PID_FILE" 2>/dev/null || true)"
+
+    if [[ -n "$pid" ]] && kill -0 "$pid" >/dev/null 2>&1; then
+      echo "Running (PID: $pid)"
+      return 0
+    fi
+
+    rm -f "$PID_FILE"
+    echo "Idle (stale state cleared)"
+    return 0
+  fi
+
+  echo "Idle"
 }
 
 MOUNT_POINT="/Volumes/$MOUNT_NAME"
@@ -98,6 +136,26 @@ run_sync() {
 }
 
 main() {
+  if [[ "${1:-}" == "status" ]]; then
+    print_status
+    return 0
+  fi
+
+  if [[ -f "$PID_FILE" ]]; then
+    local existing_pid
+    existing_pid="$(cat "$PID_FILE" 2>/dev/null || true)"
+
+    if [[ -n "$existing_pid" ]] && kill -0 "$existing_pid" >/dev/null 2>&1; then
+      log "Another sync is already running (PID: $existing_pid)"
+      return 1
+    fi
+
+    rm -f "$PID_FILE"
+  fi
+
+  echo "$$" > "$PID_FILE"
+  trap cleanup_pid_file EXIT INT TERM
+
   log "==== Sync run start ===="
   ensure_mounted
   run_sync

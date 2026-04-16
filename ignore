@@ -1,0 +1,27 @@
+#!/bin/zsh
+
+set -euo pipefail
+
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+cd "$SCRIPT_DIR"
+
+EXCLUDE_FILE="${1:-.syncignore}"
+
+if [[ ! -f "$EXCLUDE_FILE" ]]; then
+  echo "ERROR: Exclude file not found: $EXCLUDE_FILE" >&2
+  exit 1
+fi
+
+TMP_DEST="$(mktemp -d)"
+trap 'rm -rf "$TMP_DEST"' EXIT
+
+comm -23 \
+  <(find . -mindepth 1 -print | sed 's#^\./##' | sort) \
+  <(
+    rsync -avn --exclude-from="$EXCLUDE_FILE" ./ "$TMP_DEST/" \
+      | sed '1,/^sending incremental file list$/d' \
+      | sed '/^sent /,$d' \
+      | sed '/^$/d' \
+      | sed 's#/$##' \
+      | sort
+  )
