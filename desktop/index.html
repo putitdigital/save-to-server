@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Flowit</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <main class="shell">
+      <section class="topbar">
+        <h1>Flowit</h1>
+        <p>Desktop control panel for SMB sync.</p>
+      </section>
+
+      <section class="controls">
+        <button id="btn-sync" class="btn btn-primary">Sync Now</button>
+        <button id="btn-status" class="btn">Check Status</button>
+        <button id="btn-log" class="btn">Refresh Log</button>
+      </section>
+
+      <section class="panels">
+        <article class="panel panel-settings">
+          <h2>Settings</h2>
+          <div class="settings-grid">
+            <label class="field" for="local-source-input">
+              <span>LOCAL_SOURCE</span>
+              <div class="field-inline">
+                <input
+                  id="local-source-input"
+                  type="text"
+                  placeholder="/Users/you/path/to/folder"
+                />
+                <button id="btn-browse-source" class="btn" type="button">Browse...</button>
+              </div>
+            </label>
+
+            <label class="field" for="dest-subpath-input">
+              <span>DEST_SUBPATH</span>
+              <input
+                id="dest-subpath-input"
+                type="text"
+                placeholder="Front-End-Dev/TBWA Work Sithe/2026"
+              />
+            </label>
+          </div>
+
+          <div class="controls controls-settings">
+            <button id="btn-save-settings" class="btn btn-primary">Save Settings</button>
+            <button id="btn-load-settings" class="btn">Reload Settings</button>
+          </div>
+
+          <p id="settings-status" class="settings-status">Loading settings...</p>
+        </article>
+      </section>
+
+      <section class="panels">
+        <article class="panel">
+          <h2>Command Output</h2>
+          <pre id="command-output" class="mono">Ready.</pre>
+        </article>
+        <article class="panel">
+          <h2>Sync Log (latest lines)</h2>
+          <pre id="log-output" class="mono">Loading...</pre>
+        </article>
+      </section>
+    </main>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>

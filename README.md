@@ -120,3 +120,38 @@ launchctl load "$HOME/Library/LaunchAgents/com.save-to-server.sync.plist"
 
 - Keep .syncignore updated to avoid uploading private or heavy folders.
 - If the share is not mounted, the script attempts to mount it first.
+
+## Desktop App (Flowit, Tauri)
+
+A Tauri desktop shell is available in `desktop/`.
+It reuses the existing scripts (`run.sh`, `scripts/sync_to_smb.sh`) without changing their logic.
+
+### What the desktop app can do
+
+- Run `Sync now`
+- Check `status`
+- Show the latest lines from `logs/sync.log`
+- Save and reload `LOCAL_SOURCE` and `DEST_SUBPATH` in `.local.env`
+
+### Start in development mode
+
+From the project root:
+
+```bash
+cd desktop
+npm install
+npm run tauri dev
+```
+
+### Build a desktop app bundle
+
+```bash
+cd desktop
+npm install
+npm run tauri build
+```
+
+### Important notes
+
+- The app expects `run.sh`, `scripts/`, and `logs/` to exist in this repository.
+- On first sync, macOS may still prompt for SMB authentication if Keychain is not already configured.
