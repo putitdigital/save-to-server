@@ -647,3 +647,11 @@ sent 735 bytes  received 92 bytes  413 bytes/sec
 total size is 9041  speedup is 10,93
 [2026-04-16 13:43:27] Sync finished
 [2026-04-16 13:43:27] ==== Sync run end ====
+[2026-04-19 16:14:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-19 16:14:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-19 16:15:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-04-19 16:15:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-19 16:16:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-19 16:16:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-19 16:16:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-04-19 16:16:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients

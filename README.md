@@ -132,6 +132,13 @@ It reuses the existing scripts (`run.sh`, `scripts/sync_to_smb.sh`) without chan
 - Check `status`
 - Show the latest lines from `logs/sync.log`
 - Save and reload `LOCAL_SOURCE` and `DEST_SUBPATH` in `.local.env`
+- Protect Sync Log behind an admin code in the app
+
+### Admin code for Sync Log
+
+- Default admin code is `1234`.
+- You can override it with environment variable `FLOWIT_ADMIN_CODE`.
+- Or set `ADMIN_CODE="your-code"` inside `.local.env`.
 
 ### Start in development mode
 

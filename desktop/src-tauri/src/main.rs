@@ -4,7 +4,22 @@ use serde::{Deserialize, Serialize};
 use std::fs;
 use std::path::{Path, PathBuf};
 use std::process::Command;
-use tauri::Manager;
+use tauri::menu::{AboutMetadataBuilder, MenuBuilder, SubmenuBuilder};
+use tauri::{Emitter, Manager, WebviewUrl, WebviewWindowBuilder};
+use ignore::gitignore::{Gitignore, GitignoreBuilder};
+
+const HELP_HOW_TO_USE_ID: &str = "help_how_to_use";
+const HELP_OPEN_README_ID: &str = "help_open_readme";
+const HELP_OPEN_LOGS_ID: &str = "help_open_logs";
+const HELP_ADMIN_HELP_ID: &str = "help_admin_help";
+const LOGS_OPEN_ADMIN_ID: &str = "logs_open_admin_dashboard";
+const REQUEST_ADMIN_UNLOCK_EVENT: &str = "flowit://request-admin-unlock";
+const GETTING_STARTED_WINDOW_LABEL: &str = "getting-started";
+
+#[derive(Serialize, Clone)]
+struct AdminUnlockRequest {
+    action: String,
+}
 
 #[derive(Serialize)]
 struct CommandResult {
@@ -18,6 +33,12 @@ struct CommandResult {
 struct AppSettings {
     local_source: String,
     dest_subpath: String,
+}
+
+#[derive(Serialize)]
+struct SyncSourceItem {
+    path: String,
+    is_dir: bool,
 }
 
 fn candidate_roots(app: &tauri::AppHandle) -> Result<Vec<PathBuf>, String> {
@@ -82,6 +103,49 @@ fn local_env_path(repo_root: &Path) -> PathBuf {
     repo_root.join(".local.env")
 }
 
+fn sync_ignore_path(repo_root: &Path) -> PathBuf {
+    repo_root.join(".syncignore")
+}
+
+fn build_sync_ignore(repo_root: &Path, source_path: &Path) -> Result<Gitignore, String> {
+    let ignore_path = sync_ignore_path(repo_root);
+    let mut builder = GitignoreBuilder::new(source_path);
+
+    if ignore_path.exists() {
+        let content = fs::read_to_string(&ignore_path)
+            .map_err(|error| format!("Failed to read {}: {error}", ignore_path.display()))?;
+
+        for (line_number, raw_line) in content.lines().enumerate() {
+            let line = raw_line.trim();
+            if line.is_empty() || line.starts_with('#') {
+                continue;
+            }
+
+            builder
+                .add_line(Some(ignore_path.clone()), line)
+                .map_err(|error| {
+                    format!(
+                        "Invalid .syncignore pattern on line {}: {}",
+                        line_number + 1,
+                        error
+                    )
+                })?;
+        }
+    }
+
+    builder
+        .build()
+        .map_err(|error| format!("Failed to build .syncignore matcher: {error}"))
+}
+
+fn default_local_source() -> String {
+    let home = std::env::var("HOME").unwrap_or_else(|_| "/Users/you".to_string());
+    format!(
+        "{}/Library/CloudStorage/OneDrive-OneWorkplace/2026",
+        home
+    )
+}
+
 fn parse_local_env(content: &str) -> AppSettings {
     let mut settings = AppSettings::default();
 
@@ -111,8 +175,200 @@ fn parse_local_env(content: &str) -> AppSettings {
     settings
 }
 
+fn resolved_local_source(repo_root: &Path) -> String {
+    let env_path = local_env_path(repo_root);
+    if let Ok(content) = fs::read_to_string(env_path) {
+        let settings = parse_local_env(&content);
+        let trimmed = settings.local_source.trim();
+        if !trimmed.is_empty() {
+            return trimmed.to_string();
+        }
+    }
+
+    default_local_source()
+}
+
+fn collect_sync_items(
+    base: &Path,
+    current: &Path,
+    depth: usize,
+    max_depth: usize,
+    max_items: usize,
+    ignore_matcher: &Gitignore,
+    out: &mut Vec<SyncSourceItem>,
+) -> Result<(), String> {
+    if out.len() >= max_items || depth > max_depth {
+        return Ok(());
+    }
+
+    let entries = fs::read_dir(current)
+        .map_err(|error| format!("Failed to read {}: {error}", current.display()))?;
+
+    let mut ordered_entries: Vec<_> = entries.filter_map(Result::ok).collect();
+    ordered_entries.sort_by_key(|entry| entry.path());
+
+    for entry in ordered_entries {
+        if out.len() >= max_items {
+            break;
+        }
+
+        let entry_path = entry.path();
+        let metadata = entry
+            .metadata()
+            .map_err(|error| format!("Failed to read metadata for {}: {error}", entry_path.display()))?;
+
+        let relative = entry_path
+            .strip_prefix(base)
+            .unwrap_or(&entry_path)
+            .to_string_lossy()
+            .replace('\\', "/");
+
+        let is_dir = metadata.is_dir();
+
+        if ignore_matcher
+            .matched_path_or_any_parents(&entry_path, is_dir)
+            .is_ignore()
+        {
+            continue;
+        }
+
+        out.push(SyncSourceItem {
+            path: relative,
+            is_dir,
+        });
+
+        if is_dir {
+            collect_sync_items(
+                base,
+                &entry_path,
+                depth + 1,
+                max_depth,
+                max_items,
+                ignore_matcher,
+                out,
+            )?;
+        }
+    }
+
+    Ok(())
+}
+
+fn read_env_value(content: &str, target_key: &str) -> Option<String> {
+    for raw_line in content.lines() {
+        let line = raw_line.trim();
+        if line.is_empty() || line.starts_with('#') {
+            continue;
+        }
+
+        let Some((key, value_part)) = line.split_once('=') else {
+            continue;
+        };
+
+        if key.trim() != target_key {
+            continue;
+        }
+
+        let mut value = value_part.trim().to_string();
+        if value.starts_with('"') && value.ends_with('"') && value.len() >= 2 {
+            value = value[1..value.len() - 1].to_string();
+        }
+
+        return Some(value);
+    }
+
+    None
+}
+
+fn configured_admin_code(repo_root: &Path) -> String {
+    if let Ok(from_env) = std::env::var("FLOWIT_ADMIN_CODE") {
+        let trimmed = from_env.trim();
+        if !trimmed.is_empty() {
+            return trimmed.to_string();
+        }
+    }
+
+    let env_path = local_env_path(repo_root);
+    if let Ok(content) = fs::read_to_string(env_path) {
+        if let Some(from_file) = read_env_value(&content, "ADMIN_CODE") {
+            let trimmed = from_file.trim();
+            if !trimmed.is_empty() {
+                return trimmed.to_string();
+            }
+        }
+    }
+
+    "1234".to_string()
+}
+
 fn escape_env_value(value: &str) -> String {
     value.replace('\\', "\\\\").replace('"', "\\\"")
+}
+
+fn open_path_with_default_app(path: &Path) -> Result<(), String> {
+    #[cfg(target_os = "macos")]
+    let status = Command::new("open")
+        .arg(path)
+        .status()
+        .map_err(|error| format!("Failed to run 'open': {error}"))?;
+
+    #[cfg(target_os = "linux")]
+    let status = Command::new("xdg-open")
+        .arg(path)
+        .status()
+        .map_err(|error| format!("Failed to run 'xdg-open': {error}"))?;
+
+    #[cfg(target_os = "windows")]
+    let status = Command::new("cmd")
+        .arg("/C")
+        .arg("start")
+        .arg("")
+        .arg(path)
+        .status()
+        .map_err(|error| format!("Failed to run 'start': {error}"))?;
+
+    if status.success() {
+        Ok(())
+    } else {
+        Err(format!(
+            "Failed to open path with default app: {}",
+            path.display()
+        ))
+    }
+}
+
+fn show_admin_help() {
+    let _ = rfd::MessageDialog::new()
+        .set_title("Admin Dashboard Access")
+        .set_description(
+            "The Sync Log dashboard is protected.\n\
+Set ADMIN_CODE in .local.env (or FLOWIT_ADMIN_CODE env var) and share it only with trusted admins.",
+        )
+        .set_level(rfd::MessageLevel::Info)
+        .set_buttons(rfd::MessageButtons::Ok)
+        .show();
+}
+
+fn open_getting_started_window(app: &tauri::AppHandle) -> Result<(), String> {
+    if let Some(window) = app.get_webview_window(GETTING_STARTED_WINDOW_LABEL) {
+        let _ = window.unminimize();
+        let _ = window.show();
+        let _ = window.set_focus();
+        return Ok(());
+    }
+
+    WebviewWindowBuilder::new(
+        app,
+        GETTING_STARTED_WINDOW_LABEL,
+        WebviewUrl::App("index.html?view=getting-started".into()),
+    )
+    .title("Flowit - Getting Started")
+    .inner_size(860.0, 620.0)
+    .min_inner_size(680.0, 480.0)
+    .resizable(true)
+    .build()
+    .map_err(|error| format!("Failed to open Getting Started window: {error}"))?;
+
+    Ok(())
 }
 
 #[tauri::command]
@@ -126,8 +382,17 @@ fn sync_status(app: tauri::AppHandle) -> Result<CommandResult, String> {
 }
 
 #[tauri::command]
-fn read_sync_log(app: tauri::AppHandle, max_lines: Option<usize>) -> Result<String, String> {
+fn read_sync_log(
+    app: tauri::AppHandle,
+    max_lines: Option<usize>,
+    admin_code: String,
+) -> Result<String, String> {
     let repo_root = find_repo_root(&app)?;
+    let expected_code = configured_admin_code(&repo_root);
+    if admin_code.trim() != expected_code {
+        return Err("Unauthorized: invalid admin code".to_string());
+    }
+
     let log_path = repo_root.join(Path::new("logs").join("sync.log"));
 
     if !log_path.exists() {
@@ -163,12 +428,19 @@ fn save_settings(
 ) -> Result<String, String> {
     let repo_root = find_repo_root(&app)?;
     let env_path = local_env_path(&repo_root);
+    let existing_admin_code = fs::read_to_string(&env_path)
+        .ok()
+        .and_then(|content| read_env_value(&content, "ADMIN_CODE"));
 
-    let content = format!(
+    let mut content = format!(
         "LOCAL_SOURCE=\"{}\"\nDEST_SUBPATH=\"{}\"\n",
         escape_env_value(local_source.trim()),
         escape_env_value(dest_subpath.trim())
     );
+
+    if let Some(code) = existing_admin_code {
+        content.push_str(&format!("ADMIN_CODE=\"{}\"\n", escape_env_value(code.trim())));
+    }
 
     fs::write(&env_path, content)
         .map_err(|error| format!("Failed to write {}: {error}", env_path.display()))?;
@@ -182,15 +454,178 @@ fn pick_local_source() -> Result<Option<String>, String> {
     Ok(picked.map(|path| path.display().to_string()))
 }
 
+#[tauri::command]
+fn verify_admin_code(app: tauri::AppHandle, code: String) -> Result<bool, String> {
+    let repo_root = find_repo_root(&app)?;
+    let expected_code = configured_admin_code(&repo_root);
+    Ok(code.trim() == expected_code)
+}
+
+#[tauri::command]
+fn get_sync_source_items(
+    app: tauri::AppHandle,
+    max_items: Option<usize>,
+    max_depth: Option<usize>,
+) -> Result<Vec<SyncSourceItem>, String> {
+    let repo_root = find_repo_root(&app)?;
+    let source = resolved_local_source(&repo_root);
+    let source_path = PathBuf::from(source);
+
+    if !source_path.exists() {
+        return Ok(Vec::new());
+    }
+
+    if !source_path.is_dir() {
+        return Err("LOCAL_SOURCE is not a folder".to_string());
+    }
+
+    let mut items = Vec::new();
+    let item_limit = max_items.unwrap_or(180).min(400);
+    let depth_limit = max_depth.unwrap_or(3).min(6);
+    let ignore_matcher = build_sync_ignore(&repo_root, &source_path)?;
+
+    collect_sync_items(
+        &source_path,
+        &source_path,
+        1,
+        depth_limit,
+        item_limit,
+        &ignore_matcher,
+        &mut items,
+    )?;
+
+    Ok(items)
+}
+
 fn main() {
     tauri::Builder::default()
+        .setup(|app| {
+            let file_menu = SubmenuBuilder::new(app, "File")
+                .close_window()
+                .separator()
+                .quit()
+                .build()?;
+
+            let edit_menu = SubmenuBuilder::new(app, "Edit")
+                .undo()
+                .redo()
+                .separator()
+                .cut()
+                .copy()
+                .paste()
+                .select_all()
+                .build()?;
+
+            let view_menu = SubmenuBuilder::new(app, "View").fullscreen().build()?;
+
+            let window_menu = SubmenuBuilder::new(app, "Window")
+                .minimize()
+                .maximize()
+                .separator()
+                .close_window()
+                .build()?;
+
+            let logs_menu = SubmenuBuilder::new(app, "Logs")
+                .text(LOGS_OPEN_ADMIN_ID, "Open Admin Dashboard")
+                .build()?;
+
+            let about_metadata = AboutMetadataBuilder::new()
+                .name(Some("Flowit"))
+                .version(Some(env!("CARGO_PKG_VERSION")))
+                .icon(app.default_window_icon().cloned())
+                .build();
+
+            let home_menu = SubmenuBuilder::new(app, "Flowit")
+                .about(Some(about_metadata))
+                .build()?;
+
+            let help_menu = SubmenuBuilder::new(app, "Help")
+                .text(HELP_HOW_TO_USE_ID, "How to Use Flowit")
+                .text(HELP_OPEN_README_ID, "Open User Guide (README)")
+                .text(HELP_OPEN_LOGS_ID, "Open Sync Logs Folder")
+                .separator()
+                .text(HELP_ADMIN_HELP_ID, "Admin Dashboard Help")
+                .build()?;
+
+            let menu = MenuBuilder::new(app)
+                .items(&[
+                    &home_menu,
+                    &file_menu,
+                    &edit_menu,
+                    &view_menu,
+                    &logs_menu,
+                    &window_menu,
+                    &help_menu,
+                ])
+                .build()?;
+
+            app.set_menu(menu)?;
+            Ok(())
+        })
+        .on_menu_event(|app, event| {
+            if event.id() == HELP_HOW_TO_USE_ID {
+                if let Err(error) = open_getting_started_window(app) {
+                    eprintln!("{error}");
+                }
+                return;
+            }
+
+            if event.id() == HELP_ADMIN_HELP_ID {
+                show_admin_help();
+                return;
+            }
+
+            if event.id() == LOGS_OPEN_ADMIN_ID {
+                let payload = AdminUnlockRequest {
+                    action: "open-admin-dashboard".to_string(),
+                };
+                let mut delivered = false;
+
+                if let Some(window) = app.get_webview_window("main") {
+                    match window.emit(REQUEST_ADMIN_UNLOCK_EVENT, payload.clone()) {
+                        Ok(()) => delivered = true,
+                        Err(error) => eprintln!("Failed to emit admin unlock event to main window: {error}"),
+                    }
+                }
+
+                if !delivered {
+                    if let Err(error) = app.emit(REQUEST_ADMIN_UNLOCK_EVENT, payload) {
+                        eprintln!("Failed to emit admin unlock event: {error}");
+                    }
+                }
+                return;
+            }
+
+            if event.id() == HELP_OPEN_README_ID {
+                match find_repo_root(app).and_then(|root| open_path_with_default_app(&root.join("README.md")))
+                {
+                    Ok(()) => {}
+                    Err(error) => eprintln!("{error}"),
+                }
+                return;
+            }
+
+            if event.id() == HELP_OPEN_LOGS_ID {
+                match find_repo_root(app).and_then(|root| {
+                    let logs_dir = root.join("logs");
+                    fs::create_dir_all(&logs_dir)
+                        .map_err(|error| format!("Failed to create logs directory: {error}"))?;
+                    open_path_with_default_app(&logs_dir)
+                }) {
+                    Ok(()) => {}
+                    Err(error) => eprintln!("{error}"),
+                }
+            }
+        })
         .invoke_handler(tauri::generate_handler![
             sync_now,
             sync_status,
             read_sync_log,
             get_settings,
             save_settings,
-            pick_local_source
+            pick_local_source,
+            verify_admin_code,
+            get_sync_source_items
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

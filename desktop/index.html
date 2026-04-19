@@ -12,10 +12,10 @@
     />
   </head>
   <body>
-    <main class="shell">
+    <main id="app-shell" class="shell">
       <section class="topbar">
         <h1>Flowit</h1>
-        <p>Desktop control panel for SMB sync.</p>
+        <p>Save to server made easy.</p>
       </section>
 
       <section class="controls">
@@ -25,11 +25,11 @@
       </section>
 
       <section class="panels">
-        <article class="panel panel-settings">
+        <article id="panel-settings" class="panel panel-settings">
           <h2>Settings</h2>
           <div class="settings-grid">
             <label class="field" for="local-source-input">
-              <span>LOCAL_SOURCE</span>
+              <span>Local Folder</span>
               <div class="field-inline">
                 <input
                   id="local-source-input"
@@ -41,7 +41,7 @@
             </label>
 
             <label class="field" for="dest-subpath-input">
-              <span>DEST_SUBPATH</span>
+              <span>Server Folder</span>
               <input
                 id="dest-subpath-input"
                 type="text"
@@ -57,19 +57,97 @@
 
           <p id="settings-status" class="settings-status">Loading settings...</p>
         </article>
+        <article id="panel-status" class="panel panel-status">
+          <h2>Folder and Files to Sync</h2>
+          <p id="sync-items-status" class="settings-status">Loading files and folders...</p>
+          <ul id="sync-items-list" class="sync-items-list" aria-live="polite"></ul>
+        </article>
+
       </section>
 
       <section class="panels">
-        <article class="panel">
-          <h2>Command Output</h2>
-          <pre id="command-output" class="mono">Ready.</pre>
-        </article>
-        <article class="panel">
-          <h2>Sync Log (latest lines)</h2>
-          <pre id="log-output" class="mono">Loading...</pre>
+        <article id="panel-admin" class="panel panel-admin hidden">
+          <h2>Admin Dashboard</h2>
+          <p class="admin-note">Sync logs are visible only after entering the admin code.</p>
+
+          <div class="field-inline admin-auth-row">
+            <input
+              id="admin-code-input"
+              type="password"
+              placeholder="Enter admin code"
+              autocomplete="off"
+            />
+            <button id="btn-admin-unlock" class="btn btn-primary" type="button">Unlock</button>
+          </div>
+          <p id="admin-status" class="settings-status">Locked</p>
+
+          <h3 class="admin-log-title">Sync Log (latest lines)</h3>
+          <pre id="log-output" class="mono">Locked. Enter admin code to view logs.</pre>
         </article>
       </section>
     </main>
+
+    <main id="getting-started-shell" class="shell shell-help hidden" aria-hidden="true">
+      <section class="help-hero">
+        <h1>Getting Started with Flowit</h1>
+        <p>Use this quick guide to set up your first reliable sync in a few minutes.</p>
+      </section>
+
+      <section class="help-grid">
+        <article class="panel help-card">
+          <h2>1. Configure Settings</h2>
+          <p>
+            In the main Flowit window, open <strong>Settings</strong> and set:
+            <br />
+            <strong>LOCAL_SOURCE</strong>: your local folder path.
+            <br />
+            <strong>DEST_SUBPATH</strong>: destination path under your SMB share.
+          </p>
+        </article>
+
+        <article class="panel help-card">
+          <h2>2. Run and Verify</h2>
+          <p>
+            Click <strong>Sync Now</strong> to trigger an immediate sync.
+            Then use <strong>Check Status</strong> to confirm mount and sync readiness.
+          </p>
+        </article>
+
+        <article class="panel help-card">
+          <h2>3. Monitor Logs</h2>
+          <p>
+            Open the admin dashboard and enter the admin code to view sync logs.
+            You can also use Help &gt; Open Sync Logs Folder from the menu.
+          </p>
+        </article>
+
+        <article class="panel help-card">
+          <h2>4. Automate</h2>
+          <p>
+            Use <strong>Start Sync.command</strong> for scheduled background sync,
+            and <strong>Stop Sync.command</strong> when you want to pause it.
+          </p>
+        </article>
+      </section>
+    </main>
+
+    <div id="admin-unlock-modal" class="modal-overlay hidden" role="dialog" aria-modal="true" aria-labelledby="admin-unlock-title">
+      <div class="modal-card">
+        <h2 id="admin-unlock-title">Open Admin Dashboard</h2>
+        <p class="modal-note">Enter admin code to continue.</p>
+        <input
+          id="modal-admin-code-input"
+          type="password"
+          placeholder="Admin code"
+          autocomplete="off"
+        />
+        <p id="modal-admin-status" class="settings-status"> </p>
+        <div class="controls modal-controls">
+          <button id="btn-modal-cancel" class="btn" type="button">Cancel</button>
+          <button id="btn-modal-unlock" class="btn btn-primary" type="button">Unlock</button>
+        </div>
+      </div>
+    </div>
 
     <script type="module" src="/src/main.js"></script>
   </body>
