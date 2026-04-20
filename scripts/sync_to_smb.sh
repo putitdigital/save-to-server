@@ -71,8 +71,12 @@ print_status() {
 MOUNT_POINT="/Volumes/$MOUNT_NAME"
 
 ensure_mounted() {
+  local silent_if_already_mounted="${1:-false}"
+
   if mount | grep -F "on $MOUNT_POINT " >/dev/null 2>&1; then
-    log "Share already mounted at $MOUNT_POINT"
+    if [[ "$silent_if_already_mounted" != "true" ]]; then
+      log "Share already mounted at $MOUNT_POINT"
+    fi
     return 0
   fi
 
@@ -185,7 +189,7 @@ main() {
   fi
 
   if [[ "${1:-}" == "changes-count" ]]; then
-    ensure_mounted
+    ensure_mounted true
     run_sync_changes_count
     return 0
   fi

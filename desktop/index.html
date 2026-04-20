@@ -18,77 +18,168 @@
         <p>Save to server made easy.</p>
       </section>
 
-      <section class="controls">
-        <button id="btn-sync" class="btn btn-primary">Sync Now</button>
-        <button id="btn-status" class="btn">Check Status</button>
-        <button id="btn-log" class="btn">Refresh Log</button>
-        <button id="btn-update" class="btn">Check for Update</button>
-      </section>
-      <p id="update-status" class="settings-status">Update status: not checked yet.</p>
+      <section class="app-layout">
+        <aside class="left-tabs" aria-label="Main tabs">
+          <button
+            id="tab-btn-user"
+            class="left-tab"
+            type="button"
+            data-tab-target="user"
+            aria-controls="tab-panel-user"
+            aria-selected="false"
+          >
+            User Info
+          </button>
+          <button
+            id="tab-btn-home"
+            class="left-tab is-active"
+            type="button"
+            data-tab-target="home"
+            aria-controls="tab-panel-home"
+            aria-selected="true"
+          >
+            Home
+          </button>
+          <button
+            id="tab-btn-admin"
+            class="left-tab"
+            type="button"
+            data-tab-target="admin"
+            aria-controls="tab-panel-admin"
+            aria-selected="false"
+          >
+            Admin
+          </button>
+          <button 
+            id="tab-btn-help"
+            class="left-tab"
+            type="button"
+            data-tab-target="help"
+            aria-controls="tab-panel-help"
+            aria-selected="false"
+          >
+            Help &amp; Guide
+          </button>
+          <button
+          id="tab-btn-settings"
+          class="left-tab"
+          type="button"
+          data-tab-target="settings"
+          aria-controls="tab-panel-settings"
+          aria-selected="false"
+        >
+          Settings
+        </button>
+        </aside>
 
-      <section class="panels">
-        <article id="panel-settings" class="panel panel-settings">
-          <h2>Settings</h2>
-          <div class="settings-grid">
-            <label class="field" for="local-source-input">
-              <span>Local Folder</span>
-              <div class="field-inline">
-                <input
-                  id="local-source-input"
-                  type="text"
-                  placeholder="/Users/you/path/to/folder"
-                />
-                <button id="btn-browse-source" class="btn" type="button">Browse...</button>
+        <div class="tab-panels">
+          <section id="tab-panel-user" class="tab-panel" aria-labelledby="tab-btn-user">
+            <article class="panel user-info-panel">
+              <h2>Connected User Information</h2>
+              <p class="settings-status">Shows the current local user and active sync destination details.</p>
+              <div class="user-info-grid">
+                <div class="user-info-item">
+                  <span class="user-info-label">Local User</span>
+                  <span id="user-info-local-user" class="user-info-value">Loading...</span>
+                </div>
+                <div class="user-info-item">
+                  <span class="user-info-label">Server Connection</span>
+                  <span id="user-info-server-status" class="user-info-value">Checking...</span>
+                </div>
+                <div class="user-info-item">
+                  <span class="user-info-label">Local Folder</span>
+                  <span id="user-info-local-folder" class="user-info-value">Not set</span>
+                </div>
+                <div class="user-info-item">
+                  <span class="user-info-label">Server Folder</span>
+                  <span id="user-info-server-folder" class="user-info-value">Not set</span>
+                </div>
               </div>
-            </label>
+            </article>
+          </section>
 
-            <label class="field" for="dest-subpath-input">
-              <div class="field-label">
-                <span>Server Folder</span>
-                <span id="server-status-badge" class="server-status-badge server-status-unknown">Checking...</span>
-              </div>
-              <input
-                id="dest-subpath-input"
-                type="text"
-                placeholder="Front-End-Dev/TBWA Work Sithe/2026"
-              />
-            </label>
-          </div>
+          <section id="tab-panel-home" class="tab-panel hidden" aria-labelledby="tab-btn-home">
+            <section class="controls">
+              <button id="btn-sync" class="btn btn-primary">Sync Now</button>
+              <button id="btn-status" class="btn">Check Status</button>
+              <button id="btn-log" class="btn">Refresh Log</button>
+              <button id="btn-update" class="btn">Check for Update</button>
+            </section>
+            <p id="update-status" class="settings-status">Update status: not checked yet.</p>
 
-          <div class="controls controls-settings">
-            <button id="btn-save-settings" class="btn btn-primary">Save Settings</button>
-            <button id="btn-load-settings" class="btn">Reload Settings</button>
-          </div>
+            <section class="panels">
+              <article id="panel-status" class="panel panel-status">
+                <div class="panel-status-header">
+                  <h2>Folder and Files to Sync</h2>
+                  <button id="btn-refresh-sync-items" class="btn">Refresh List</button>
+                </div>
+                <p id="sync-items-status" class="settings-status">Loading files and folders...</p>
+                <ul id="sync-items-list" class="sync-items-list" aria-live="polite"></ul>
+              </article>
+            </section>
 
-          <p id="settings-status" class="settings-status">Loading settings...</p>
-        </article>
-        <article id="panel-status" class="panel panel-status">
-          <h2>Folder and Files to Sync</h2>
-          <p id="sync-items-status" class="settings-status">Loading files and folders...</p>
-          <ul id="sync-items-list" class="sync-items-list" aria-live="polite"></ul>
-        </article>
+            <section class="panels">
+            </section>
+          </section>
 
-      </section>
+          <section id="tab-panel-settings" class="tab-panel hidden" aria-labelledby="tab-btn-settings">
+            <section class="panels">
+              <article id="panel-settings" class="panel panel-settings">
+                <h2>Settings</h2>
+                <div class="settings-grid">
+                  <label class="field" for="local-source-input">
+                    <span>Local Folder</span>
+                    <div class="field-inline">
+                      <input
+                        id="local-source-input"
+                        type="text"
+                        placeholder="/Users/you/path/to/folder"
+                      />
+                      <button id="btn-browse-source" class="btn" type="button">Browse...</button>
+                    </div>
+                  </label>
 
-      <section class="panels">
-        <article id="panel-admin" class="panel panel-admin hidden">
-          <h2>Admin Dashboard</h2>
-          <p class="admin-note">Sync logs are visible only after entering the admin code.</p>
+                  <label class="field" for="dest-subpath-input">
+                    <div class="field-label">
+                      <span>Server Folder</span>
+                      <span id="server-status-badge" class="server-status-badge server-status-unknown">Checking...</span>
+                    </div>
+                    <input
+                      id="dest-subpath-input"
+                      type="text"
+                      placeholder="Front-End-Dev/TBWA Work Sithe/2026"
+                    />
+                  </label>
+                </div>
 
-          <div class="field-inline admin-auth-row">
-            <input
-              id="admin-code-input"
-              type="password"
-              placeholder="Enter admin code"
-              autocomplete="off"
-            />
-            <button id="btn-admin-unlock" class="btn btn-primary" type="button">Unlock</button>
-          </div>
-          <p id="admin-status" class="settings-status">Locked</p>
+                <div class="controls controls-settings">
+                  <button id="btn-save-settings" class="btn btn-primary">Save Settings</button>
+                  <button id="btn-load-settings" class="btn">Reload Settings</button>
+                </div>
 
-          <h3 class="admin-log-title">Sync Log (latest lines)</h3>
-          <pre id="log-output" class="mono">Locked. Enter admin code to view logs.</pre>
-        </article>
+                <p id="settings-status" class="settings-status">Loading settings...</p>
+              </article>
+            </section>
+          </section>
+
+          <section id="tab-panel-admin" class="tab-panel hidden" aria-labelledby="tab-btn-admin">
+            <section class="panels">
+              <article id="panel-admin" class="panel panel-admin">
+                <h2>Admin Dashboard</h2>
+                <p class="admin-note">Sync logs are visible only after entering the admin code.</p>
+                <p id="admin-status" class="settings-status">Locked</p>
+                <h3 class="admin-log-title">Sync Log (latest lines)</h3>
+                <pre id="log-output" class="mono">Locked. Enter admin code to view logs.</pre>
+              </article>
+            </section>
+          </section>
+
+          <section id="tab-panel-help" class="tab-panel hidden" aria-labelledby="tab-btn-help">
+            <article class="panel help-card">
+              <h2>Getting Started with Flowit</h2>
+            </article>
+          </section>
+        </div>
       </section>
     </main>
 

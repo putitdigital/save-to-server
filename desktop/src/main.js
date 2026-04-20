@@ -17,11 +17,26 @@ const saveSettingsButton = document.getElementById("btn-save-settings");
 const loadSettingsButton = document.getElementById("btn-load-settings");
 const settingsStatus = document.getElementById("settings-status");
 const browseSourceButton = document.getElementById("btn-browse-source");
+const refreshSyncItemsButton = document.getElementById("btn-refresh-sync-items");
 const adminCodeInput = document.getElementById("admin-code-input");
 const adminUnlockButton = document.getElementById("btn-admin-unlock");
 const adminStatus = document.getElementById("admin-status");
 const appShell = document.getElementById("app-shell");
 const gettingStartedShell = document.getElementById("getting-started-shell");
+const userTabButton = document.getElementById("tab-btn-user");
+const homeTabButton = document.getElementById("tab-btn-home");
+const adminTabButton = document.getElementById("tab-btn-admin");
+const helpTabButton = document.getElementById("tab-btn-help");
+const settingsTabButton = document.getElementById("tab-btn-settings");
+const userTabPanel = document.getElementById("tab-panel-user");
+const homeTabPanel = document.getElementById("tab-panel-home");
+const adminTabPanel = document.getElementById("tab-panel-admin");
+const helpTabPanel = document.getElementById("tab-panel-help");
+const settingsTabPanel = document.getElementById("tab-panel-settings");
+const userInfoLocalUser = document.getElementById("user-info-local-user");
+const userInfoServerStatus = document.getElementById("user-info-server-status");
+const userInfoLocalFolder = document.getElementById("user-info-local-folder");
+const userInfoServerFolder = document.getElementById("user-info-server-folder");
 const settingsPanel = document.getElementById("panel-settings");
 const adminPanel = document.getElementById("panel-admin");
 const adminUnlockModal = document.getElementById("admin-unlock-modal");
@@ -41,8 +56,72 @@ let progressTicker = null;
 let progressIndex = 0;
 let isSyncInProgress = false;
 let syncDoneTimer = null;
+let syncStateRequestToken = 0;
+let autoSyncMonitorTimer = null;
+let isAutoSyncMonitorRunning = false;
+let currentServerConnectionLabel = "Checking...";
+let activeMainTab = "home";
+let lastBackgroundItemsRefreshAt = 0;
+
+const AUTO_SYNC_MONITOR_MS = 15000;
+const AUTO_SYNC_ITEMS_REFRESH_MS = 180000;
+const BACKGROUND_NETWORK_CHECKS_ENABLED = false;
 
 const currentView = new URLSearchParams(window.location.search).get("view");
+
+function switchMainTab(tab) {
+  const tabs = [
+    { key: "user", button: userTabButton, panel: userTabPanel },
+    { key: "home", button: homeTabButton, panel: homeTabPanel },
+    { key: "settings", button: settingsTabButton, panel: settingsTabPanel },
+    { key: "admin", button: adminTabButton, panel: adminTabPanel },
+    { key: "help", button: helpTabButton, panel: helpTabPanel }
+  ];
+
+  const validTabs = tabs.filter((entry) => entry.button && entry.panel);
+  if (validTabs.length === 0) {
+    return;
+  }
+
+  for (const entry of validTabs) {
+    const isActive = entry.key === tab;
+    entry.panel.classList.toggle("hidden", !isActive);
+    entry.button.classList.toggle("is-active", isActive);
+    entry.button.setAttribute("aria-selected", String(isActive));
+  }
+
+  activeMainTab = tab;
+}
+
+function extractLocalUser(path) {
+  const match = path.match(/^\/Users\/([^/]+)\//);
+  if (match?.[1]) {
+    return match[1];
+  }
+
+  return "Unknown";
+}
+
+function refreshUserInfoPanel() {
+  if (userInfoServerStatus) {
+    userInfoServerStatus.textContent = currentServerConnectionLabel || "Unknown";
+  }
+
+  if (userInfoLocalFolder) {
+    const localFolder = localSourceInput?.value?.trim();
+    userInfoLocalFolder.textContent = localFolder || "Not set";
+  }
+
+  if (userInfoServerFolder) {
+    const serverFolder = destSubpathInput?.value?.trim();
+    userInfoServerFolder.textContent = serverFolder || "Not set";
+  }
+
+  if (userInfoLocalUser) {
+    const localFolder = localSourceInput?.value?.trim();
+    userInfoLocalUser.textContent = localFolder ? extractLocalUser(localFolder) : "Unknown";
+  }
+}
 
 function initGettingStartedView() {
   if (appShell) {
@@ -91,6 +170,7 @@ function setServerStatusBadge(state, message) {
   }
 
   serverStatusBadge.textContent = message;
+  currentServerConnectionLabel = message;
   serverStatusBadge.classList.remove("server-status-connected", "server-status-disconnected", "server-status-unknown");
 
   if (state === "connected") {
@@ -100,6 +180,8 @@ function setServerStatusBadge(state, message) {
   } else {
     serverStatusBadge.classList.add("server-status-unknown");
   }
+
+  refreshUserInfoPanel();
 }
 
 function setSyncButtonLabel(text) {
@@ -110,27 +192,114 @@ function setSyncButtonLabel(text) {
   syncButton.textContent = text;
 }
 
-async function refreshSyncButtonState() {
+async function refreshSyncButtonState(options = {}) {
+  const { force = false } = options;
+
+  if (!force && !BACKGROUND_NETWORK_CHECKS_ENABLED) {
+    setSyncButtonLabel("Sync Now");
+    if (syncButton) {
+      syncButton.disabled = false;
+    }
+    return;
+  }
+
   if (isSyncInProgress || !syncButton) {
     return;
   }
 
+  const requestToken = ++syncStateRequestToken;
+
   try {
     const result = await invoke("sync_pending_changes_count");
+    if (requestToken !== syncStateRequestToken) {
+      return;
+    }
+
     const pendingCount = Number(result?.pending_count || 0);
 
     if (pendingCount > 0) {
       setSyncButtonLabel("Sync Now");
       syncButton.disabled = false;
+
+      if (syncItems.length > 0 && syncItems.every((item) => item.status === "done")) {
+        syncItems = syncItems.map((item) => ({ ...item, status: "pending" }));
+        renderSyncItems();
+        setSyncItemsStatus("Pending changes detected.");
+      }
+
       return;
     }
 
     setSyncButtonLabel("All up to date");
-    syncButton.disabled = true;
+    syncButton.disabled = false;
+
+    if (syncItems.length > 0) {
+      syncItems = syncItems.map((item) => ({ ...item, status: "done" }));
+      renderSyncItems();
+      const displayItems = getDisplaySyncItems();
+      setSyncItemsStatus(`All ${displayItems.length} folders/files are up to date.`);
+    }
   } catch (_error) {
+    if (requestToken !== syncStateRequestToken) {
+      return;
+    }
+
     setSyncButtonLabel("Sync Now");
     syncButton.disabled = false;
   }
+}
+
+function stopAutoSyncMonitor() {
+  if (autoSyncMonitorTimer) {
+    window.clearInterval(autoSyncMonitorTimer);
+    autoSyncMonitorTimer = null;
+  }
+}
+
+async function runAutoSyncMonitorTick() {
+  if (!BACKGROUND_NETWORK_CHECKS_ENABLED) {
+    return;
+  }
+
+  if (isSyncInProgress || isAutoSyncMonitorRunning) {
+    return;
+  }
+
+  if (activeMainTab !== "home") {
+    return;
+  }
+
+  isAutoSyncMonitorRunning = true;
+
+  try {
+    const now = Date.now();
+    const shouldRefreshItems =
+      activeMainTab === "home" &&
+      (syncItems.length === 0 || now - lastBackgroundItemsRefreshAt >= AUTO_SYNC_ITEMS_REFRESH_MS);
+
+    if (shouldRefreshItems) {
+      await loadSyncItems({
+        silent: true,
+        skipButtonRefresh: true
+      });
+      lastBackgroundItemsRefreshAt = now;
+    }
+
+    await refreshSyncButtonState();
+  } finally {
+    isAutoSyncMonitorRunning = false;
+  }
+}
+
+function startAutoSyncMonitor() {
+  if (!BACKGROUND_NETWORK_CHECKS_ENABLED) {
+    return;
+  }
+
+  stopAutoSyncMonitor();
+  autoSyncMonitorTimer = window.setInterval(() => {
+    void runAutoSyncMonitorTick();
+  }, AUTO_SYNC_MONITOR_MS);
 }
 
 async function refreshServerStatus() {
@@ -387,8 +556,12 @@ async function finalizeSyncStatuses(stdout) {
   applySyncResultStatuses(stdout);
 }
 
-async function loadSyncItems() {
-  setSyncItemsStatus("Loading files and folders...");
+async function loadSyncItems(options = {}) {
+  const { silent = false, skipButtonRefresh = true } = options;
+
+  if (!silent) {
+    setSyncItemsStatus("Loading files and folders...");
+  }
 
   try {
     const items = await invoke("get_sync_source_items", {
@@ -396,34 +569,51 @@ async function loadSyncItems() {
       maxDepth: 3
     });
 
-    syncItems = (items || []).map((item) => ({
+    const nextSyncItems = (items || []).map((item) => ({
       path: item.path,
       is_dir: item.is_dir,
       status: "pending"
     }));
 
+    const statusByItemKey = new Map(syncItems.map((item) => [`${item.path}::${item.is_dir ? "dir" : "file"}`, item.status]));
+
+    syncItems = nextSyncItems.map((item) => {
+      const key = `${item.path}::${item.is_dir ? "dir" : "file"}`;
+      const previousStatus = statusByItemKey.get(key);
+      return {
+        ...item,
+        status: previousStatus || "pending"
+      };
+    });
+
     renderSyncItems();
     if (syncItems.length === 0) {
-      setSyncItemsStatus("No files found in LOCAL_SOURCE. Save settings and try again.", true);
+      if (!silent) {
+        setSyncItemsStatus("No files found in LOCAL_SOURCE. Save settings and try again.", true);
+      }
       return;
     }
 
-    setSyncItemsStatus(`${syncItems.length} files/folders ready to sync.`);
+    if (!silent) {
+      setSyncItemsStatus(`${syncItems.length} files/folders ready to sync.`);
+    }
+
+    if (!skipButtonRefresh) {
+      await refreshSyncButtonState();
+    }
   } catch (error) {
-    syncItems = [];
-    renderSyncItems();
-    setSyncItemsStatus(`Unable to load sync items: ${String(error)}`, true);
+    if (!silent) {
+      syncItems = [];
+      renderSyncItems();
+      setSyncItemsStatus(`Unable to load sync items: ${String(error)}`, true);
+    }
   }
 }
 
 function showAdminDashboard() {
-  if (settingsPanel) {
-    settingsPanel.classList.add("hidden");
-  }
-
   if (adminPanel) {
     adminPanel.classList.remove("hidden");
-    adminPanel.style.display = "grid";
+    switchMainTab("admin");
     adminPanel.scrollIntoView({ behavior: "smooth", block: "start" });
   }
 }
@@ -431,12 +621,17 @@ function showAdminDashboard() {
 function hideAdminDashboard() {
   if (adminPanel) {
     adminPanel.classList.add("hidden");
-    adminPanel.style.display = "none";
+  }
+}
+
+function handleAdminTabClick() {
+  if (isAdminUnlocked) {
+    showAdminDashboard();
+    void refreshLog();
+    return;
   }
 
-  if (settingsPanel) {
-    settingsPanel.classList.remove("hidden");
-  }
+  openAdminUnlockModal();
 }
 
 function openAdminUnlockModal() {
@@ -565,7 +760,7 @@ async function checkStatus() {
 }
 
 async function syncNow() {
-  if (!syncButton || syncButton.disabled) {
+  if (!syncButton) {
     return;
   }
 
@@ -599,7 +794,8 @@ async function syncNow() {
     setSyncButtonLabel("Sync done");
     syncDoneTimer = window.setTimeout(() => {
       syncDoneTimer = null;
-      void refreshSyncButtonState();
+      setSyncButtonLabel("Sync Now");
+      syncButton.disabled = false;
     }, 1400);
     await refreshServerStatus();
   }
@@ -705,6 +901,7 @@ async function loadSettings() {
     localSourceInput.value = settings.local_source || "";
     destSubpathInput.value = settings.dest_subpath || "";
     setSettingsStatus("Settings loaded.");
+    refreshUserInfoPanel();
   } catch (error) {
     setSettingsStatus(`Failed to load settings: ${String(error)}`, true);
   } finally {
@@ -726,8 +923,10 @@ async function saveSettings() {
     });
 
     setSettingsStatus(message || "Settings saved.");
-    await loadSyncItems();
-    await refreshSyncButtonState();
+    refreshUserInfoPanel();
+    await loadSyncItems({ skipButtonRefresh: true });
+    setSyncButtonLabel("Sync Now");
+    syncButton.disabled = false;
   } catch (error) {
     setSettingsStatus(`Failed to save settings: ${String(error)}`, true);
   } finally {
@@ -742,6 +941,7 @@ async function browseLocalSource() {
     if (selectedPath) {
       localSourceInput.value = selectedPath;
       setSettingsStatus("LOCAL_SOURCE selected. Save settings to apply.");
+      refreshUserInfoPanel();
     } else {
       setSettingsStatus("Folder selection canceled.");
     }
@@ -752,6 +952,52 @@ async function browseLocalSource() {
   }
 }
 
+async function refreshListAndAutoSync() {
+  if (!refreshSyncItemsButton) {
+    return;
+  }
+
+  if (isSyncInProgress) {
+    setSyncItemsStatus("Sync is already in progress. Please wait...");
+    return;
+  }
+
+  refreshSyncItemsButton.disabled = true;
+  const previousLabel = refreshSyncItemsButton.textContent;
+  refreshSyncItemsButton.textContent = "Refreshing...";
+
+  try {
+    await loadSyncItems({ skipButtonRefresh: true });
+
+    const pendingInfo = await invoke("sync_pending_changes_count");
+    const pendingCount = Number(pendingInfo?.pending_count || 0);
+
+    if (pendingCount > 0) {
+      setSyncButtonLabel("Sync Now");
+      syncButton.disabled = false;
+      setSyncItemsStatus(`Detected ${pendingCount} pending change(s). Starting auto sync...`);
+      await syncNow();
+      return;
+    }
+
+    setSyncButtonLabel("All up to date");
+    syncButton.disabled = false;
+    if (syncItems.length > 0) {
+      syncItems = syncItems.map((item) => ({ ...item, status: "done" }));
+      renderSyncItems();
+      const displayItems = getDisplaySyncItems();
+      setSyncItemsStatus(`No new files/folders found. All ${displayItems.length} items are up to date.`);
+    } else {
+      setSyncItemsStatus("No files found in LOCAL_SOURCE. Save settings and try again.", true);
+    }
+  } catch (error) {
+    setSyncItemsStatus(`Unable to refresh list: ${String(error)}`, true);
+  } finally {
+    refreshSyncItemsButton.disabled = false;
+    refreshSyncItemsButton.textContent = previousLabel || "Refresh List";
+  }
+}
+
 if (currentView === "getting-started") {
   initGettingStartedView();
 } else {
@@ -759,12 +1005,28 @@ if (currentView === "getting-started") {
   hideAdminDashboard();
 
   syncButton.addEventListener("click", syncNow);
+  userTabButton?.addEventListener("click", () => {
+    switchMainTab("user");
+  });
+  homeTabButton?.addEventListener("click", () => {
+    switchMainTab("home");
+  });
+  settingsTabButton?.addEventListener("click", () => {
+    switchMainTab("settings");
+  });
+  adminTabButton?.addEventListener("click", handleAdminTabClick);
+  helpTabButton?.addEventListener("click", () => {
+    switchMainTab("help");
+  });
   statusButton.addEventListener("click", checkStatus);
   logButton.addEventListener("click", refreshLog);
   updateButton?.addEventListener("click", checkForUpdate);
   saveSettingsButton.addEventListener("click", saveSettings);
   loadSettingsButton.addEventListener("click", loadSettings);
   browseSourceButton.addEventListener("click", browseLocalSource);
+  refreshSyncItemsButton?.addEventListener("click", () => {
+    void refreshListAndAutoSync();
+  });
   adminUnlockButton?.addEventListener("click", unlockAdmin);
   modalUnlockButton?.addEventListener("click", () => {
     void unlockAdminFromMenu();
@@ -798,7 +1060,11 @@ if (currentView === "getting-started") {
 
   checkStatus();
   loadSettings();
-  loadSyncItems();
+  loadSyncItems({ skipButtonRefresh: true });
   refreshServerStatus();
-  refreshSyncButtonState();
+  setSyncButtonLabel("Sync Now");
+  syncButton.disabled = false;
+  refreshUserInfoPanel();
+  switchMainTab("home");
+  startAutoSyncMonitor();
 }

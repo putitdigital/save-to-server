@@ -232,6 +232,19 @@ From repo root:
 ./package-desktop.sh
 ```
 
+From `desktop/` folder (alternative):
+
+```bash
+npm run package:desktop
+```
+
+If `./package-desktop.sh` fails with "permission denied" or "command not found", run:
+
+```bash
+chmod +x ./package-desktop.sh
+zsh ./package-desktop.sh
+```
+
 This script installs dependencies (if needed), builds the Tauri app, and prints the package output folder.
 
 ### Important notes

@@ -794,3 +794,929 @@ total size is 15068  speedup is 14.80
 [2026-04-20 10:42:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
 [2026-04-20 10:47:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
 [2026-04-20 10:52:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:22:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:31:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:31:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:31:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 11:31:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:31:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 16 files
+./
+Billboard 970x250.png
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 152k bytes  received 132 bytes  45201 bytes/sec
+total size is 166k  speedup is 1.09
+[2026-04-20 11:31:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 11:31:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 11:31:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:31:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:33:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:33:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:49:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:49:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:58:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 11:58:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:58:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 17 files
+./
+Untitled-2.ai
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 110M bytes  received 138 bytes  1541k bytes/sec
+total size is 110M  speedup is 1.00
+[2026-04-20 11:59:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 11:59:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 11:59:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 11:59:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:04:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:04:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:06:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:07:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:08:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 12:09:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:09:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 17 files
+./
+Billboard 970x250.png
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 152k bytes  received 138 bytes  37229 bytes/sec
+total size is 110M  speedup is 721.65
+[2026-04-20 12:10:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 12:10:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 12:10:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:10:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 12:11:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 18 files
+./
+300x600.gif
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 54968 bytes  received 144 bytes  14453 bytes/sec
+total size is 110M  speedup is 1996.33
+[2026-04-20 12:11:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 12:11:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 12:11:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:11:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:12:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:13:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:14:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:15:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:16:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:17:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:18:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:07] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:19:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:07] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:31] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:20:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:07] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:31] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:21:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:07] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:31] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:22:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:27] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:23:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:24:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:25:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:26:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:27:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:28:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:29:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:30:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:31:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:44] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:32:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:33:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:33:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:33:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:33:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:33:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:33:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:33:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:33:54] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:08] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:34:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:35:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:36:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:37:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:38:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:39:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:31] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:40:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:08] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:39] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:41:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:42:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:49] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:43:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:31] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:38] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:44:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:45:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:46:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:47:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:48:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:31] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:49:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:50:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:51:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:08] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:38] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:44] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:52:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:08] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:38] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:44] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:53:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:08] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:27] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:39] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:54:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:27] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:55:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:08] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:38] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:44] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:56:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:02] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:57:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:58:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 12:59:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:00:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:01:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:02:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:03:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:04:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:05:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:06:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:07:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:08:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:09:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:10:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:11:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:12:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:10] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:13:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:14:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:15:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:16:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:17:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:17:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:17:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:17:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:17:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:17:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 13:17:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 14:11:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 14:12:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 14:12:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 56 files
+./
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 5150 bytes  received 350 bytes  665 bytes/sec
+total size is 4447k  speedup is 808.58
+[2026-04-20 14:12:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 14:12:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 14:15:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 14:15:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 14:15:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 56 files
+./
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 5150 bytes  received 350 bytes  561 bytes/sec
+total size is 4447k  speedup is 808.58
+[2026-04-20 14:15:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 14:15:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 14:20:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 14:20:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 14:20:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 69 files
+./
+01 PNG/
+01 PNG/Billboard 970x250.png
+01 PNG/Half Page 300x600.png
+01 PNG/Interstitial 1080x1920.png
+01 PNG/Large Mobile Banner 320x100.png
+01 PNG/Large Rectangle 336X280.png
+01 PNG/Leaderboard 728x90.png
+01 PNG/Medium Rectangle 300x250.png
+01 PNG/Medium Rectangle MPU 300x250.png
+01 PNG/Mobile Banner 320x50.png
+01 PNG/Portrait 300x1050.png
+01 PNG/Super Leaderboard 970x90.png
+01 PNG/Wide Skyscraper 160x600.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 1895k bytes  received 620 bytes  63912 bytes/sec
+total size is 6336k  speedup is 3.34
+[2026-04-20 14:20:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 14:20:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
