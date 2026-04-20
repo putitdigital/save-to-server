@@ -45,6 +45,18 @@ struct SyncSourceItem {
     is_dir: bool,
 }
 
+#[derive(Serialize)]
+struct ServerConnectionStatus {
+    connected: bool,
+    mount_point: String,
+    message: String,
+}
+
+#[derive(Serialize)]
+struct PendingSyncInfo {
+    pending_count: usize,
+}
+
 fn candidate_roots(app: &tauri::AppHandle) -> Result<Vec<PathBuf>, String> {
     let mut roots = Vec::new();
 
@@ -416,6 +428,20 @@ fn configured_admin_code(repo_root: &Path) -> String {
     "1234".to_string()
 }
 
+fn configured_mount_name(repo_root: &Path) -> String {
+    let env_path = local_env_path(repo_root);
+    if let Ok(content) = fs::read_to_string(env_path) {
+        if let Some(from_file) = read_env_value(&content, "MOUNT_NAME") {
+            let trimmed = from_file.trim();
+            if !trimmed.is_empty() {
+                return trimmed.to_string();
+            }
+        }
+    }
+
+    "TBWA_JHB_Clients".to_string()
+}
+
 fn escape_env_value(value: &str) -> String {
     value.replace('\\', "\\\\").replace('"', "\\\"")
 }
@@ -613,6 +639,48 @@ fn get_sync_source_items(
     Ok(items)
 }
 
+#[tauri::command]
+fn get_server_connection_status(app: tauri::AppHandle) -> Result<ServerConnectionStatus, String> {
+    let repo_root = workspace_root(&app)?;
+    let mount_name = configured_mount_name(&repo_root);
+    let mount_point = format!("/Volumes/{}", mount_name);
+
+    let mount_output = Command::new("mount")
+        .output()
+        .map_err(|error| format!("Failed to execute mount command: {error}"))?;
+
+    let mounts = String::from_utf8_lossy(&mount_output.stdout);
+    let marker = format!("on {} ", mount_point);
+    let connected = mounts.contains(&marker);
+
+    let message = if connected {
+        "Connected".to_string()
+    } else {
+        "Not connected".to_string()
+    };
+
+    Ok(ServerConnectionStatus {
+        connected,
+        mount_point,
+        message,
+    })
+}
+
+#[tauri::command]
+fn sync_pending_changes_count(app: tauri::AppHandle) -> Result<PendingSyncInfo, String> {
+    let result = run_sync_script(&app, &["changes-count"])?;
+    let mut pending_count = 0usize;
+
+    for line in result.stdout.lines().rev() {
+        if let Some(value) = line.trim().strip_prefix("PENDING_COUNT=") {
+            pending_count = value.trim().parse::<usize>().unwrap_or(0);
+            break;
+        }
+    }
+
+    Ok(PendingSyncInfo { pending_count })
+}
+
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_updater::Builder::new().build())
@@ -743,7 +811,9 @@ fn main() {
             save_settings,
             pick_local_source,
             verify_admin_code,
-            get_sync_source_items
+            get_sync_source_items,
+            get_server_connection_status,
+            sync_pending_changes_count
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

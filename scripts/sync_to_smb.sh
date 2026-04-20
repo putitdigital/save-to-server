@@ -135,9 +135,58 @@ run_sync() {
   log "Sync finished"
 }
 
+run_sync_changes_count() {
+  if [[ ! -d "$LOCAL_SOURCE" ]]; then
+    log "ERROR: Local source does not exist: $LOCAL_SOURCE"
+    echo "PENDING_COUNT=0"
+    return 0
+  fi
+
+  local destination
+  destination="$(build_destination)"
+
+  if [[ ! -d "$destination" ]]; then
+    mkdir -p "$destination"
+  fi
+
+  local rsync_args
+  rsync_args=(
+    -av
+    --human-readable
+    --dry-run
+    --itemize-changes
+    --out-format="%i %n"
+  )
+
+  if [[ "$DELETE_REMOTE" == "true" ]]; then
+    rsync_args+=(--delete)
+  fi
+
+  if [[ -f "$EXCLUDE_FILE" ]]; then
+    rsync_args+=(--exclude-from="$EXCLUDE_FILE")
+  fi
+
+  local output
+  output="$(/usr/bin/rsync "${rsync_args[@]}" "$LOCAL_SOURCE/" "$destination/" 2>/dev/null || true)"
+
+  local count
+  count="$(
+    printf "%s\n" "$output" |
+        awk 'NF && $2 != "." && $1 != "sending" && $1 != "sent" && $1 != "total" && $1 != "Transfer" && $2 !~ /\/$/ && $1 != ".f...p..." && $1 != ".d...p..." { c++ } END { print c + 0 }'
+  )"
+
+  echo "PENDING_COUNT=${count}"
+}
+
 main() {
   if [[ "${1:-}" == "status" ]]; then
     print_status
+    return 0
+  fi
+
+  if [[ "${1:-}" == "changes-count" ]]; then
+    ensure_mounted
+    run_sync_changes_count
     return 0
   fi
 

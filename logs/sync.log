@@ -655,3 +655,142 @@ total size is 9041  speedup is 10,93
 [2026-04-19 16:16:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
 [2026-04-19 16:16:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
 [2026-04-19 16:16:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-20 09:55:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 09:55:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 09:55:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/.local.env
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 1038 bytes  received 126 bytes  184 bytes/sec
+total size is 15068  speedup is 12.95
+[2026-04-20 09:56:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 09:56:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:03:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 10:03:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:03:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 908 bytes  received 110 bytes  318 bytes/sec
+total size is 15068  speedup is 14.80
+[2026-04-20 10:03:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 10:03:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:08:51] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:10:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 10:10:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:10:12] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 908 bytes  received 110 bytes  323 bytes/sec
+total size is 15068  speedup is 14.80
+[2026-04-20 10:10:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 10:10:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:10:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:12:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 10:12:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:12:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 908 bytes  received 110 bytes  340 bytes/sec
+total size is 15068  speedup is 14.80
+[2026-04-20 10:12:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 10:12:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:12:15] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:16:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:19:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 10:19:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:19:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 908 bytes  received 110 bytes  429 bytes/sec
+total size is 15068  speedup is 14.80
+[2026-04-20 10:19:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 10:19:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:19:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:21:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:22:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 10:22:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:22:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 908 bytes  received 110 bytes  421 bytes/sec
+total size is 15068  speedup is 14.80
+[2026-04-20 10:22:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 10:22:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:22:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:22:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:27:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:28:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 10:28:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:28:18] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 908 bytes  received 110 bytes  386 bytes/sec
+total size is 15068  speedup is 14.80
+[2026-04-20 10:28:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 10:28:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:28:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:28:23] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:29:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 10:29:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:29:14] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 908 bytes  received 110 bytes  255 bytes/sec
+total size is 15068  speedup is 14.80
+[2026-04-20 10:29:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 10:29:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:29:19] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:29:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:31:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:34:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:34:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:35:27] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-20 10:35:27] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:35:27] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 15 files
+./
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 908 bytes  received 110 bytes  240 bytes/sec
+total size is 15068  speedup is 14.80
+[2026-04-20 10:35:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-20 10:35:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-20 10:35:33] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:35:35] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:42:25] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:47:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-20 10:52:00] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients

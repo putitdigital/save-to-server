@@ -10,6 +10,7 @@ const statusButton = document.getElementById("btn-status");
 const logButton = document.getElementById("btn-log");
 const updateButton = document.getElementById("btn-update");
 const updateStatus = document.getElementById("update-status");
+const serverStatusBadge = document.getElementById("server-status-badge");
 const localSourceInput = document.getElementById("local-source-input");
 const destSubpathInput = document.getElementById("dest-subpath-input");
 const saveSettingsButton = document.getElementById("btn-save-settings");
@@ -38,6 +39,8 @@ let isAdminUnlocked = false;
 let syncItems = [];
 let progressTicker = null;
 let progressIndex = 0;
+let isSyncInProgress = false;
+let syncDoneTimer = null;
 
 const currentView = new URLSearchParams(window.location.search).get("view");
 
@@ -82,6 +85,69 @@ function setUpdateStatus(message, isError = false) {
   updateStatus.classList.toggle("is-error", isError);
 }
 
+function setServerStatusBadge(state, message) {
+  if (!serverStatusBadge) {
+    return;
+  }
+
+  serverStatusBadge.textContent = message;
+  serverStatusBadge.classList.remove("server-status-connected", "server-status-disconnected", "server-status-unknown");
+
+  if (state === "connected") {
+    serverStatusBadge.classList.add("server-status-connected");
+  } else if (state === "disconnected") {
+    serverStatusBadge.classList.add("server-status-disconnected");
+  } else {
+    serverStatusBadge.classList.add("server-status-unknown");
+  }
+}
+
+function setSyncButtonLabel(text) {
+  if (!syncButton) {
+    return;
+  }
+
+  syncButton.textContent = text;
+}
+
+async function refreshSyncButtonState() {
+  if (isSyncInProgress || !syncButton) {
+    return;
+  }
+
+  try {
+    const result = await invoke("sync_pending_changes_count");
+    const pendingCount = Number(result?.pending_count || 0);
+
+    if (pendingCount > 0) {
+      setSyncButtonLabel("Sync Now");
+      syncButton.disabled = false;
+      return;
+    }
+
+    setSyncButtonLabel("All up to date");
+    syncButton.disabled = true;
+  } catch (_error) {
+    setSyncButtonLabel("Sync Now");
+    syncButton.disabled = false;
+  }
+}
+
+async function refreshServerStatus() {
+  setServerStatusBadge("unknown", "Checking...");
+
+  try {
+    const result = await invoke("get_server_connection_status");
+    if (result?.connected) {
+      setServerStatusBadge("connected", "Connected");
+    } else {
+      setServerStatusBadge("disconnected", "Not connected");
+    }
+  } catch (_error) {
+    setServerStatusBadge("unknown", "Unknown");
+  }
+}
+
 function normalizePath(value) {
   return value.replace(/^\.\//, "").replace(/\/$/, "").trim();
 }
@@ -94,17 +160,98 @@ function formatItemLabel(item) {
   return item.path;
 }
 
+function aggregateStatus(statuses) {
+  if (statuses.some((value) => value === "in-progress")) {
+    return "in-progress";
+  }
+
+  if (statuses.some((value) => value === "pending")) {
+    return "pending";
+  }
+
+  return "done";
+}
+
+function getDisplaySyncItems() {
+  const groupedFolders = new Map();
+  const rootFiles = new Map();
+
+  for (const item of syncItems) {
+    const normalizedPath = normalizePath(item.path);
+    if (!normalizedPath) {
+      continue;
+    }
+
+    const parts = normalizedPath.split("/");
+
+    if (parts.length === 1) {
+      if (item.is_dir) {
+        const existing = groupedFolders.get(normalizedPath) || [];
+        existing.push(item.status);
+        groupedFolders.set(normalizedPath, existing);
+      } else {
+        rootFiles.set(normalizedPath, item.status);
+      }
+      continue;
+    }
+
+    const topFolder = parts[0];
+    const existing = groupedFolders.get(topFolder) || [];
+    existing.push(item.status);
+    groupedFolders.set(topFolder, existing);
+  }
+
+  const displayItems = [];
+
+  for (const [folderName, statuses] of groupedFolders.entries()) {
+    displayItems.push({
+      path: folderName,
+      is_dir: true,
+      status: aggregateStatus(statuses)
+    });
+  }
+
+  for (const [fileName, status] of rootFiles.entries()) {
+    displayItems.push({
+      path: fileName,
+      is_dir: false,
+      status
+    });
+  }
+
+  return displayItems;
+}
+
 function renderSyncItems() {
   if (!syncItemsList) {
     return;
   }
 
-  if (syncItems.length === 0) {
+  const displayItems = getDisplaySyncItems();
+
+  if (displayItems.length === 0) {
     syncItemsList.innerHTML = "";
     return;
   }
 
-  const rows = syncItems.slice(0, 160).map((item) => {
+  const statusRank = {
+    "in-progress": 0,
+    pending: 1,
+    done: 2
+  };
+
+  const orderedItems = [...displayItems].sort((a, b) => {
+    const rankA = statusRank[a.status] ?? 3;
+    const rankB = statusRank[b.status] ?? 3;
+
+    if (rankA !== rankB) {
+      return rankA - rankB;
+    }
+
+    return a.path.localeCompare(b.path);
+  });
+
+  const rows = orderedItems.slice(0, 160).map((item) => {
     const label = formatItemLabel(item)
       .replaceAll("&", "&amp;")
       .replaceAll("<", "&lt;")
@@ -214,10 +361,30 @@ function applySyncResultStatuses(stdout) {
 
   renderSyncItems();
 
-  const doneCount = syncItems.filter((item) => item.status === "done").length;
-  if (syncItems.length > 0) {
-    setSyncItemsStatus(`${doneCount}/${syncItems.length} items done in latest sync.`);
+  const displayItems = getDisplaySyncItems();
+  const doneCount = displayItems.filter((item) => item.status === "done").length;
+  if (displayItems.length > 0) {
+    setSyncItemsStatus(`${doneCount}/${displayItems.length} folders/files done in latest sync.`);
   }
+}
+
+async function finalizeSyncStatuses(stdout) {
+  try {
+    const pendingInfo = await invoke("sync_pending_changes_count");
+    const pendingCount = Number(pendingInfo?.pending_count || 0);
+
+    if (pendingCount === 0 && syncItems.length > 0) {
+      syncItems = syncItems.map((item) => ({ ...item, status: "done" }));
+      renderSyncItems();
+      const displayItems = getDisplaySyncItems();
+      setSyncItemsStatus(`All ${displayItems.length} folders/files are up to date.`);
+      return;
+    }
+  } catch (_error) {
+    // Fallback to stdout parsing if pending count check fails.
+  }
+
+  applySyncResultStatuses(stdout);
 }
 
 async function loadSyncItems() {
@@ -333,8 +500,8 @@ async function checkForUpdate() {
     const update = await check();
 
     if (!update) {
-      setCommandText("You are already on the latest version.");
-      setUpdateStatus("no update available. You are on the latest version.");
+      setCommandText("All up to date. You are already on the latest version.");
+      setUpdateStatus("all up to date. You are already on the latest version.");
       return;
     }
 
@@ -393,11 +560,23 @@ async function checkStatus() {
     showError("Status", error);
   } finally {
     statusButton.disabled = false;
+    await refreshServerStatus();
   }
 }
 
 async function syncNow() {
+  if (!syncButton || syncButton.disabled) {
+    return;
+  }
+
+  if (syncDoneTimer) {
+    window.clearTimeout(syncDoneTimer);
+    syncDoneTimer = null;
+  }
+
+  isSyncInProgress = true;
   syncButton.disabled = true;
+  setSyncButtonLabel("Sync on process");
   setCommandText("Running sync...");
   setSyncItemsStatus("Sync in progress...");
   startProgressTicker();
@@ -406,7 +585,7 @@ async function syncNow() {
     const result = await invoke("sync_now");
     showCommandResult("Sync", result);
     stopProgressTicker();
-    applySyncResultStatuses(result.stdout || "");
+    await finalizeSyncStatuses(result.stdout || "");
     await refreshLog();
   } catch (error) {
     stopProgressTicker();
@@ -416,7 +595,13 @@ async function syncNow() {
     stopProgressTicker();
     syncItems = syncItems.map((item) => (item.status === "done" ? item : { ...item, status: "pending" }));
     renderSyncItems();
-    syncButton.disabled = false;
+    isSyncInProgress = false;
+    setSyncButtonLabel("Sync done");
+    syncDoneTimer = window.setTimeout(() => {
+      syncDoneTimer = null;
+      void refreshSyncButtonState();
+    }, 1400);
+    await refreshServerStatus();
   }
 }
 
@@ -542,6 +727,7 @@ async function saveSettings() {
 
     setSettingsStatus(message || "Settings saved.");
     await loadSyncItems();
+    await refreshSyncButtonState();
   } catch (error) {
     setSettingsStatus(`Failed to save settings: ${String(error)}`, true);
   } finally {
@@ -613,4 +799,6 @@ if (currentView === "getting-started") {
   checkStatus();
   loadSettings();
   loadSyncItems();
+  refreshServerStatus();
+  refreshSyncButtonState();
 }

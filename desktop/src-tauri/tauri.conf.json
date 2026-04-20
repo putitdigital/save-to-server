@@ -26,7 +26,7 @@
       "endpoints": [
         "https://github.com/putitdigital/save-to-server/releases/latest/download/latest.json"
       ],
-      "pubkey": "REPLACE_WITH_TAURI_UPDATER_PUBLIC_KEY"
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEFDODZEOTYzNjNBNkI2NApSV1JrYXpvMmxtM0lDc3B3ZC9lWk5YQkE0bC9EaEd1MFFjVGJLTEJaNHhnQ1BxVkY0WTQvYXZUbgo="
     }
   },
   "bundle": {
