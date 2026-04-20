@@ -252,3 +252,6 @@ This script installs dependencies (if needed), builds the Tauri app, and prints 
 - The app expects `run.sh`, `scripts/`, and `logs/` to exist in this repository.
 - On first sync, macOS may still prompt for SMB authentication if Keychain is not already configured.
 - If Gatekeeper shows an "unidentified developer" warning for unsigned builds, right-click the app and choose **Open** the first time.
+
+UPATE PASWORD
+93github@PWD1O
