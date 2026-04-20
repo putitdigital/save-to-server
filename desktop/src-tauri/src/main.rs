@@ -8,6 +8,9 @@ use tauri::menu::{AboutMetadataBuilder, MenuBuilder, SubmenuBuilder};
 use tauri::{Emitter, Manager, WebviewUrl, WebviewWindowBuilder};
 use ignore::gitignore::{Gitignore, GitignoreBuilder};
 
+#[cfg(unix)]
+use std::os::unix::fs::PermissionsExt;
+
 const HELP_HOW_TO_USE_ID: &str = "help_how_to_use";
 const HELP_OPEN_README_ID: &str = "help_open_readme";
 const HELP_OPEN_LOGS_ID: &str = "help_open_logs";
@@ -15,6 +18,7 @@ const HELP_ADMIN_HELP_ID: &str = "help_admin_help";
 const LOGS_OPEN_ADMIN_ID: &str = "logs_open_admin_dashboard";
 const REQUEST_ADMIN_UNLOCK_EVENT: &str = "flowit://request-admin-unlock";
 const GETTING_STARTED_WINDOW_LABEL: &str = "getting-started";
+const RUNTIME_WORKSPACE_DIR: &str = "runtime-workspace";
 
 #[derive(Serialize, Clone)]
 struct AdminUnlockRequest {
@@ -70,8 +74,120 @@ fn find_repo_root(app: &tauri::AppHandle) -> Result<PathBuf, String> {
     Err("Could not find run.sh in known app paths".to_string())
 }
 
+fn copy_dir_recursive(source: &Path, destination: &Path) -> Result<(), String> {
+    fs::create_dir_all(destination)
+        .map_err(|error| format!("Failed to create {}: {error}", destination.display()))?;
+
+    let entries = fs::read_dir(source)
+        .map_err(|error| format!("Failed to read {}: {error}", source.display()))?;
+
+    for entry in entries {
+        let entry = entry.map_err(|error| format!("Failed to read directory entry: {error}"))?;
+        let source_path = entry.path();
+        let destination_path = destination.join(entry.file_name());
+        let file_type = entry
+            .file_type()
+            .map_err(|error| format!("Failed to read file type for {}: {error}", source_path.display()))?;
+
+        if file_type.is_dir() {
+            copy_dir_recursive(&source_path, &destination_path)?;
+        } else {
+            fs::copy(&source_path, &destination_path).map_err(|error| {
+                format!(
+                    "Failed to copy {} to {}: {error}",
+                    source_path.display(),
+                    destination_path.display()
+                )
+            })?;
+        }
+    }
+
+    Ok(())
+}
+
+#[cfg(unix)]
+fn ensure_executable(path: &Path) -> Result<(), String> {
+    let metadata = fs::metadata(path)
+        .map_err(|error| format!("Failed to read metadata for {}: {error}", path.display()))?;
+    let mut permissions = metadata.permissions();
+    permissions.set_mode(0o755);
+    fs::set_permissions(path, permissions)
+        .map_err(|error| format!("Failed to set permissions for {}: {error}", path.display()))
+}
+
+#[cfg(not(unix))]
+fn ensure_executable(_path: &Path) -> Result<(), String> {
+    Ok(())
+}
+
+fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
+    let app_data_dir = app
+        .path()
+        .app_data_dir()
+        .map_err(|error| format!("Failed to locate app data dir: {error}"))?;
+
+    let runtime_root = app_data_dir.join(RUNTIME_WORKSPACE_DIR);
+    let runtime_run_sh = runtime_root.join("run.sh");
+
+    if runtime_run_sh.exists() {
+        fs::create_dir_all(runtime_root.join("logs"))
+            .map_err(|error| format!("Failed to create logs dir: {error}"))?;
+        return Ok(runtime_root);
+    }
+
+    let bundled_root = find_repo_root(app)?;
+    fs::create_dir_all(&runtime_root)
+        .map_err(|error| format!("Failed to create runtime workspace: {error}"))?;
+
+    let file_entries = ["run.sh", "easy.sh", "ignore", ".syncignore", "README.md"];
+    for file_name in file_entries {
+        let source_path = bundled_root.join(file_name);
+        if !source_path.exists() {
+            continue;
+        }
+
+        let destination_path = runtime_root.join(file_name);
+        fs::copy(&source_path, &destination_path).map_err(|error| {
+            format!(
+                "Failed to copy {} to {}: {error}",
+                source_path.display(),
+                destination_path.display()
+            )
+        })?;
+    }
+
+    let dir_entries = ["scripts", "launchd", "logs"];
+    for dir_name in dir_entries {
+        let source_path = bundled_root.join(dir_name);
+        if !source_path.exists() {
+            continue;
+        }
+
+        let destination_path = runtime_root.join(dir_name);
+        copy_dir_recursive(&source_path, &destination_path)?;
+    }
+
+    fs::create_dir_all(runtime_root.join("logs"))
+        .map_err(|error| format!("Failed to create logs dir: {error}"))?;
+
+    ensure_executable(&runtime_root.join("run.sh"))?;
+    ensure_executable(&runtime_root.join("easy.sh"))?;
+    ensure_executable(&runtime_root.join("ignore"))?;
+    ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+
+    Ok(runtime_root)
+}
+
+fn workspace_root(app: &tauri::AppHandle) -> Result<PathBuf, String> {
+    if cfg!(debug_assertions) {
+        return find_repo_root(app);
+    }
+
+    ensure_runtime_workspace(app)
+}
+
 fn run_sync_script(app: &tauri::AppHandle, args: &[&str]) -> Result<CommandResult, String> {
-    let repo_root = find_repo_root(app)?;
+    let repo_root = workspace_root(app)?;
     let script_path = repo_root.join("run.sh");
 
     let output = Command::new("/bin/zsh")
@@ -387,7 +503,7 @@ fn read_sync_log(
     max_lines: Option<usize>,
     admin_code: String,
 ) -> Result<String, String> {
-    let repo_root = find_repo_root(&app)?;
+    let repo_root = workspace_root(&app)?;
     let expected_code = configured_admin_code(&repo_root);
     if admin_code.trim() != expected_code {
         return Err("Unauthorized: invalid admin code".to_string());
@@ -407,7 +523,7 @@ fn read_sync_log(
 
 #[tauri::command]
 fn get_settings(app: tauri::AppHandle) -> Result<AppSettings, String> {
-    let repo_root = find_repo_root(&app)?;
+    let repo_root = workspace_root(&app)?;
     let env_path = local_env_path(&repo_root);
 
     if !env_path.exists() {
@@ -426,7 +542,7 @@ fn save_settings(
     local_source: String,
     dest_subpath: String,
 ) -> Result<String, String> {
-    let repo_root = find_repo_root(&app)?;
+    let repo_root = workspace_root(&app)?;
     let env_path = local_env_path(&repo_root);
     let existing_admin_code = fs::read_to_string(&env_path)
         .ok()
@@ -456,7 +572,7 @@ fn pick_local_source() -> Result<Option<String>, String> {
 
 #[tauri::command]
 fn verify_admin_code(app: tauri::AppHandle, code: String) -> Result<bool, String> {
-    let repo_root = find_repo_root(&app)?;
+    let repo_root = workspace_root(&app)?;
     let expected_code = configured_admin_code(&repo_root);
     Ok(code.trim() == expected_code)
 }
@@ -467,7 +583,7 @@ fn get_sync_source_items(
     max_items: Option<usize>,
     max_depth: Option<usize>,
 ) -> Result<Vec<SyncSourceItem>, String> {
-    let repo_root = find_repo_root(&app)?;
+    let repo_root = workspace_root(&app)?;
     let source = resolved_local_source(&repo_root);
     let source_path = PathBuf::from(source);
 
@@ -499,6 +615,7 @@ fn get_sync_source_items(
 
 fn main() {
     tauri::Builder::default()
+        .plugin(tauri_plugin_updater::Builder::new().build())
         .setup(|app| {
             let file_menu = SubmenuBuilder::new(app, "File")
                 .close_window()
@@ -597,7 +714,8 @@ fn main() {
             }
 
             if event.id() == HELP_OPEN_README_ID {
-                match find_repo_root(app).and_then(|root| open_path_with_default_app(&root.join("README.md")))
+                match workspace_root(app)
+                    .and_then(|root| open_path_with_default_app(&root.join("README.md")))
                 {
                     Ok(()) => {}
                     Err(error) => eprintln!("{error}"),
@@ -606,7 +724,7 @@ fn main() {
             }
 
             if event.id() == HELP_OPEN_LOGS_ID {
-                match find_repo_root(app).and_then(|root| {
+                match workspace_root(app).and_then(|root| {
                     let logs_dir = root.join("logs");
                     fs::create_dir_all(&logs_dir)
                         .map_err(|error| format!("Failed to create logs directory: {error}"))?;

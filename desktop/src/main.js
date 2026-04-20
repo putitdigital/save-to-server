@@ -1,12 +1,15 @@
 import "./styles.css";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+import { check } from "@tauri-apps/plugin-updater";
 
 const commandOutput = document.getElementById("command-output");
 const logOutput = document.getElementById("log-output");
 const syncButton = document.getElementById("btn-sync");
 const statusButton = document.getElementById("btn-status");
 const logButton = document.getElementById("btn-log");
+const updateButton = document.getElementById("btn-update");
+const updateStatus = document.getElementById("update-status");
 const localSourceInput = document.getElementById("local-source-input");
 const destSubpathInput = document.getElementById("dest-subpath-input");
 const saveSettingsButton = document.getElementById("btn-save-settings");
@@ -68,6 +71,15 @@ function setSyncItemsStatus(message, isError = false) {
 
   syncItemsStatus.textContent = message;
   syncItemsStatus.classList.toggle("is-error", isError);
+}
+
+function setUpdateStatus(message, isError = false) {
+  if (!updateStatus) {
+    return;
+  }
+
+  updateStatus.textContent = `Update status: ${message}`;
+  updateStatus.classList.toggle("is-error", isError);
 }
 
 function normalizePath(value) {
@@ -307,6 +319,71 @@ function showError(label, error) {
   setCommandText(`# ${label}\n\nerror:\n${String(error)}`);
 }
 
+async function checkForUpdate() {
+  if (!updateButton) {
+    return;
+  }
+
+  updateButton.disabled = true;
+  updateButton.textContent = "Checking...";
+  setUpdateStatus("checking for updates...");
+  setCommandText("Checking for app updates...");
+
+  try {
+    const update = await check();
+
+    if (!update) {
+      setCommandText("You are already on the latest version.");
+      setUpdateStatus("no update available. You are on the latest version.");
+      return;
+    }
+
+    let downloaded = 0;
+    let total = 0;
+    setUpdateStatus(`update found (v${update.version}). Downloading now...`);
+    setCommandText(`Update found: v${update.version}. Downloading...`);
+
+    await update.downloadAndInstall((event) => {
+      if (event.event === "Started") {
+        total = Number(event.data?.contentLength || 0);
+        setUpdateStatus(`download started for v${update.version}.`);
+        setCommandText(`Update found: v${update.version}. Download started...`);
+      }
+
+      if (event.event === "Progress") {
+        downloaded += Number(event.data?.chunkLength || 0);
+        if (total > 0) {
+          const percent = Math.min(100, Math.round((downloaded / total) * 100));
+          setUpdateStatus(`downloading v${update.version}: ${percent}%`);
+          setCommandText(`Downloading update v${update.version}: ${percent}%`);
+        }
+      }
+
+      if (event.event === "Finished") {
+        setUpdateStatus(`update installed (v${update.version}). Restart app to apply.`);
+        setCommandText(`Update v${update.version} installed. Restart Flowit to finish.`);
+      }
+    });
+  } catch (error) {
+    const text = String(error);
+    const missingReleaseJson = text.includes("Could not fetch a valid release JSON from the remote");
+    const likelyNoPublishedRelease = text.includes("404") || text.includes("Not Found");
+
+    if (missingReleaseJson || likelyNoPublishedRelease) {
+      const guidance = "No published updater metadata found yet. Publish a signed GitHub release that includes latest.json, then try again.";
+      setUpdateStatus(guidance, true);
+      showError("Update", `${text}\n\n${guidance}`);
+    } else {
+      const help = "If this keeps happening, configure updater endpoints and pubkey in tauri.conf.json before packaging releases.";
+      setUpdateStatus(`update check failed: ${text}`, true);
+      showError("Update", `${text}\n\n${help}`);
+    }
+  } finally {
+    updateButton.disabled = false;
+    updateButton.textContent = "Check for Update";
+  }
+}
+
 async function checkStatus() {
   statusButton.disabled = true;
   try {
@@ -498,6 +575,7 @@ if (currentView === "getting-started") {
   syncButton.addEventListener("click", syncNow);
   statusButton.addEventListener("click", checkStatus);
   logButton.addEventListener("click", refreshLog);
+  updateButton?.addEventListener("click", checkForUpdate);
   saveSettingsButton.addEventListener("click", saveSettings);
   loadSettingsButton.addEventListener("click", loadSettings);
   browseSourceButton.addEventListener("click", browseLocalSource);
