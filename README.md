@@ -216,8 +216,18 @@ Complete these one-time steps:
 4. Create a version tag and push it:
 
 	```bash
-	git tag v0.1.1
-	git push origin v0.1.1
+	git add desktop/src-tauri/Cargo.toml desktop/src-tauri/tauri.conf.json
+	git commit -m "chore(release): bump version to 0.1.3"
+	git push origin main
+	git tag v0.1.3
+	git push origin v0.1.3
+	```
+
+	Quick checks:
+
+	```bash
+	git tag --list "v*" | tail
+	curl -sSL https://github.com/putitdigital/save-to-server/releases/latest/download/latest.json | head -n 20
 	```
 
 GitHub Actions will build and publish release artifacts. Once release assets include `latest.json`, users can click **Check for Update** and install updates directly.
