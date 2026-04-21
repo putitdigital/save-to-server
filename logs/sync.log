@@ -1720,3 +1720,27 @@ sent 1895k bytes  received 620 bytes  63912 bytes/sec
 total size is 6336k  speedup is 3.34
 [2026-04-20 14:20:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
 [2026-04-20 14:20:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-21 09:42:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-21 09:42:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-21 09:42:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-04-21 09:42:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-21 09:42:32] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-21 09:42:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-04-21 09:42:48] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-21 11:48:58] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-21 11:48:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-21 11:48:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 55 files
+./
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 5104 bytes  received 350 bytes  414 bytes/sec
+total size is 4327k  speedup is 793.32
+[2026-04-21 11:49:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-21 11:49:13] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====

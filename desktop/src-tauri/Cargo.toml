@@ -2,7 +2,7 @@
 name = "flowit"
 version = "0.1.0"
 description = "Flowit desktop shell for SMB sync scripts"
-authors = ["you"]
+authors = ["sithembiso.sangweni"]
 edition = "2021"
 
 [build-dependencies]

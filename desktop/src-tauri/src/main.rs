@@ -235,6 +235,32 @@ fn sync_ignore_path(repo_root: &Path) -> PathBuf {
     repo_root.join(".syncignore")
 }
 
+fn parse_sync_ignore_entries(content: &str) -> Vec<String> {
+    let mut entries = Vec::new();
+
+    for raw_line in content.lines() {
+        let line = raw_line.trim();
+        if line.is_empty() || line.starts_with('#') {
+            continue;
+        }
+
+        entries.push(line.to_string());
+    }
+
+    entries
+}
+
+fn read_sync_ignore_entries(ignore_path: &Path) -> Result<Vec<String>, String> {
+    if !ignore_path.exists() {
+        return Ok(Vec::new());
+    }
+
+    let content = fs::read_to_string(ignore_path)
+        .map_err(|error| format!("Failed to read {}: {error}", ignore_path.display()))?;
+
+    Ok(parse_sync_ignore_entries(&content))
+}
+
 fn build_sync_ignore(repo_root: &Path, source_path: &Path) -> Result<Gitignore, String> {
     let ignore_path = sync_ignore_path(repo_root);
     let mut builder = GitignoreBuilder::new(source_path);
@@ -591,6 +617,79 @@ fn save_settings(
 }
 
 #[tauri::command]
+fn get_sync_ignore_entries(app: tauri::AppHandle) -> Result<Vec<String>, String> {
+    let repo_root = workspace_root(&app)?;
+    let ignore_path = sync_ignore_path(&repo_root);
+    read_sync_ignore_entries(&ignore_path)
+}
+
+#[tauri::command]
+fn add_sync_ignore_entry(app: tauri::AppHandle, pattern: String) -> Result<Vec<String>, String> {
+    let repo_root = workspace_root(&app)?;
+    let ignore_path = sync_ignore_path(&repo_root);
+    let next_pattern = pattern.trim();
+
+    if next_pattern.is_empty() {
+        return Err("Ignore pattern cannot be empty".to_string());
+    }
+
+    if next_pattern.starts_with('#') {
+        return Err("Ignore pattern cannot start with #".to_string());
+    }
+
+    let mut entries = read_sync_ignore_entries(&ignore_path)?;
+    if entries.iter().any(|entry| entry == next_pattern) {
+        return Ok(entries);
+    }
+
+    entries.push(next_pattern.to_string());
+    let content = format!("{}\n", entries.join("\n"));
+    fs::write(&ignore_path, content)
+        .map_err(|error| format!("Failed to write {}: {error}", ignore_path.display()))?;
+
+    Ok(entries)
+}
+
+#[tauri::command]
+fn remove_sync_ignore_entry(app: tauri::AppHandle, pattern: String) -> Result<Vec<String>, String> {
+    let repo_root = workspace_root(&app)?;
+    let ignore_path = sync_ignore_path(&repo_root);
+    let target = pattern.trim();
+
+    if target.is_empty() {
+        return Err("Ignore pattern cannot be empty".to_string());
+    }
+
+    if !ignore_path.exists() {
+        return Ok(Vec::new());
+    }
+
+    let content = fs::read_to_string(&ignore_path)
+        .map_err(|error| format!("Failed to read {}: {error}", ignore_path.display()))?;
+
+    let mut kept_lines = Vec::new();
+    for raw_line in content.lines() {
+        let line = raw_line.trim();
+        if !line.is_empty() && !line.starts_with('#') && line == target {
+            continue;
+        }
+
+        kept_lines.push(raw_line.to_string());
+    }
+
+    let next_content = if kept_lines.is_empty() {
+        String::new()
+    } else {
+        format!("{}\n", kept_lines.join("\n"))
+    };
+
+    fs::write(&ignore_path, next_content)
+        .map_err(|error| format!("Failed to write {}: {error}", ignore_path.display()))?;
+
+    read_sync_ignore_entries(&ignore_path)
+}
+
+#[tauri::command]
 fn pick_local_source() -> Result<Option<String>, String> {
     let picked = rfd::FileDialog::new().pick_folder();
     Ok(picked.map(|path| path.display().to_string()))
@@ -809,6 +908,9 @@ fn main() {
             read_sync_log,
             get_settings,
             save_settings,
+            get_sync_ignore_entries,
+            add_sync_ignore_entry,
+            remove_sync_ignore_entry,
             pick_local_source,
             verify_admin_code,
             get_sync_source_items,

@@ -158,6 +158,17 @@ npm install
 npm run tauri build
 ```
 
+### Change app icons (Tauri)
+
+Run this from the `desktop/` folder after replacing `src-tauri/icons/source-logo.png` with your new square PNG or SVG:
+
+```bash
+cd desktop
+npm run tauri -- icon src-tauri/icons/source-logo.png -o src-tauri/icons
+```
+
+This regenerates platform icon files used by Tauri (including `.icns`, `.ico`, and PNG sizes) inside `desktop/src-tauri/icons/`.
+
 ### In-app updates (users download updates inside the app)
 
 Flowit now includes a **Check for Update** button in the desktop UI.
@@ -252,6 +263,3 @@ This script installs dependencies (if needed), builds the Tauri app, and prints 
 - The app expects `run.sh`, `scripts/`, and `logs/` to exist in this repository.
 - On first sync, macOS may still prompt for SMB authentication if Keychain is not already configured.
 - If Gatekeeper shows an "unidentified developer" warning for unsigned builds, right-click the app and choose **Open** the first time.
-
-UPATE PASWORD
-93github@PWD1O

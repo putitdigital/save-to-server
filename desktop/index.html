@@ -13,67 +13,82 @@
   </head>
   <body>
     <main id="app-shell" class="shell">
-      <section class="topbar">
-        <h1>Flowit</h1>
-        <p>Save to server made easy.</p>
-      </section>
-
       <section class="app-layout">
         <aside class="left-tabs" aria-label="Main tabs">
-          <button
-            id="tab-btn-user"
+          <div class="aside-header">
+            <div class="brand-lockup">
+              <img src="/flowit-logo.svg" alt="Flowit logo" class="brand-logo" />
+              <div class="brand-copy">
+                <h1>Flowit</h1>
+                <p>Save to server made easy.</p>
+              </div>
+            </div>
+          </div>
+          <div class="aside-body" role="tablist" aria-label="Main navigation tabs">
+            <button
+              id="tab-btn-user"
+              class="left-tab"
+              type="button"
+              role="tab"
+              data-tab-target="user"
+              aria-controls="tab-panel-user"
+              aria-selected="false"
+            >
+              User Info
+            </button>
+            <button
+              id="tab-btn-home"
+              class="left-tab is-active"
+              type="button"
+              role="tab"
+              data-tab-target="home"
+              aria-controls="tab-panel-home"
+              aria-selected="true"
+            >
+              Home
+            </button>
+            <button
+              id="tab-btn-admin"
+              class="left-tab"
+              type="button"
+              role="tab"
+              data-tab-target="admin"
+              aria-controls="tab-panel-admin"
+              aria-selected="false"
+            >
+              Admin
+            </button>
+            <button 
+              id="tab-btn-help"
+              class="left-tab"
+              type="button"
+              role="tab"
+              data-tab-target="help"
+              aria-controls="tab-panel-help"
+              aria-selected="false"
+            >
+              Help &amp; Guide
+            </button>
+            <button
+            id="tab-btn-settings"
             class="left-tab"
             type="button"
-            data-tab-target="user"
-            aria-controls="tab-panel-user"
+            role="tab"
+            data-tab-target="settings"
+            aria-controls="tab-panel-settings"
             aria-selected="false"
-          >
-            User Info
-          </button>
-          <button
-            id="tab-btn-home"
-            class="left-tab is-active"
-            type="button"
-            data-tab-target="home"
-            aria-controls="tab-panel-home"
-            aria-selected="true"
-          >
-            Home
-          </button>
-          <button
-            id="tab-btn-admin"
-            class="left-tab"
-            type="button"
-            data-tab-target="admin"
-            aria-controls="tab-panel-admin"
-            aria-selected="false"
-          >
-            Admin
-          </button>
-          <button 
-            id="tab-btn-help"
-            class="left-tab"
-            type="button"
-            data-tab-target="help"
-            aria-controls="tab-panel-help"
-            aria-selected="false"
-          >
-            Help &amp; Guide
-          </button>
-          <button
-          id="tab-btn-settings"
-          class="left-tab"
-          type="button"
-          data-tab-target="settings"
-          aria-controls="tab-panel-settings"
-          aria-selected="false"
-        >
-          Settings
-        </button>
+            >
+              Settings
+            </button>
+          </div>
+          <div class="aside-footer">
+            <h3>Server:</h3>
+            <span id="server-status-badge" class="server-status-badge server-status-unknown">Checking...</span>
+          </div>
         </aside>
 
         <div class="tab-panels">
-          <section id="tab-panel-user" class="tab-panel" aria-labelledby="tab-btn-user">
+          <section id="tab-panel-user" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-user">
             <article class="panel user-info-panel">
               <h2>Connected User Information</h2>
               <p class="settings-status">Shows the current local user and active sync destination details.</p>
@@ -98,14 +113,14 @@
             </article>
           </section>
 
-          <section id="tab-panel-home" class="tab-panel hidden" aria-labelledby="tab-btn-home">
-            <section class="controls">
+          <section id="tab-panel-home" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-home">
+            <section class="controls panels">
               <button id="btn-sync" class="btn btn-primary">Sync Now</button>
               <button id="btn-status" class="btn">Check Status</button>
               <button id="btn-log" class="btn">Refresh Log</button>
-              <button id="btn-update" class="btn">Check for Update</button>
+              <!-- <button id="btn-update" class="btn">Check for Update</button> -->
             </section>
-            <p id="update-status" class="settings-status">Update status: not checked yet.</p>
+            <!-- <p id="update-status" class="settings-status">Update status: not checked yet.</p> -->
 
             <section class="panels">
               <article id="panel-status" class="panel panel-status">
@@ -122,8 +137,17 @@
             </section>
           </section>
 
-          <section id="tab-panel-settings" class="tab-panel hidden" aria-labelledby="tab-btn-settings">
+          <section id="tab-panel-settings" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-settings">
             <section class="panels">
+              <article id="panel-version" class="panel panel-settings">
+                <h2>Version </h2>
+                <div class="version-row">
+                  <p id="app-version">Loading version...</p>
+                  <button id="btn-check-update" class="btn">Check for Update</button>
+                </div>
+                <p id="update-status" class="settings-status">Update status: not checked yet.</p>
+              </article>
+
               <article id="panel-settings" class="panel panel-settings">
                 <h2>Settings</h2>
                 <div class="settings-grid">
@@ -142,12 +166,12 @@
                   <label class="field" for="dest-subpath-input">
                     <div class="field-label">
                       <span>Server Folder</span>
-                      <span id="server-status-badge" class="server-status-badge server-status-unknown">Checking...</span>
                     </div>
                     <input
                       id="dest-subpath-input"
                       type="text"
                       placeholder="Front-End-Dev/TBWA Work Sithe/2026"
+                      style="width: 92%;"
                     />
                   </label>
                 </div>
@@ -159,10 +183,27 @@
 
                 <p id="settings-status" class="settings-status">Loading settings...</p>
               </article>
+
+              <article id="panel-ignore" class="panel panel-settings">
+                <h2>Ignore Files</h2>
+                
+                <div class="ignore-controls">
+                  <input
+                    id="ignore-input"
+                    type="text"
+                    placeholder="e.g. .DS_Store or node_modules/"
+                  />
+                  <button id="btn-add-ignore" class="btn btn-primary" type="button">Add Ignore</button>
+                  <button id="btn-refresh-ignore" class="btn" type="button">Refresh Ignore List</button>
+                </div>
+                <div class="ignore-card">
+                  <ul id="ignore-list" class="ignore-list" aria-live="polite"></ul>
+                </div>
+              </article>
             </section>
           </section>
 
-          <section id="tab-panel-admin" class="tab-panel hidden" aria-labelledby="tab-btn-admin">
+          <section id="tab-panel-admin" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-admin">
             <section class="panels">
               <article id="panel-admin" class="panel panel-admin">
                 <h2>Admin Dashboard</h2>
@@ -174,7 +215,7 @@
             </section>
           </section>
 
-          <section id="tab-panel-help" class="tab-panel hidden" aria-labelledby="tab-btn-help">
+          <section id="tab-panel-help" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-help">
             <article class="panel help-card">
               <h2>Getting Started with Flowit</h2>
             </article>

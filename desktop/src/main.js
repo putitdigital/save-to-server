@@ -1,6 +1,7 @@
 import "./styles.css";
 import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
+import { getVersion } from "@tauri-apps/api/app";
 import { check } from "@tauri-apps/plugin-updater";
 
 const commandOutput = document.getElementById("command-output");
@@ -8,14 +9,19 @@ const logOutput = document.getElementById("log-output");
 const syncButton = document.getElementById("btn-sync");
 const statusButton = document.getElementById("btn-status");
 const logButton = document.getElementById("btn-log");
-const updateButton = document.getElementById("btn-update");
-const updateStatus = document.getElementById("update-status");
+const updateButton = document.getElementById("btn-check-update") || document.getElementById("btn-update");
+const updateStatus = document.getElementById("update-status") || document.getElementById("btn-update");
+const appVersion = document.getElementById("app-version");
 const serverStatusBadge = document.getElementById("server-status-badge");
 const localSourceInput = document.getElementById("local-source-input");
 const destSubpathInput = document.getElementById("dest-subpath-input");
 const saveSettingsButton = document.getElementById("btn-save-settings");
 const loadSettingsButton = document.getElementById("btn-load-settings");
 const settingsStatus = document.getElementById("settings-status");
+const ignoreList = document.getElementById("ignore-list");
+const ignoreInput = document.getElementById("ignore-input");
+const addIgnoreButton = document.getElementById("btn-add-ignore");
+const refreshIgnoreButton = document.getElementById("btn-refresh-ignore");
 const browseSourceButton = document.getElementById("btn-browse-source");
 const refreshSyncItemsButton = document.getElementById("btn-refresh-sync-items");
 const adminCodeInput = document.getElementById("admin-code-input");
@@ -37,7 +43,6 @@ const userInfoLocalUser = document.getElementById("user-info-local-user");
 const userInfoServerStatus = document.getElementById("user-info-server-status");
 const userInfoLocalFolder = document.getElementById("user-info-local-folder");
 const userInfoServerFolder = document.getElementById("user-info-server-folder");
-const settingsPanel = document.getElementById("panel-settings");
 const adminPanel = document.getElementById("panel-admin");
 const adminUnlockModal = document.getElementById("admin-unlock-modal");
 const modalAdminCodeInput = document.getElementById("modal-admin-code-input");
@@ -60,8 +65,10 @@ let syncStateRequestToken = 0;
 let autoSyncMonitorTimer = null;
 let isAutoSyncMonitorRunning = false;
 let currentServerConnectionLabel = "Checking...";
+let currentServerMountPoint = "";
 let activeMainTab = "home";
 let lastBackgroundItemsRefreshAt = 0;
+let ignoreEntries = [];
 
 const AUTO_SYNC_MONITOR_MS = 15000;
 const AUTO_SYNC_ITEMS_REFRESH_MS = 180000;
@@ -113,8 +120,15 @@ function refreshUserInfoPanel() {
   }
 
   if (userInfoServerFolder) {
-    const serverFolder = destSubpathInput?.value?.trim();
-    userInfoServerFolder.textContent = serverFolder || "Not set";
+    const serverFolder = destSubpathInput?.value?.trim() || "";
+    const normalizedSubpath = serverFolder.replace(/^\/+/, "");
+
+    if (currentServerMountPoint && normalizedSubpath) {
+      const normalizedMount = currentServerMountPoint.replace(/\/+$/, "");
+      userInfoServerFolder.textContent = `${normalizedMount}/${normalizedSubpath}`;
+    } else {
+      userInfoServerFolder.textContent = serverFolder || "Not set";
+    }
   }
 
   if (userInfoLocalUser) {
@@ -155,6 +169,93 @@ function setSyncItemsStatus(message, isError = false) {
   syncItemsStatus.classList.toggle("is-error", isError);
 }
 
+function escapeHtml(value) {
+  return String(value)
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#39;");
+}
+
+function renderIgnoreEntries() {
+  if (!ignoreList) {
+    return;
+  }
+
+  if (!ignoreEntries.length) {
+    ignoreList.innerHTML = "";
+    return;
+  }
+
+  ignoreList.innerHTML = ignoreEntries
+    .map((entry) => {
+      const safe = escapeHtml(entry);
+      return `<li class="ignore-item"><span class="ignore-pattern">${safe}</span><button class="btn ignore-remove-btn" type="button" data-ignore-pattern="${safe}">Remove</button></li>`;
+    })
+    .join("");
+
+}
+
+async function loadIgnoreEntries() {
+  if (refreshIgnoreButton) {
+    refreshIgnoreButton.disabled = true;
+  }
+
+  try {
+    const entries = await invoke("get_sync_ignore_entries");
+    ignoreEntries = Array.isArray(entries) ? entries : [];
+    renderIgnoreEntries();
+  } catch (error) {
+    ignoreEntries = [];
+    if (ignoreList) {
+      ignoreList.innerHTML = "";
+    }
+    console.error(`Failed to load ignore rules: ${String(error)}`);
+  } finally {
+    if (refreshIgnoreButton) {
+      refreshIgnoreButton.disabled = false;
+    }
+  }
+}
+
+async function addIgnoreEntry() {
+  if (!ignoreInput || !addIgnoreButton) {
+    return;
+  }
+
+  const pattern = ignoreInput.value.trim();
+
+  addIgnoreButton.disabled = true;
+
+  try {
+    const entries = await invoke("add_sync_ignore_entry", { pattern });
+    ignoreEntries = Array.isArray(entries) ? entries : [];
+    ignoreInput.value = "";
+    renderIgnoreEntries();
+    await loadSyncItems({ skipButtonRefresh: true, silent: true });
+  } catch (error) {
+    console.error(`Failed to add ignore rule: ${String(error)}`);
+  } finally {
+    addIgnoreButton.disabled = false;
+  }
+}
+
+async function removeIgnoreEntry(pattern) {
+  if (!pattern) {
+    return;
+  }
+
+  try {
+    const entries = await invoke("remove_sync_ignore_entry", { pattern });
+    ignoreEntries = Array.isArray(entries) ? entries : [];
+    renderIgnoreEntries();
+    await loadSyncItems({ skipButtonRefresh: true, silent: true });
+  } catch (error) {
+    console.error(`Failed to remove ignore rule: ${String(error)}`);
+  }
+}
+
 function setUpdateStatus(message, isError = false) {
   if (!updateStatus) {
     return;
@@ -162,6 +263,19 @@ function setUpdateStatus(message, isError = false) {
 
   updateStatus.textContent = `Update status: ${message}`;
   updateStatus.classList.toggle("is-error", isError);
+}
+
+async function loadAppVersion() {
+  if (!appVersion) {
+    return;
+  }
+
+  try {
+    const version = await getVersion();
+    appVersion.textContent = `v${version}`;
+  } catch (_error) {
+    appVersion.textContent = "Version unavailable";
+  }
 }
 
 function setServerStatusBadge(state, message) {
@@ -304,15 +418,18 @@ function startAutoSyncMonitor() {
 
 async function refreshServerStatus() {
   setServerStatusBadge("unknown", "Checking...");
+  currentServerMountPoint = "";
 
   try {
     const result = await invoke("get_server_connection_status");
+    currentServerMountPoint = result?.mount_point || "";
     if (result?.connected) {
       setServerStatusBadge("connected", "Connected");
     } else {
       setServerStatusBadge("disconnected", "Not connected");
     }
   } catch (_error) {
+    currentServerMountPoint = "";
     setServerStatusBadge("unknown", "Unknown");
   }
 }
@@ -1024,6 +1141,32 @@ if (currentView === "getting-started") {
   saveSettingsButton.addEventListener("click", saveSettings);
   loadSettingsButton.addEventListener("click", loadSettings);
   browseSourceButton.addEventListener("click", browseLocalSource);
+  addIgnoreButton?.addEventListener("click", () => {
+    void addIgnoreEntry();
+  });
+  refreshIgnoreButton?.addEventListener("click", () => {
+    void loadIgnoreEntries();
+  });
+  ignoreInput?.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      event.preventDefault();
+      void addIgnoreEntry();
+    }
+  });
+  ignoreList?.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    const removeButton = target.closest(".ignore-remove-btn");
+    if (!(removeButton instanceof HTMLButtonElement)) {
+      return;
+    }
+
+    const pattern = removeButton.getAttribute("data-ignore-pattern") || "";
+    void removeIgnoreEntry(pattern);
+  });
   refreshSyncItemsButton?.addEventListener("click", () => {
     void refreshListAndAutoSync();
   });
@@ -1060,7 +1203,9 @@ if (currentView === "getting-started") {
 
   checkStatus();
   loadSettings();
+  loadAppVersion();
   loadSyncItems({ skipButtonRefresh: true });
+  loadIgnoreEntries();
   refreshServerStatus();
   setSyncButtonLabel("Sync Now");
   syncButton.disabled = false;

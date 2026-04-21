@@ -12,10 +12,12 @@
   "app": {
     "windows": [
       {
-        "title": "Flowit",
+        "title": "",
         "width": 980,
         "height": 760,
-        "resizable": true
+        "resizable": true,
+        "theme": "Dark",
+        "backgroundColor": "#091018"
       }
     ]
   },
