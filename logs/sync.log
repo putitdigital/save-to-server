@@ -1762,3 +1762,515 @@ sent 5905 bytes  received 428 bytes  557 bytes/sec
 total size is 6215k  speedup is 981.42
 [2026-04-21 11:50:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
 [2026-04-21 11:50:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-21 13:41:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-21 13:41:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-21 13:41:34] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 69 files
+./
+AUTOSAVE.pptx
+4 TEST/
+4 TEST/Billboard 970x250.png
+4 TEST/Half Page 300x600.png
+4 TEST/Interstitial 1080x1920.png
+4 TEST/Large Mobile Banner 320x100.png
+4 TEST/Large Rectangle 336X280.png
+4 TEST/Leaderboard 728x90.png
+4 TEST/Medium Rectangle 300x250.png
+4 TEST/Medium Rectangle MPU 300x250.png
+4 TEST/Mobile Banner 320x50.png
+4 TEST/Portrait 300x1050.png
+4 TEST/Super Leaderboard 970x90.png
+4 TEST/Wide Skyscraper 160x600.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 46060k bytes  received 642 bytes  1656k bytes/sec
+total size is 50375k  speedup is 1.09
+[2026-04-21 13:42:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-21 13:42:03] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-21 13:42:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-21 13:42:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-21 13:42:37] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 70 files
+./
+4 TEST/
+4 TEST/AUTOSAVE.pptx
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 44171k bytes  received 456 bytes  2522k bytes/sec
+total size is 94534k  speedup is 2.14
+[2026-04-21 13:42:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-21 13:42:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-30 13:36:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-30 13:36:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-30 13:37:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-04-30 13:37:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-30 13:37:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-30 13:37:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-04-30 13:37:17] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-30 14:07:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-30 14:07:47] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-30 14:08:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-04-30 14:08:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-30 14:08:04] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-30 14:08:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-04-30 14:08:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-04-30 14:09:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-30 14:09:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-30 14:09:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 70 files
+./
+4 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 6000 bytes  received 440 bytes  489 bytes/sec
+total size is 94534k  speedup is 14679.25
+[2026-04-30 14:09:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-30 14:09:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-30 14:29:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-30 14:29:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-30 14:29:09] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 71 files
+./
+05 test/
+4 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 6038 bytes  received 446 bytes  487 bytes/sec
+total size is 94534k  speedup is 14579.64
+[2026-04-30 14:29:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-30 14:29:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-04-30 14:36:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-04-30 14:36:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-04-30 14:36:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 71 files
+./
+05 test/
+4 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Billboard 970x250.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Half Page 300x600.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Interstitial 1080x1920.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Large Mobile Banner 320x100.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Large Rectangle 336X280.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Leaderboard 728x90.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Medium Rectangle 300x250.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Medium Rectangle MPU 300x250.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Mobile Banner 320x50.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Portrait 300x1050.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Super Leaderboard 970x90.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/Wide Skyscraper 160x600.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Billboard 970x250.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Half Page 300x600.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Interstitial 1080x1920.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Large Mobile Banner 320x100.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Large Rectangle 336X280.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Leaderboard 728x90.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Medium Rectangle 300x250.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Medium Rectangle MPU 300x250.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Mobile Banner 320x50.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Portrait 300x1050.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Super Leaderboard 970x90.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/Wide Skyscraper 160x600.jpg
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/1080x1920.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/160x600.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/300x1050.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/300x250-01.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/300x250-02.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/300x600.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/320x100.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/320x50.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/336x280.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/728x90.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/970x250.gif
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/970x90.gif
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 4320k bytes  received 1022 bytes  82925 bytes/sec
+total size is 94534k  speedup is 21.88
+[2026-04-30 14:37:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-04-30 14:37:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 09:06:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 09:06:24] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-04 09:06:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-05-04 09:06:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-04 09:06:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-04 09:06:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-05-04 09:06:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-04 09:07:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 09:07:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 09:07:53] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 71 files
+./
+05 test/
+4 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 6038 bytes  received 446 bytes  397 bytes/sec
+total size is 94534k  speedup is 14579.64
+[2026-05-04 09:08:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 09:08:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:12:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:12:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:12:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 71 files
+./
+05 test/
+4 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 6038 bytes  received 446 bytes  459 bytes/sec
+total size is 94534k  speedup is 14579.64
+[2026-05-04 11:12:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:12:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:31:28] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:31:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:31:29] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 71 files
+./
+05 test/
+4 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 6038 bytes  received 446 bytes  315 bytes/sec
+total size is 94534k  speedup is 14579.64
+[2026-05-04 11:31:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:31:52] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:33:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:33:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:33:36] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 71 files
+./
+05 test/
+4 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 6038 bytes  received 446 bytes  542 bytes/sec
+total size is 94534k  speedup is 14579.64
+[2026-05-04 11:33:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:33:50] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:35:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:35:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:35:16] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 69 files
+./
+5 TEST/
+5 TEST/AUTOSAVE.pptx
+5 TEST/Billboard 970x250.png
+5 TEST/Half Page 300x600.png
+5 TEST/Interstitial 1080x1920.png
+5 TEST/Large Mobile Banner 320x100.png
+5 TEST/Large Rectangle 336X280.png
+5 TEST/Leaderboard 728x90.png
+5 TEST/Medium Rectangle 300x250.png
+5 TEST/Medium Rectangle MPU 300x250.png
+5 TEST/Mobile Banner 320x50.png
+5 TEST/Portrait 300x1050.png
+5 TEST/Super Leaderboard 970x90.png
+5 TEST/Wide Skyscraper 160x600.png
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 46060k bytes  received 642 bytes  1662k bytes/sec
+total size is 50375k  speedup is 1.09
+[2026-05-04 11:35:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:35:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:36:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:36:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:36:46] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 69 files
+./
+5 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 5956 bytes  received 434 bytes  517 bytes/sec
+total size is 50375k  speedup is 7883.39
+[2026-05-04 11:37:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:37:01] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:53:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:53:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:53:11] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 81 files
+./
+5 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+952529Q/
+952529Q/00 REC/
+952529Q/00 REC/IMG_6104.JPG
+952529Q/00 REC/IMG_6732.JPG
+952529Q/00 REC/TBWA Hunt Lascaris (Johannesburg) Proprietary Limited - JB - 952529Q_1Q.pdf
+952529Q/01 PSD/
+952529Q/01 PSD/952529Q.psd
+952529Q/02 EXPORT/
+952529Q/02 EXPORT/1080x1080 SET 01.jpg
+952529Q/02 EXPORT/1080x1080 SET 02.jpg
+952529Q/02 EXPORT/1080x1920 SET 01.jpg
+952529Q/02 EXPORT/1080x1920 SET 02.jpg
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 69396k bytes  received 634 bytes  2525k bytes/sec
+total size is 120M  speedup is 1.73
+[2026-05-04 11:53:40] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:53:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:54:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:54:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:54:05] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 81 files
+./
+5 TEST/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+952529Q/
+952529Q/00 REC/
+952529Q/01 PSD/
+952529Q/02 EXPORT/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 6702 bytes  received 506 bytes  600 bytes/sec
+total size is 120M  speedup is 16614.21
+[2026-05-04 11:54:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:54:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:55:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:55:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:55:06] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 82 files
+./
+5 TEST/
+6 test/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+952529Q/
+952529Q/00 REC/
+952529Q/01 PSD/
+952529Q/02 EXPORT/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 6739 bytes  received 512 bytes  575 bytes/sec
+total size is 120M  speedup is 16515.68
+[2026-05-04 11:55:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:55:22] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 11:57:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 11:57:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 11:57:45] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 104 files
+./
+5 TEST/
+6 test/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+952529Q/
+952529Q/00 REC/
+952529Q/01 PSD/
+952529Q/02 EXPORT/
+ee/
+macos/
+macos/Flowit.app.tar.gz
+macos/Flowit.app.tar.gz.sig
+macos/Flowit.app/
+macos/Flowit.app/Contents/
+macos/Flowit.app/Contents/Info.plist
+macos/Flowit.app/Contents/MacOS/
+macos/Flowit.app/Contents/MacOS/flowit
+macos/Flowit.app/Contents/Resources/
+macos/Flowit.app/Contents/Resources/icon.icns
+macos/Flowit.app/Contents/Resources/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/.syncignore
+macos/Flowit.app/Contents/Resources/_up_/_up_/README.md
+macos/Flowit.app/Contents/Resources/_up_/_up_/easy.sh
+macos/Flowit.app/Contents/Resources/_up_/_up_/ignore
+macos/Flowit.app/Contents/Resources/_up_/_up_/run.sh
+macos/Flowit.app/Contents/Resources/_up_/_up_/launchd/
+macos/Flowit.app/Contents/Resources/_up_/_up_/launchd/com.save-to-server.sync.plist
+macos/Flowit.app/Contents/Resources/_up_/_up_/scripts/
+macos/Flowit.app/Contents/Resources/_up_/_up_/scripts/sync_to_smb.sh
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+
+sent 19601k bytes  received 836 bytes  646k bytes/sec
+total size is 139M  speedup is 7.11
+[2026-05-04 11:58:20] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 11:58:21] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 12:21:06] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 12:21:06] [user: sithembiso sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 12:21:07] [user: sithembiso sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 105 files
+./
+5 TEST/
+6 test/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+952529Q/
+952529Q/00 REC/
+952529Q/01 PSD/
+952529Q/02 EXPORT/
+ee/
+macos/
+macos/Flowit.app/
+macos/Flowit.app/Contents/
+macos/Flowit.app/Contents/MacOS/
+macos/Flowit.app/Contents/Resources/
+macos/Flowit.app/Contents/Resources/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/launchd/
+macos/Flowit.app/Contents/Resources/_up_/_up_/scripts/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+test 56/
+
+sent 8353 bytes  received 650 bytes  557 bytes/sec
+total size is 139M  speedup is 15477.60
+[2026-05-04 12:21:28] [user: sithembiso sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 12:21:28] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 12:36:45] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 12:36:46] [user: sithembiso sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 12:36:46] [user: sithembiso sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 106 files
+./
+5 TEST/
+6 test/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+952529Q/
+952529Q/00 REC/
+952529Q/01 PSD/
+952529Q/02 EXPORT/
+ee/
+macos/
+macos/Flowit.app/
+macos/Flowit.app/Contents/
+macos/Flowit.app/Contents/MacOS/
+macos/Flowit.app/Contents/Resources/
+macos/Flowit.app/Contents/Resources/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/launchd/
+macos/Flowit.app/Contents/Resources/_up_/_up_/scripts/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+test 56/
+untitled folder/
+
+sent 8399 bytes  received 656 bytes  556 bytes/sec
+total size is 139M  speedup is 15388.71
+[2026-05-04 12:37:08] [user: sithembiso sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 12:37:09] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 12:37:14] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 12:37:15] [user: sithembiso sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 12:37:15] [user: sithembiso sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 106 files
+./
+5 TEST/
+6 test/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/01 PNG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/02 JPG/
+952515Q NAMIBIA BREWERIES LTD without ARA logos/03 GIFs/
+952529Q/
+952529Q/00 REC/
+952529Q/01 PSD/
+952529Q/02 EXPORT/
+ee/
+macos/
+macos/Flowit.app/
+macos/Flowit.app/Contents/
+macos/Flowit.app/Contents/MacOS/
+macos/Flowit.app/Contents/Resources/
+macos/Flowit.app/Contents/Resources/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/launchd/
+macos/Flowit.app/Contents/Resources/_up_/_up_/scripts/
+save-to-server/
+save-to-server/launchd/
+save-to-server/scripts/
+test 56/
+test 57/
+
+sent 8391 bytes  received 656 bytes  602 bytes/sec
+total size is 139M  speedup is 15402.32
+[2026-05-04 12:37:35] [user: sithembiso sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-04 12:37:35] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run end ====

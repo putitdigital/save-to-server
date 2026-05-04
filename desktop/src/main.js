@@ -6,9 +6,9 @@ import { check } from "@tauri-apps/plugin-updater";
 
 const commandOutput = document.getElementById("command-output");
 const logOutput = document.getElementById("log-output");
+const logOutputAllUsers = document.getElementById("log-output-for-all-users");
 const syncButton = document.getElementById("btn-sync");
-const statusButton = document.getElementById("btn-status");
-const logButton = document.getElementById("btn-log");
+const autoSyncCheckbox = document.getElementById("btn-auto-sync-checkbox");
 const updateButton = document.getElementById("btn-check-update") || document.getElementById("btn-update");
 const updateStatus = document.getElementById("update-status") || document.getElementById("btn-update");
 const appVersion = document.getElementById("app-version");
@@ -29,6 +29,8 @@ const adminUnlockButton = document.getElementById("btn-admin-unlock");
 const adminStatus = document.getElementById("admin-status");
 const appShell = document.getElementById("app-shell");
 const gettingStartedShell = document.getElementById("getting-started-shell");
+const leftTabs = document.querySelector(".left-tabs");
+const sidebarToggleButton = document.getElementById("btn-sidebar-toggle");
 const userTabButton = document.getElementById("tab-btn-user");
 const homeTabButton = document.getElementById("tab-btn-home");
 const adminTabButton = document.getElementById("tab-btn-admin");
@@ -53,6 +55,10 @@ const syncItemsStatus = document.getElementById("sync-items-status");
 const syncItemsList = document.getElementById("sync-items-list");
 
 const REQUEST_ADMIN_UNLOCK_EVENT = "flowit://request-admin-unlock";
+const SYNC_PROGRESS_EVENT = "flowit://sync-progress";
+const SYNC_COMPLETE_EVENT = "flowit://sync-complete";
+const SESSION_STORAGE_KEY = "flowit.connectedUserSession";
+const SIDEBAR_COLLAPSED_KEY = "flowit.sidebarCollapsed";
 
 let adminCode = "";
 let isAdminUnlocked = false;
@@ -66,6 +72,13 @@ let autoSyncMonitorTimer = null;
 let isAutoSyncMonitorRunning = false;
 let currentServerConnectionLabel = "Checking...";
 let currentServerMountPoint = "";
+let isServerConnected = false;
+let connectedUserSession = null;
+let isSidebarCollapsed = false;
+let autoSyncEnabled = false;
+let syncProgressTotalCount = 0;
+let syncProgressPaths = new Set();
+let syncProgressLines = [];
 let activeMainTab = "home";
 let lastBackgroundItemsRefreshAt = 0;
 let ignoreEntries = [];
@@ -98,6 +111,42 @@ function switchMainTab(tab) {
   }
 
   activeMainTab = tab;
+}
+
+function applySidebarState() {
+  if (!leftTabs || !sidebarToggleButton) {
+    return;
+  }
+
+  leftTabs.classList.toggle("is-collapsed", isSidebarCollapsed);
+  sidebarToggleButton.setAttribute("aria-expanded", String(!isSidebarCollapsed));
+  sidebarToggleButton.setAttribute(
+    "aria-label",
+    isSidebarCollapsed ? "Expand sidebar" : "Collapse sidebar"
+  );
+}
+
+function loadSidebarState() {
+  try {
+    const stored = window.localStorage.getItem(SIDEBAR_COLLAPSED_KEY);
+    isSidebarCollapsed = stored === null ? true : stored === "true";
+  } catch (_error) {
+    isSidebarCollapsed = true;
+  }
+
+  applySidebarState();
+}
+
+function toggleSidebar() {
+  isSidebarCollapsed = !isSidebarCollapsed;
+
+  try {
+    window.localStorage.setItem(SIDEBAR_COLLAPSED_KEY, String(isSidebarCollapsed));
+  } catch (_error) {
+    // Ignore storage failures and still apply the UI change.
+  }
+
+  applySidebarState();
 }
 
 function extractLocalUser(path) {
@@ -283,6 +332,7 @@ function setServerStatusBadge(state, message) {
     return;
   }
 
+  isServerConnected = state === "connected";
   serverStatusBadge.textContent = message;
   currentServerConnectionLabel = message;
   serverStatusBadge.classList.remove("server-status-connected", "server-status-disconnected", "server-status-unknown");
@@ -298,6 +348,123 @@ function setServerStatusBadge(state, message) {
   refreshUserInfoPanel();
 }
 
+function parseNamePartsFromUsername(username) {
+  const parts = String(username || "")
+    .trim()
+    .split(/[._\-\s]+/)
+    .filter(Boolean);
+
+  if (parts.length === 0) {
+    return {
+      name: "Unknown",
+      surname: "User"
+    };
+  }
+
+  return {
+    name: parts[0],
+    surname: parts.length > 1 ? parts.slice(1).join(" ") : "User"
+  };
+}
+
+function deriveConnectedUserProfile() {
+  const localFolder = localSourceInput?.value?.trim() || "";
+  const username = extractLocalUser(localFolder);
+
+  if (!username || username === "Unknown") {
+    return null;
+  }
+
+  const { name, surname } = parseNamePartsFromUsername(username);
+  return {
+    username,
+    name,
+    surname
+  };
+}
+
+function persistConnectedUserSession(session) {
+  connectedUserSession = session;
+
+  try {
+    if (!session) {
+      window.localStorage.removeItem(SESSION_STORAGE_KEY);
+      return;
+    }
+
+    window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+  } catch (error) {
+    console.error(`Failed to persist user session: ${String(error)}`);
+  }
+}
+
+function loadPersistedConnectedUserSession() {
+  try {
+    const raw = window.localStorage.getItem(SESSION_STORAGE_KEY);
+    if (!raw) {
+      connectedUserSession = null;
+      return;
+    }
+
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.id === "number" && parsed.username) {
+      connectedUserSession = parsed;
+      return;
+    }
+  } catch (error) {
+    console.error(`Failed to load persisted user session: ${String(error)}`);
+  }
+
+  connectedUserSession = null;
+}
+
+async function initializeSqliteBackend() {
+  try {
+    await invoke("init_sqlite_backend");
+  } catch (error) {
+    console.error(`Failed to initialize SQLite backend: ${String(error)}`);
+  }
+}
+
+async function ensureConnectedUserSession(options = {}) {
+  const { clearOnDisconnect = true } = options;
+
+  if (!isServerConnected) {
+    if (clearOnDisconnect) {
+      persistConnectedUserSession(null);
+    }
+    return;
+  }
+
+  const profile = deriveConnectedUserProfile();
+  if (!profile) {
+    return;
+  }
+
+  if (connectedUserSession?.username === profile.username && connectedUserSession?.id) {
+    return;
+  }
+
+  try {
+    const user = await invoke("ensure_connected_user", {
+      username: profile.username,
+      name: profile.name,
+      surname: profile.surname,
+      lastEditedById: connectedUserSession?.id || null
+    });
+
+    if (user?.id) {
+      persistConnectedUserSession(user);
+    }
+  } catch (error) {
+    console.error(`Failed to persist connected user: ${String(error)}`);
+  }
+}
+
+function getConnectedUserSession() {
+  return connectedUserSession;
+}
+
 function setSyncButtonLabel(text) {
   if (!syncButton) {
     return;
@@ -306,8 +473,41 @@ function setSyncButtonLabel(text) {
   syncButton.textContent = text;
 }
 
+function applyAutoSyncButtonState() {
+  if (!syncButton) {
+    return;
+  }
+
+  if (autoSyncEnabled) {
+    setSyncButtonLabel("Auto Sync");
+    syncButton.disabled = true;
+    return;
+  }
+
+  if (!isSyncInProgress) {
+    setSyncButtonLabel("Sync Now");
+    syncButton.disabled = false;
+  }
+}
+
+function setAutoSyncEnabled(nextValue) {
+  autoSyncEnabled = Boolean(nextValue);
+
+  if (autoSyncCheckbox) {
+    autoSyncCheckbox.checked = autoSyncEnabled;
+  }
+
+  applyAutoSyncButtonState();
+  startAutoSyncMonitor();
+}
+
 async function refreshSyncButtonState(options = {}) {
   const { force = false } = options;
+
+  if (autoSyncEnabled) {
+    applyAutoSyncButtonState();
+    return;
+  }
 
   if (!force && !BACKGROUND_NETWORK_CHECKS_ENABLED) {
     setSyncButtonLabel("Sync Now");
@@ -371,7 +571,7 @@ function stopAutoSyncMonitor() {
 }
 
 async function runAutoSyncMonitorTick() {
-  if (!BACKGROUND_NETWORK_CHECKS_ENABLED) {
+  if (!autoSyncEnabled) {
     return;
   }
 
@@ -379,17 +579,19 @@ async function runAutoSyncMonitorTick() {
     return;
   }
 
-  if (activeMainTab !== "home") {
-    return;
-  }
-
   isAutoSyncMonitorRunning = true;
 
   try {
+    await refreshServerStatus();
+    applyAutoSyncButtonState();
+
+    if (!isServerConnected) {
+      setSyncItemsStatus("Auto Sync is on. Waiting for server connection.");
+      return;
+    }
+
     const now = Date.now();
-    const shouldRefreshItems =
-      activeMainTab === "home" &&
-      (syncItems.length === 0 || now - lastBackgroundItemsRefreshAt >= AUTO_SYNC_ITEMS_REFRESH_MS);
+    const shouldRefreshItems = syncItems.length === 0 || now - lastBackgroundItemsRefreshAt >= AUTO_SYNC_ITEMS_REFRESH_MS;
 
     if (shouldRefreshItems) {
       await loadSyncItems({
@@ -399,21 +601,37 @@ async function runAutoSyncMonitorTick() {
       lastBackgroundItemsRefreshAt = now;
     }
 
-    await refreshSyncButtonState();
+    const pendingInfo = await invoke("sync_pending_changes_count");
+    const pendingCount = Number(pendingInfo?.pending_count || 0);
+
+    if (pendingCount > 0) {
+      setSyncItemsStatus(`Auto Sync detected ${pendingCount} pending change(s). Starting sync...`);
+      void syncNow();
+      return;
+    }
+
+    if (syncItems.length > 0) {
+      syncItems = syncItems.map((item) => ({ ...item, status: "done" }));
+      renderSyncItems();
+      const displayItems = getDisplaySyncItems();
+      setSyncItemsStatus(`Auto Sync is on. All ${displayItems.length} folders/files are up to date.`);
+    }
   } finally {
     isAutoSyncMonitorRunning = false;
   }
 }
 
 function startAutoSyncMonitor() {
-  if (!BACKGROUND_NETWORK_CHECKS_ENABLED) {
+  stopAutoSyncMonitor();
+
+  if (!autoSyncEnabled) {
     return;
   }
 
-  stopAutoSyncMonitor();
   autoSyncMonitorTimer = window.setInterval(() => {
     void runAutoSyncMonitorTick();
   }, AUTO_SYNC_MONITOR_MS);
+  void runAutoSyncMonitorTick();
 }
 
 async function refreshServerStatus() {
@@ -425,12 +643,15 @@ async function refreshServerStatus() {
     currentServerMountPoint = result?.mount_point || "";
     if (result?.connected) {
       setServerStatusBadge("connected", "Connected");
+      await ensureConnectedUserSession({ clearOnDisconnect: false });
     } else {
       setServerStatusBadge("disconnected", "Not connected");
+      persistConnectedUserSession(null);
     }
   } catch (_error) {
     currentServerMountPoint = "";
     setServerStatusBadge("unknown", "Unknown");
+    persistConnectedUserSession(null);
   }
 }
 
@@ -631,6 +852,121 @@ function parseRsyncPaths(stdout) {
   return paths;
 }
 
+function isProcessedSyncItem(itemPath, isDir) {
+  for (const processedPath of syncProgressPaths) {
+    if (processedPath === itemPath) {
+      return true;
+    }
+
+    if (isDir && processedPath.startsWith(`${itemPath}/`)) {
+      return true;
+    }
+  }
+
+  return false;
+}
+
+function updateLiveSyncStatuses(currentPath) {
+  const normalizedCurrentPath = normalizePath(currentPath || "");
+
+  syncItems = syncItems.map((item) => {
+    const itemPath = normalizePath(item.path);
+    const currentMatches =
+      normalizedCurrentPath &&
+      (normalizedCurrentPath === itemPath || (item.is_dir && normalizedCurrentPath.startsWith(`${itemPath}/`)));
+
+    if (isProcessedSyncItem(itemPath, item.is_dir)) {
+      return { ...item, status: "done" };
+    }
+
+    if (currentMatches) {
+      return { ...item, status: "in-progress" };
+    }
+
+    return { ...item, status: "pending" };
+  });
+
+  renderSyncItems();
+}
+
+function pushSyncProgressLine(line) {
+  if (!line) {
+    return;
+  }
+
+  syncProgressLines.push(line);
+  if (syncProgressLines.length > 8) {
+    syncProgressLines = syncProgressLines.slice(-8);
+  }
+
+  setCommandText(`Sync in progress...\n\n${syncProgressLines.join("\n")}`);
+}
+
+function handleSyncProgress(payload) {
+  if (!isSyncInProgress) {
+    return;
+  }
+
+  stopProgressTicker();
+
+  if (payload?.path) {
+    syncProgressPaths.add(normalizePath(payload.path));
+  }
+
+  updateLiveSyncStatuses(payload?.path || "");
+  pushSyncProgressLine(payload?.line || "");
+
+  const processedCount = Number(payload?.processedCount || syncProgressPaths.size || 0);
+  const totalCount = Math.max(
+    Number(payload?.totalCount || 0),
+    syncProgressTotalCount,
+    syncItems.length,
+    processedCount,
+    1
+  );
+  const percentage = Math.min(100, Math.round((processedCount / totalCount) * 100));
+
+  setSyncItemsStatus(`Sync in progress... ${percentage}% (${processedCount}/${totalCount})`);
+}
+
+async function handleSyncComplete(payload) {
+  if (!isSyncInProgress) {
+    return;
+  }
+
+  const result = {
+    ok: Boolean(payload?.ok),
+    code: Number(payload?.code ?? -1),
+    stdout: payload?.stdout || "",
+    stderr: payload?.stderr || ""
+  };
+
+  stopProgressTicker();
+
+  if (result.ok) {
+    showCommandResult("Sync", result);
+    await finalizeSyncStatuses(result.stdout);
+    await refreshLog();
+  } else {
+    showCommandResult("Sync", result);
+    setSyncItemsStatus(`Sync failed: ${result.stderr || "Unknown error"}`, true);
+  }
+
+  syncItems = syncItems.map((item) => (item.status === "done" ? item : { ...item, status: "pending" }));
+  renderSyncItems();
+  isSyncInProgress = false;
+  syncProgressTotalCount = 0;
+  syncProgressPaths = new Set();
+  syncProgressLines = [];
+  setSyncButtonLabel("Sync done");
+  syncDoneTimer = window.setTimeout(() => {
+    syncDoneTimer = null;
+    setSyncButtonLabel("Sync Now");
+    syncButton.disabled = false;
+  }, 1400);
+  await refreshServerStatus();
+}
+
 function applySyncResultStatuses(stdout) {
   const syncedPaths = parseRsyncPaths(stdout);
 
@@ -654,6 +990,28 @@ function applySyncResultStatuses(stdout) {
   }
 }
 
+async function recordSyncedItemsToDatabase() {
+  if (!connectedUserSession?.id) {
+    console.warn("No connected user session; skipping upload item recording");
+    return;
+  }
+
+  const doneItems = syncItems.filter((item) => item.status === "done");
+  if (doneItems.length === 0) {
+    return;
+  }
+
+  try {
+    await invoke("record_synced_items", {
+      items: doneItems,
+      lastEditedById: connectedUserSession.id
+    });
+    console.log(`Recorded ${doneItems.length} synced item(s) in database`);
+  } catch (error) {
+    console.error(`Failed to record synced items: ${String(error)}`);
+  }
+}
+
 async function finalizeSyncStatuses(stdout) {
   try {
     const pendingInfo = await invoke("sync_pending_changes_count");
@@ -664,6 +1022,7 @@ async function finalizeSyncStatuses(stdout) {
       renderSyncItems();
       const displayItems = getDisplaySyncItems();
       setSyncItemsStatus(`All ${displayItems.length} folders/files are up to date.`);
+      await recordSyncedItemsToDatabase();
       return;
     }
   } catch (_error) {
@@ -671,6 +1030,7 @@ async function finalizeSyncStatuses(stdout) {
   }
 
   applySyncResultStatuses(stdout);
+  await recordSyncedItemsToDatabase();
 }
 
 async function loadSyncItems(options = {}) {
@@ -863,21 +1223,12 @@ async function checkForUpdate() {
   }
 }
 
-async function checkStatus() {
-  statusButton.disabled = true;
-  try {
-    const result = await invoke("sync_status");
-    showCommandResult("Status", result);
-  } catch (error) {
-    showError("Status", error);
-  } finally {
-    statusButton.disabled = false;
-    await refreshServerStatus();
-  }
-}
-
 async function syncNow() {
   if (!syncButton) {
+    return;
+  }
+
+  if (isSyncInProgress) {
     return;
   }
 
@@ -888,43 +1239,52 @@ async function syncNow() {
 
   isSyncInProgress = true;
   syncButton.disabled = true;
-  setSyncButtonLabel("Sync on process");
-  setCommandText("Running sync...");
+  syncProgressTotalCount = 0;
+  syncProgressPaths = new Set();
+  syncProgressLines = [];
+  setSyncButtonLabel("Sync in progress");
+  setCommandText("Starting sync...");
   setSyncItemsStatus("Sync in progress...");
   startProgressTicker();
 
   try {
-    const result = await invoke("sync_now");
-    showCommandResult("Sync", result);
-    stopProgressTicker();
-    await finalizeSyncStatuses(result.stdout || "");
-    await refreshLog();
+    const session = connectedUserSession;
+    const fullName = session
+      ? [session.name, session.surname].filter(Boolean).join(" ")
+      : "";
+    const userName = session
+      ? (fullName && fullName !== session.username
+          ? `${fullName} (${session.username})`
+          : session.username) || null
+      : null;
+
+    const response = await invoke("start_sync", { userName });
+    syncProgressTotalCount = Number(response?.totalCount || 0);
+    const totalCount = Math.max(syncProgressTotalCount, syncItems.length, 0);
+    if (totalCount > 0) {
+      setSyncItemsStatus(`Sync in progress... 0% (0/${totalCount})`);
+    }
   } catch (error) {
     stopProgressTicker();
+    isSyncInProgress = false;
+    syncProgressTotalCount = 0;
+    syncProgressPaths = new Set();
+    syncProgressLines = [];
+    setSyncButtonLabel("Sync Now");
+    syncButton.disabled = false;
     showError("Sync", error);
     setSyncItemsStatus(`Sync failed: ${String(error)}`, true);
-  } finally {
-    stopProgressTicker();
-    syncItems = syncItems.map((item) => (item.status === "done" ? item : { ...item, status: "pending" }));
-    renderSyncItems();
-    isSyncInProgress = false;
-    setSyncButtonLabel("Sync done");
-    syncDoneTimer = window.setTimeout(() => {
-      syncDoneTimer = null;
-      setSyncButtonLabel("Sync Now");
-      syncButton.disabled = false;
-    }, 1400);
-    await refreshServerStatus();
   }
 }
 
 async function refreshLog() {
   if (!isAdminUnlocked) {
     logOutput.textContent = "Locked. Enter admin code to view logs.";
+    if (logOutputAllUsers) {
+      logOutputAllUsers.textContent = "Locked. Enter admin code to view logs.";
+    }
     return;
   }
-
-  logButton.disabled = true;
   try {
     const result = await invoke("read_sync_log", {
       maxLines: 180,
@@ -933,8 +1293,18 @@ async function refreshLog() {
     logOutput.textContent = result || "Log file is empty.";
   } catch (error) {
     logOutput.textContent = `Unable to read log:\n${String(error)}`;
-  } finally {
-    logButton.disabled = false;
+  }
+
+  if (logOutputAllUsers) {
+    try {
+      const allResult = await invoke("read_all_users_sync_log", {
+        maxLines: 300,
+        adminCode
+      });
+      logOutputAllUsers.textContent = allResult || "Shared log is empty.";
+    } catch (error) {
+      logOutputAllUsers.textContent = `Unable to read shared log:\n${String(error)}`;
+    }
   }
 }
 
@@ -1017,8 +1387,23 @@ async function loadSettings() {
     const settings = await invoke("get_settings");
     localSourceInput.value = settings.local_source || "";
     destSubpathInput.value = settings.dest_subpath || "";
+
+    // Prefer the DB value for auto_sync so toggling the checkbox persists
+    // immediately without requiring "Save Settings".
+    let autoSync = Boolean(settings.auto_sync);
+    try {
+      const dbValue = await invoke("get_app_setting", { key: "auto_sync" });
+      if (dbValue !== null && dbValue !== undefined) {
+        autoSync = dbValue === "true";
+      }
+    } catch (_) {
+      // DB not ready yet — fall back to .local.env value
+    }
+
+    setAutoSyncEnabled(autoSync);
     setSettingsStatus("Settings loaded.");
     refreshUserInfoPanel();
+    await ensureConnectedUserSession({ clearOnDisconnect: false });
   } catch (error) {
     setSettingsStatus(`Failed to load settings: ${String(error)}`, true);
   } finally {
@@ -1033,17 +1418,21 @@ async function saveSettings() {
   try {
     const localSource = localSourceInput.value.trim();
     const destSubpath = destSubpathInput.value.trim();
+    const autoSync = Boolean(autoSyncCheckbox?.checked);
 
     const message = await invoke("save_settings", {
       localSource,
-      destSubpath
+      destSubpath,
+      autoSync
     });
 
+    setAutoSyncEnabled(autoSync);
     setSettingsStatus(message || "Settings saved.");
     refreshUserInfoPanel();
+    persistConnectedUserSession(null);
+    await ensureConnectedUserSession({ clearOnDisconnect: false });
     await loadSyncItems({ skipButtonRefresh: true });
-    setSyncButtonLabel("Sync Now");
-    syncButton.disabled = false;
+    applyAutoSyncButtonState();
   } catch (error) {
     setSettingsStatus(`Failed to save settings: ${String(error)}`, true);
   } finally {
@@ -1122,6 +1511,7 @@ if (currentView === "getting-started") {
   hideAdminDashboard();
 
   syncButton.addEventListener("click", syncNow);
+  sidebarToggleButton?.addEventListener("click", toggleSidebar);
   userTabButton?.addEventListener("click", () => {
     switchMainTab("user");
   });
@@ -1135,8 +1525,6 @@ if (currentView === "getting-started") {
   helpTabButton?.addEventListener("click", () => {
     switchMainTab("help");
   });
-  statusButton.addEventListener("click", checkStatus);
-  logButton.addEventListener("click", refreshLog);
   updateButton?.addEventListener("click", checkForUpdate);
   saveSettingsButton.addEventListener("click", saveSettings);
   loadSettingsButton.addEventListener("click", loadSettings);
@@ -1170,6 +1558,13 @@ if (currentView === "getting-started") {
   refreshSyncItemsButton?.addEventListener("click", () => {
     void refreshListAndAutoSync();
   });
+  autoSyncCheckbox?.addEventListener("change", () => {
+    const checked = autoSyncCheckbox.checked;
+    setAutoSyncEnabled(checked);
+    invoke("set_app_setting", { key: "auto_sync", value: checked ? "true" : "false" }).catch(
+      (err) => console.error("Failed to save auto_sync setting:", err)
+    );
+  });
   adminUnlockButton?.addEventListener("click", unlockAdmin);
   modalUnlockButton?.addEventListener("click", () => {
     void unlockAdminFromMenu();
@@ -1201,14 +1596,27 @@ if (currentView === "getting-started") {
     console.error("Failed to register admin unlock listener", error);
   });
 
-  checkStatus();
+  void listen(SYNC_PROGRESS_EVENT, (event) => {
+    handleSyncProgress(event?.payload);
+  }).catch((error) => {
+    console.error("Failed to register sync progress listener", error);
+  });
+
+  void listen(SYNC_COMPLETE_EVENT, (event) => {
+    void handleSyncComplete(event?.payload);
+  }).catch((error) => {
+    console.error("Failed to register sync completion listener", error);
+  });
+
+  loadSidebarState();
+  loadPersistedConnectedUserSession();
+  initializeSqliteBackend();
   loadSettings();
   loadAppVersion();
   loadSyncItems({ skipButtonRefresh: true });
   loadIgnoreEntries();
   refreshServerStatus();
-  setSyncButtonLabel("Sync Now");
-  syncButton.disabled = false;
+  applyAutoSyncButtonState();
   refreshUserInfoPanel();
   switchMainTab("home");
   startAutoSyncMonitor();

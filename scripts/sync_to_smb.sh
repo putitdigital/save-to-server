@@ -36,6 +36,11 @@ else
   LOG_ACTOR="$RUN_USER"
 fi
 
+# If launched from the Flowit app, prefer the app-supplied user identity.
+if [[ -n "${FLOWIT_USER:-}" ]]; then
+  LOG_ACTOR="$FLOWIT_USER"
+fi
+
 mkdir -p "$LOG_DIR"
 
 timestamp() {
@@ -43,7 +48,13 @@ timestamp() {
 }
 
 log() {
-  echo "[$(timestamp)] [user: $LOG_ACTOR] $1" | tee -a "$LOG_FILE"
+  local _msg="[$(timestamp)] [user: $LOG_ACTOR] $1"
+  echo "$_msg" | tee -a "$LOG_FILE"
+  # Also append to the shared server history log when the destination folder is mounted.
+  local _server_dest="$MOUNT_POINT/$DEST_SUBPATH"
+  if [[ -d "$_server_dest" ]]; then
+    echo "$_msg" >> "$_server_dest/syncAll.log" 2>/dev/null || true
+  fi
 }
 
 cleanup_pid_file() {
