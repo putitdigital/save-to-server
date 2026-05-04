@@ -2,8 +2,11 @@
 
 use serde::{Deserialize, Serialize};
 use std::fs;
+use std::io::{BufRead, BufReader};
 use std::path::{Path, PathBuf};
-use std::process::Command;
+use std::process::{Command, Stdio};
+use std::sync::Mutex;
+use std::thread;
 use tauri::menu::{AboutMetadataBuilder, MenuBuilder, SubmenuBuilder};
 use tauri::{Emitter, Manager, WebviewUrl, WebviewWindowBuilder};
 use ignore::gitignore::{Gitignore, GitignoreBuilder};
@@ -18,6 +21,8 @@ const HELP_OPEN_LOGS_ID: &str = "help_open_logs";
 const HELP_ADMIN_HELP_ID: &str = "help_admin_help";
 const LOGS_OPEN_ADMIN_ID: &str = "logs_open_admin_dashboard";
 const REQUEST_ADMIN_UNLOCK_EVENT: &str = "flowit://request-admin-unlock";
+const SYNC_PROGRESS_EVENT: &str = "flowit://sync-progress";
+const SYNC_COMPLETE_EVENT: &str = "flowit://sync-complete";
 const GETTING_STARTED_WINDOW_LABEL: &str = "getting-started";
 const RUNTIME_WORKSPACE_DIR: &str = "runtime-workspace";
 
@@ -38,6 +43,7 @@ struct CommandResult {
 struct AppSettings {
     local_source: String,
     dest_subpath: String,
+    auto_sync: bool,
 }
 
 #[derive(Serialize)]
@@ -56,6 +62,39 @@ struct ServerConnectionStatus {
 #[derive(Serialize)]
 struct PendingSyncInfo {
     pending_count: usize,
+}
+
+#[derive(Default)]
+struct SyncRuntime {
+    is_running: Mutex<bool>,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+struct StartSyncResponse {
+    started: bool,
+    total_count: usize,
+}
+
+#[derive(Serialize, Clone)]
+#[serde(rename_all = "camelCase")]
+struct SyncProgressPayload {
+    line: String,
+    path: Option<String>,
+    processed_count: usize,
+    total_count: usize,
+    percentage: u8,
+}
+
+#[derive(Serialize, Clone)]
+#[serde(rename_all = "camelCase")]
+struct SyncCompletePayload {
+    ok: bool,
+    code: i32,
+    stdout: String,
+    stderr: String,
+    processed_count: usize,
+    total_count: usize,
 }
 
 #[derive(Serialize)]
@@ -222,14 +261,17 @@ fn workspace_root(app: &tauri::AppHandle) -> Result<PathBuf, String> {
     ensure_runtime_workspace(app)
 }
 
-fn run_sync_script(app: &tauri::AppHandle, args: &[&str]) -> Result<CommandResult, String> {
+fn run_sync_script(app: &tauri::AppHandle, args: &[&str], user_name: Option<&str>) -> Result<CommandResult, String> {
     let repo_root = workspace_root(app)?;
     let script_path = repo_root.join("run.sh");
 
-    let output = Command::new("/bin/zsh")
-        .arg(script_path)
-        .args(args)
-        .current_dir(&repo_root)
+    let mut cmd = Command::new("/bin/zsh");
+    cmd.arg(script_path).args(args).current_dir(&repo_root);
+    if let Some(name) = user_name {
+        cmd.env("FLOWIT_USER", name);
+    }
+
+    let output = cmd
         .output()
         .map_err(|error| format!("Failed to execute sync script: {error}"))?;
 
@@ -239,6 +281,133 @@ fn run_sync_script(app: &tauri::AppHandle, args: &[&str]) -> Result<CommandResul
         stdout: String::from_utf8_lossy(&output.stdout).into_owned(),
         stderr: String::from_utf8_lossy(&output.stderr).into_owned(),
     })
+}
+
+fn parse_pending_count(stdout: &str) -> usize {
+    for line in stdout.lines().rev() {
+        if let Some(value) = line.trim().strip_prefix("PENDING_COUNT=") {
+            return value.trim().parse::<usize>().unwrap_or(0);
+        }
+    }
+
+    0
+}
+
+fn parse_sync_output_path(line: &str) -> Option<String> {
+    let trimmed = line.trim();
+
+    if trimmed.is_empty()
+        || trimmed == "./"
+        || trimmed.starts_with("sending incremental file list")
+        || trimmed.starts_with("created directory")
+        || trimmed.starts_with("sent ")
+        || trimmed.starts_with("total size is ")
+        || trimmed.starts_with("Number of files:")
+        || trimmed.starts_with("Number of created files:")
+        || trimmed.starts_with("Number of deleted files:")
+        || trimmed.starts_with("Number of regular files transferred:")
+        || trimmed.starts_with("Total file size:")
+        || trimmed.starts_with("Total transferred file size:")
+        || trimmed.starts_with("Literal data:")
+        || trimmed.starts_with("Matched data:")
+        || trimmed.starts_with("File list size:")
+        || trimmed.starts_with("File list generation time:")
+        || trimmed.starts_with("File list transfer time:")
+        || trimmed.starts_with("Total bytes sent:")
+        || trimmed.starts_with("Total bytes received:")
+        || trimmed.starts_with("speedup is ")
+        || trimmed.starts_with("[")
+    {
+        return None;
+    }
+
+    Some(trimmed.replace('\\', "/"))
+}
+
+fn run_sync_script_with_progress(
+    app: &tauri::AppHandle,
+    total_count: usize,
+    user_name: Option<&str>,
+) -> Result<(CommandResult, usize), String> {
+    let repo_root = workspace_root(app)?;
+    let script_path = repo_root.join("run.sh");
+
+    let mut cmd = Command::new("/bin/zsh");
+    cmd.arg(script_path)
+        .current_dir(&repo_root)
+        .stdout(Stdio::piped())
+        .stderr(Stdio::piped());
+    if let Some(name) = user_name {
+        cmd.env("FLOWIT_USER", name);
+    }
+
+    let mut child = cmd
+        .spawn()
+        .map_err(|error| format!("Failed to execute sync script: {error}"))?;
+
+    let stdout = child
+        .stdout
+        .take()
+        .ok_or_else(|| "Failed to capture sync stdout".to_string())?;
+    let stderr = child
+        .stderr
+        .take()
+        .ok_or_else(|| "Failed to capture sync stderr".to_string())?;
+
+    let stderr_handle = thread::spawn(move || {
+        let reader = BufReader::new(stderr);
+        let mut lines = Vec::new();
+        for line in reader.lines() {
+            if let Ok(line) = line {
+                lines.push(line);
+            }
+        }
+        lines.join("\n")
+    });
+
+    let reader = BufReader::new(stdout);
+    let mut stdout_lines = Vec::new();
+    let mut processed_count = 0usize;
+
+    for line in reader.lines() {
+        let line = line.map_err(|error| format!("Failed to read sync output: {error}"))?;
+        let maybe_path = parse_sync_output_path(&line);
+
+        if maybe_path.is_some() {
+            processed_count += 1;
+            let denominator = total_count.max(processed_count).max(1);
+            let percentage = ((processed_count * 100) / denominator).min(100) as u8;
+
+            let payload = SyncProgressPayload {
+                line: line.clone(),
+                path: maybe_path,
+                processed_count,
+                total_count,
+                percentage,
+            };
+
+            let _ = app.emit(SYNC_PROGRESS_EVENT, payload);
+        }
+
+        stdout_lines.push(line);
+    }
+
+    let status = child
+        .wait()
+        .map_err(|error| format!("Failed waiting for sync script: {error}"))?;
+    let stderr_output = stderr_handle
+        .join()
+        .map_err(|_| "Failed to join stderr reader thread".to_string())?;
+
+    Ok((
+        CommandResult {
+            ok: status.success(),
+            code: status.code().unwrap_or(-1),
+            stdout: stdout_lines.join("\n"),
+            stderr: stderr_output,
+        },
+        processed_count,
+    ))
 }
 
 fn tail_lines(text: &str, max_lines: usize) -> String {
@@ -297,6 +466,12 @@ fn ensure_sqlite_schema(connection: &Connection) -> Result<(), String> {
             CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
             CREATE INDEX IF NOT EXISTS idx_uploaded_items_file_type ON uploaded_items("fileType");
             CREATE INDEX IF NOT EXISTS idx_uploaded_items_deleted_at ON uploaded_items("deletedAt");
+
+            CREATE TABLE IF NOT EXISTS app_settings (
+                key TEXT PRIMARY KEY NOT NULL,
+                value TEXT NOT NULL,
+                "updatedAt" TEXT NOT NULL DEFAULT (datetime('now'))
+            );
             "#,
         )
         .map_err(|error| format!("Failed to initialize SQLite schema: {error}"))?;
@@ -427,6 +602,12 @@ fn parse_local_env(content: &str) -> AppSettings {
         match key {
             "LOCAL_SOURCE" => settings.local_source = value,
             "DEST_SUBPATH" => settings.dest_subpath = value,
+            "AUTO_SYNC" => {
+                settings.auto_sync = matches!(
+                    value.trim().to_ascii_lowercase().as_str(),
+                    "true" | "1" | "yes" | "on"
+                )
+            }
             _ => {}
         }
     }
@@ -646,12 +827,69 @@ fn open_getting_started_window(app: &tauri::AppHandle) -> Result<(), String> {
 
 #[tauri::command]
 fn sync_now(app: tauri::AppHandle) -> Result<CommandResult, String> {
-    run_sync_script(&app, &[])
+    run_sync_script(&app, &[], None)
+}
+
+#[tauri::command]
+fn start_sync(
+    app: tauri::AppHandle,
+    sync_runtime: tauri::State<'_, SyncRuntime>,
+    user_name: Option<String>,
+) -> Result<StartSyncResponse, String> {
+    {
+        let mut is_running = sync_runtime
+            .is_running
+            .lock()
+            .map_err(|_| "Failed to lock sync state".to_string())?;
+
+        if *is_running {
+            return Err("Sync is already running".to_string());
+        }
+
+        *is_running = true;
+    }
+
+    let total_count = run_sync_script(&app, &["changes-count"], user_name.as_deref())
+        .map(|result| parse_pending_count(&result.stdout))
+        .unwrap_or(0);
+
+    let app_handle = app.clone();
+    thread::spawn(move || {
+        let completion = match run_sync_script_with_progress(&app_handle, total_count, user_name.as_deref()) {
+            Ok((result, processed_count)) => SyncCompletePayload {
+                ok: result.ok,
+                code: result.code,
+                stdout: result.stdout,
+                stderr: result.stderr,
+                processed_count,
+                total_count,
+            },
+            Err(error) => SyncCompletePayload {
+                ok: false,
+                code: -1,
+                stdout: String::new(),
+                stderr: error,
+                processed_count: 0,
+                total_count,
+            },
+        };
+
+        let _ = app_handle.emit(SYNC_COMPLETE_EVENT, completion);
+
+        if let Ok(mut is_running) = app_handle.state::<SyncRuntime>().is_running.lock() {
+            *is_running = false;
+        }
+    });
+
+    Ok(StartSyncResponse {
+        started: true,
+        total_count,
+    })
 }
 
 #[tauri::command]
 fn sync_status(app: tauri::AppHandle) -> Result<CommandResult, String> {
-    run_sync_script(&app, &["status"])
+    run_sync_script(&app, &["status"], None)
 }
 
 #[tauri::command]
@@ -679,6 +917,39 @@ fn read_sync_log(
 }
 
 #[tauri::command]
+fn read_all_users_sync_log(
+    app: tauri::AppHandle,
+    max_lines: Option<usize>,
+    admin_code: String,
+) -> Result<String, String> {
+    let repo_root = workspace_root(&app)?;
+    let expected_code = configured_admin_code(&repo_root);
+    if admin_code.trim() != expected_code {
+        return Err("Unauthorized: invalid admin code".to_string());
+    }
+
+    let mount_name = configured_mount_name(&repo_root);
+    let dest_subpath = {
+        let env_path = local_env_path(&repo_root);
+        fs::read_to_string(&env_path)
+            .ok()
+            .and_then(|c| read_env_value(&c, "DEST_SUBPATH"))
+            .unwrap_or_else(|| "Front-End-Dev/TBWA Work Sithe/2026".to_string())
+    };
+
+    let log_path = PathBuf::from(format!("/Volumes/{}/{}/syncAll.log", mount_name, dest_subpath));
+
+    if !log_path.exists() {
+        return Ok("No shared log yet. Run a sync while connected to the server.".to_string());
+    }
+
+    let content = fs::read_to_string(&log_path)
+        .map_err(|error| format!("Failed to read {}: {error}", log_path.display()))?;
+
+    Ok(tail_lines(&content, max_lines.unwrap_or(300)))
+}
+
+#[tauri::command]
 fn get_settings(app: tauri::AppHandle) -> Result<AppSettings, String> {
     let repo_root = workspace_root(&app)?;
     let env_path = local_env_path(&repo_root);
@@ -698,6 +969,7 @@ fn save_settings(
     app: tauri::AppHandle,
     local_source: String,
     dest_subpath: String,
+    auto_sync: bool,
 ) -> Result<String, String> {
     let repo_root = workspace_root(&app)?;
     let env_path = local_env_path(&repo_root);
@@ -706,9 +978,10 @@ fn save_settings(
         .and_then(|content| read_env_value(&content, "ADMIN_CODE"));
 
     let mut content = format!(
-        "LOCAL_SOURCE=\"{}\"\nDEST_SUBPATH=\"{}\"\n",
+        "LOCAL_SOURCE=\"{}\"\nDEST_SUBPATH=\"{}\"\nAUTO_SYNC=\"{}\"\n",
         escape_env_value(local_source.trim()),
-        escape_env_value(dest_subpath.trim())
+        escape_env_value(dest_subpath.trim()),
+        if auto_sync { "true" } else { "false" }
     );
 
     if let Some(code) = existing_admin_code {
@@ -872,7 +1145,7 @@ fn get_server_connection_status(app: tauri::AppHandle) -> Result<ServerConnectio
 
 #[tauri::command]
 fn sync_pending_changes_count(app: tauri::AppHandle) -> Result<PendingSyncInfo, String> {
-    let result = run_sync_script(&app, &["changes-count"])?;
+    let result = run_sync_script(&app, &["changes-count"], None)?;
     let mut pending_count = 0usize;
 
     for line in result.stdout.lines().rev() {
@@ -1121,8 +1394,37 @@ fn record_synced_items(
     Ok(recorded)
 }
 
+#[tauri::command]
+fn get_app_setting(app: tauri::AppHandle, key: String) -> Result<Option<String>, String> {
+    let connection = open_sqlite_connection(&app)?;
+    let value = connection
+        .query_row(
+            "SELECT value FROM app_settings WHERE key = ?1",
+            params![key],
+            |row| row.get::<_, String>(0),
+        )
+        .optional()
+        .map_err(|error| format!("Failed to read app setting '{key}': {error}"))?;
+    Ok(value)
+}
+
+#[tauri::command]
+fn set_app_setting(app: tauri::AppHandle, key: String, value: String) -> Result<(), String> {
+    let connection = open_sqlite_connection(&app)?;
+    connection
+        .execute(
+            r#"INSERT INTO app_settings (key, value, "updatedAt")
+               VALUES (?1, ?2, datetime('now'))
+               ON CONFLICT(key) DO UPDATE SET value = excluded.value, "updatedAt" = excluded."updatedAt""#,
+            params![key, value],
+        )
+        .map_err(|error| format!("Failed to save app setting '{key}': {error}"))?;
+    Ok(())
+}
+
 fn main() {
     tauri::Builder::default()
+        .manage(SyncRuntime::default())
         .plugin(tauri_plugin_updater::Builder::new().build())
         .setup(|app| {
             if let Err(error) = open_sqlite_connection(app.handle()) {
@@ -1249,6 +1551,7 @@ fn main() {
         })
         .invoke_handler(tauri::generate_handler![
             sync_now,
+            start_sync,
             sync_status,
             read_sync_log,
             get_settings,
@@ -1265,7 +1568,10 @@ fn main() {
             ensure_connected_user,
             create_uploaded_item,
             list_uploaded_items,
-            record_synced_items
+            record_synced_items,
+            get_app_setting,
+            set_app_setting,
+            read_all_users_sync_log
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

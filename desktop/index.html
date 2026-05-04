@@ -16,16 +16,19 @@
       <section class="app-layout">
         <aside class="left-tabs" aria-label="Main tabs">
           <div class="aside-header">
-            <a  id="tab-btn-user" role="tab" type="button" data-tab-target="user" aria-controls="tab-panel-user" aria-selected="false">
-              <div class="brand-lockup">
-              <img src="/flowit-logo.svg" alt="Flowit logo" class="brand-logo" />
-              <div class="brand-copy">
-                <h1>Flowit</h1>
-                <p>Save to server made easy.</p>
-              </div>
+            <div class="aside-header-row">
+              <a id="tab-btn-user" class="brand-link" role="tab" type="button" data-tab-target="user" aria-controls="tab-panel-user" aria-selected="false">
+                <div class="brand-lockup">
+                  <img src="/flowit-logo.svg" alt="Flowit logo" class="brand-logo" />
+                </div>
+              </a>
+              <button id="btn-sidebar-toggle" class="sidebar-toggle" type="button" aria-label="Collapse sidebar" aria-expanded="true">
+                <!-- <span class="sidebar-toggle-open" aria-hidden="true">&larr;</span>
+                <span class="sidebar-toggle-closed hidden" aria-hidden="true">&rarr;</span> -->
+              </button>
             </div>
-            </a>
           </div>
+
           <div class="aside-body" role="tablist" aria-label="Main navigation tabs">
             <button
               id="tab-btn-home"
@@ -35,8 +38,10 @@
               data-tab-target="home"
               aria-controls="tab-panel-home"
               aria-selected="true"
+              data-label="Home"
             >
-              Home
+              <span class="left-tab-icon" aria-hidden="true">&#8962;</span>
+              <span class="left-tab-label">Home</span>
             </button>
             <button
             id="tab-btn-settings"
@@ -46,8 +51,10 @@
             data-tab-target="settings"
             aria-controls="tab-panel-settings"
             aria-selected="false"
+            data-label="Settings"
             >
-              Settings
+              <span class="left-tab-icon" aria-hidden="true">&#9881;</span>
+              <span class="left-tab-label">Settings</span>
             </button>
             <button
               id="tab-btn-admin"
@@ -57,8 +64,10 @@
               data-tab-target="admin"
               aria-controls="tab-panel-admin"
               aria-selected="false"
+              data-label="Logs"
             >
-              logs
+              <span class="left-tab-icon" aria-hidden="true">&#8801;</span>
+              <span class="left-tab-label">Logs</span>
             </button>
           </div>
           <div class="aside-footer">
@@ -95,8 +104,6 @@
           <section id="tab-panel-home" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-home">
             <section class="controls panels">
               <button id="btn-sync" class="btn btn-primary">Sync Now</button>
-              <button id="btn-status" class="btn">Check Status</button>
-              <button id="btn-log" class="btn">Refresh Log</button>
               <!-- <button id="btn-update" class="btn">Check for Update</button> -->
             </section>
             <!-- <p id="update-status" class="settings-status">Update status: not checked yet.</p> -->
@@ -118,6 +125,7 @@
 
           <section id="tab-panel-settings" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-settings">
             <section class="panels">
+              
               <article id="panel-version" class="panel panel-settings">
                 <h2>Version </h2>
                 <div class="version-row">
@@ -129,6 +137,13 @@
 
               <article id="panel-settings" class="panel panel-settings">
                 <h2>Settings</h2>
+                <label class="settings-note" for="btn-auto-sync-checkbox">
+                  <span class="settings-note-copy">
+                    <span class="settings-note-title">Auto Sync</span>
+                    <span class="settings-note-text">Keep syncing automatically while the server is connected.</span>
+                  </span>
+                  <input type="checkbox" id="btn-auto-sync-checkbox" name="subscribe" value="auto-sync">
+                </label>
                 <div class="settings-grid">
                   <label class="field" for="local-source-input">
                     <span>Local Folder</span>
@@ -185,11 +200,13 @@
           <section id="tab-panel-admin" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-admin">
             <section class="panels">
               <article id="panel-admin" class="panel panel-admin">
-                <h2>Admin Dashboard</h2>
+                <h2>Logs</h2>
                 <p class="admin-note">Sync logs are visible only after entering the admin code.</p>
                 <p id="admin-status" class="settings-status">Locked</p>
                 <h3 class="admin-log-title">Sync Log (latest lines)</h3>
                 <pre id="log-output" class="mono">Locked. Enter admin code to view logs.</pre>
+                <h3 class="admin-log-title">All Users History (syncAll.log)</h3>
+                <pre id="log-output-for-all-users" class="mono">Locked. Enter admin code to view logs.</pre>
               </article>
             </section>
           </section>
