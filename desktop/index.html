@@ -16,26 +16,17 @@
       <section class="app-layout">
         <aside class="left-tabs" aria-label="Main tabs">
           <div class="aside-header">
-            <div class="brand-lockup">
+            <a  id="tab-btn-user" role="tab" type="button" data-tab-target="user" aria-controls="tab-panel-user" aria-selected="false">
+              <div class="brand-lockup">
               <img src="/flowit-logo.svg" alt="Flowit logo" class="brand-logo" />
               <div class="brand-copy">
                 <h1>Flowit</h1>
                 <p>Save to server made easy.</p>
               </div>
             </div>
+            </a>
           </div>
           <div class="aside-body" role="tablist" aria-label="Main navigation tabs">
-            <button
-              id="tab-btn-user"
-              class="left-tab"
-              type="button"
-              role="tab"
-              data-tab-target="user"
-              aria-controls="tab-panel-user"
-              aria-selected="false"
-            >
-              User Info
-            </button>
             <button
               id="tab-btn-home"
               class="left-tab is-active"
@@ -48,28 +39,6 @@
               Home
             </button>
             <button
-              id="tab-btn-admin"
-              class="left-tab"
-              type="button"
-              role="tab"
-              data-tab-target="admin"
-              aria-controls="tab-panel-admin"
-              aria-selected="false"
-            >
-              Admin
-            </button>
-            <button 
-              id="tab-btn-help"
-              class="left-tab"
-              type="button"
-              role="tab"
-              data-tab-target="help"
-              aria-controls="tab-panel-help"
-              aria-selected="false"
-            >
-              Help &amp; Guide
-            </button>
-            <button
             id="tab-btn-settings"
             class="left-tab"
             type="button"
@@ -80,13 +49,23 @@
             >
               Settings
             </button>
+            <button
+              id="tab-btn-admin"
+              class="left-tab"
+              type="button"
+              role="tab"
+              data-tab-target="admin"
+              aria-controls="tab-panel-admin"
+              aria-selected="false"
+            >
+              logs
+            </button>
           </div>
           <div class="aside-footer">
             <h3>Server:</h3>
             <span id="server-status-badge" class="server-status-badge server-status-unknown">Checking...</span>
           </div>
         </aside>
-
         <div class="tab-panels">
           <section id="tab-panel-user" class="tab-panel" role="tabpanel" aria-labelledby="tab-btn-user">
             <article class="panel user-info-panel">
@@ -213,12 +192,6 @@
                 <pre id="log-output" class="mono">Locked. Enter admin code to view logs.</pre>
               </article>
             </section>
-          </section>
-
-          <section id="tab-panel-help" class="tab-panel hidden" role="tabpanel" aria-labelledby="tab-btn-help">
-            <article class="panel help-card">
-              <h2>Getting Started with Flowit</h2>
-            </article>
           </section>
         </div>
       </section>

@@ -7,6 +7,7 @@ use std::process::Command;
 use tauri::menu::{AboutMetadataBuilder, MenuBuilder, SubmenuBuilder};
 use tauri::{Emitter, Manager, WebviewUrl, WebviewWindowBuilder};
 use ignore::gitignore::{Gitignore, GitignoreBuilder};
+use rusqlite::{params, Connection, OptionalExtension};
 
 #[cfg(unix)]
 use std::os::unix::fs::PermissionsExt;
@@ -55,6 +56,29 @@ struct ServerConnectionStatus {
 #[derive(Serialize)]
 struct PendingSyncInfo {
     pending_count: usize,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+struct UserRecord {
+    id: i64,
+    username: String,
+    name: String,
+    surname: String,
+    created_at: String,
+    last_edited_by_id: Option<i64>,
+    deleted_at: Option<String>,
+}
+
+#[derive(Serialize)]
+#[serde(rename_all = "camelCase")]
+struct UploadedItemRecord {
+    id: i64,
+    name: String,
+    file_type: String,
+    created_at: String,
+    last_edited_by_id: Option<i64>,
+    deleted_at: Option<String>,
 }
 
 fn candidate_roots(app: &tauri::AppHandle) -> Result<Vec<PathBuf>, String> {
@@ -229,6 +253,87 @@ fn tail_lines(text: &str, max_lines: usize) -> String {
 
 fn local_env_path(repo_root: &Path) -> PathBuf {
     repo_root.join(".local.env")
+}
+
+fn sqlite_db_path(app: &tauri::AppHandle) -> Result<PathBuf, String> {
+    let app_data_dir = app
+        .path()
+        .app_data_dir()
+        .map_err(|error| format!("Failed to locate app data dir: {error}"))?;
+
+    fs::create_dir_all(&app_data_dir)
+        .map_err(|error| format!("Failed to create app data dir: {error}"))?;
+
+    Ok(app_data_dir.join("flowit.db"))
+}
+
+fn ensure_sqlite_schema(connection: &Connection) -> Result<(), String> {
+    connection
+        .execute_batch(
+            r#"
+            PRAGMA foreign_keys = ON;
+
+            CREATE TABLE IF NOT EXISTS users (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                username TEXT NOT NULL UNIQUE,
+                name TEXT NOT NULL,
+                surname TEXT NOT NULL,
+                "createdAt" TEXT NOT NULL DEFAULT (datetime('now')),
+                "lastEditedById" INTEGER,
+                "deletedAt" TEXT,
+                FOREIGN KEY("lastEditedById") REFERENCES users(id)
+            );
+
+            CREATE TABLE IF NOT EXISTS uploaded_items (
+                id INTEGER PRIMARY KEY AUTOINCREMENT,
+                name TEXT NOT NULL,
+                "fileType" TEXT NOT NULL CHECK ("fileType" IN ('file', 'folder')),
+                "createdAt" TEXT NOT NULL DEFAULT (datetime('now')),
+                "lastEditedById" INTEGER,
+                "deletedAt" TEXT,
+                FOREIGN KEY("lastEditedById") REFERENCES users(id)
+            );
+
+            CREATE INDEX IF NOT EXISTS idx_users_username ON users(username);
+            CREATE INDEX IF NOT EXISTS idx_uploaded_items_file_type ON uploaded_items("fileType");
+            CREATE INDEX IF NOT EXISTS idx_uploaded_items_deleted_at ON uploaded_items("deletedAt");
+            "#,
+        )
+        .map_err(|error| format!("Failed to initialize SQLite schema: {error}"))?;
+
+    Ok(())
+}
+
+fn open_sqlite_connection(app: &tauri::AppHandle) -> Result<Connection, String> {
+    let database_path = sqlite_db_path(app)?;
+    let connection = Connection::open(&database_path)
+        .map_err(|error| format!("Failed to open SQLite database {}: {error}", database_path.display()))?;
+
+    ensure_sqlite_schema(&connection)?;
+    Ok(connection)
+}
+
+fn parse_user_row(row: &rusqlite::Row<'_>) -> rusqlite::Result<UserRecord> {
+    Ok(UserRecord {
+        id: row.get("id")?,
+        username: row.get("username")?,
+        name: row.get("name")?,
+        surname: row.get("surname")?,
+        created_at: row.get("created_at")?,
+        last_edited_by_id: row.get("last_edited_by_id")?,
+        deleted_at: row.get("deleted_at")?,
+    })
+}
+
+fn parse_uploaded_item_row(row: &rusqlite::Row<'_>) -> rusqlite::Result<UploadedItemRecord> {
+    Ok(UploadedItemRecord {
+        id: row.get("id")?,
+        name: row.get("name")?,
+        file_type: row.get("file_type")?,
+        created_at: row.get("created_at")?,
+        last_edited_by_id: row.get("last_edited_by_id")?,
+        deleted_at: row.get("deleted_at")?,
+    })
 }
 
 fn sync_ignore_path(repo_root: &Path) -> PathBuf {
@@ -780,10 +885,250 @@ fn sync_pending_changes_count(app: tauri::AppHandle) -> Result<PendingSyncInfo, 
     Ok(PendingSyncInfo { pending_count })
 }
 
+#[tauri::command]
+fn init_sqlite_backend(app: tauri::AppHandle) -> Result<String, String> {
+    let database_path = sqlite_db_path(&app)?;
+    let connection = open_sqlite_connection(&app)?;
+    drop(connection);
+    Ok(format!(
+        "SQLite backend initialized at {}",
+        database_path.display()
+    ))
+}
+
+#[tauri::command]
+fn ensure_connected_user(
+    app: tauri::AppHandle,
+    username: String,
+    name: String,
+    surname: String,
+    last_edited_by_id: Option<i64>,
+) -> Result<UserRecord, String> {
+    let username = username.trim();
+    let name = name.trim();
+    let surname = surname.trim();
+
+    if username.is_empty() {
+        return Err("username is required".to_string());
+    }
+
+    if name.is_empty() {
+        return Err("name is required".to_string());
+    }
+
+    if surname.is_empty() {
+        return Err("surname is required".to_string());
+    }
+
+    let connection = open_sqlite_connection(&app)?;
+
+    let existing = connection
+        .query_row(
+            r#"
+            SELECT
+                id,
+                username,
+                name,
+                surname,
+                "createdAt" as created_at,
+                "lastEditedById" as last_edited_by_id,
+                "deletedAt" as deleted_at
+            FROM users
+            WHERE username = ?1
+              AND "deletedAt" IS NULL
+            LIMIT 1
+            "#,
+            params![username],
+            parse_user_row,
+        )
+        .optional()
+        .map_err(|error| format!("Failed to query user: {error}"))?;
+
+    if let Some(user) = existing {
+        return Ok(user);
+    }
+
+    connection
+        .execute(
+            r#"
+            INSERT INTO users (username, name, surname, "lastEditedById")
+            VALUES (?1, ?2, ?3, ?4)
+            "#,
+            params![username, name, surname, last_edited_by_id],
+        )
+        .map_err(|error| format!("Failed to create user: {error}"))?;
+
+    connection
+        .query_row(
+            r#"
+            SELECT
+                id,
+                username,
+                name,
+                surname,
+                "createdAt" as created_at,
+                "lastEditedById" as last_edited_by_id,
+                "deletedAt" as deleted_at
+            FROM users
+            WHERE id = last_insert_rowid()
+            "#,
+            [],
+            parse_user_row,
+        )
+        .map_err(|error| format!("Failed to fetch created user: {error}"))
+}
+
+#[tauri::command]
+fn create_uploaded_item(
+    app: tauri::AppHandle,
+    name: String,
+    file_type: String,
+    last_edited_by_id: Option<i64>,
+) -> Result<UploadedItemRecord, String> {
+    let name = name.trim();
+    let file_type = file_type.trim().to_lowercase();
+
+    if name.is_empty() {
+        return Err("name is required".to_string());
+    }
+
+    if file_type != "file" && file_type != "folder" {
+        return Err("fileType must be either 'file' or 'folder'".to_string());
+    }
+
+    let connection = open_sqlite_connection(&app)?;
+
+    connection
+        .execute(
+            r#"
+            INSERT INTO uploaded_items (name, "fileType", "lastEditedById")
+            VALUES (?1, ?2, ?3)
+            "#,
+            params![name, file_type, last_edited_by_id],
+        )
+        .map_err(|error| format!("Failed to create uploaded item: {error}"))?;
+
+    connection
+        .query_row(
+            r#"
+            SELECT
+                id,
+                name,
+                "fileType" as file_type,
+                "createdAt" as created_at,
+                "lastEditedById" as last_edited_by_id,
+                "deletedAt" as deleted_at
+            FROM uploaded_items
+            WHERE id = last_insert_rowid()
+            "#,
+            [],
+            parse_uploaded_item_row,
+        )
+        .map_err(|error| format!("Failed to fetch created uploaded item: {error}"))
+}
+
+#[tauri::command]
+fn list_uploaded_items(app: tauri::AppHandle) -> Result<Vec<UploadedItemRecord>, String> {
+    let connection = open_sqlite_connection(&app)?;
+    let mut statement = connection
+        .prepare(
+            r#"
+            SELECT
+                id,
+                name,
+                "fileType" as file_type,
+                "createdAt" as created_at,
+                "lastEditedById" as last_edited_by_id,
+                "deletedAt" as deleted_at
+            FROM uploaded_items
+            WHERE "deletedAt" IS NULL
+            ORDER BY id DESC
+            "#,
+        )
+        .map_err(|error| format!("Failed to prepare uploaded items query: {error}"))?;
+
+    let rows = statement
+        .query_map([], parse_uploaded_item_row)
+        .map_err(|error| format!("Failed to query uploaded items: {error}"))?;
+
+    let mut items = Vec::new();
+    for row in rows {
+        items.push(row.map_err(|error| format!("Failed to read uploaded item row: {error}"))?);
+    }
+
+    Ok(items)
+}
+
+#[tauri::command]
+fn record_synced_items(
+    app: tauri::AppHandle,
+    items: Vec<serde_json::Value>,
+    last_edited_by_id: Option<i64>,
+) -> Result<Vec<UploadedItemRecord>, String> {
+    let connection = open_sqlite_connection(&app)?;
+    let items_count = items.len();
+
+    for item in items {
+        let name = item
+            .get("path")
+            .and_then(|v| v.as_str())
+            .unwrap_or("unknown");
+
+        let file_type = if item.get("is_dir").and_then(|v| v.as_bool()).unwrap_or(false) {
+            "folder"
+        } else {
+            "file"
+        };
+
+        connection
+            .execute(
+                r#"
+                INSERT OR IGNORE INTO uploaded_items (name, "fileType", "lastEditedById")
+                VALUES (?1, ?2, ?3)
+                "#,
+                params![name, file_type, last_edited_by_id],
+            )
+            .map_err(|error| format!("Failed to insert uploaded item: {error}"))?;
+    }
+
+    let mut statement = connection
+        .prepare(
+            r#"
+            SELECT
+                id,
+                name,
+                "fileType" as file_type,
+                "createdAt" as created_at,
+                "lastEditedById" as last_edited_by_id,
+                "deletedAt" as deleted_at
+            FROM uploaded_items
+            WHERE "deletedAt" IS NULL
+            ORDER BY id DESC
+            LIMIT ?1
+            "#,
+        )
+        .map_err(|error| format!("Failed to prepare query: {error}"))?;
+
+    let rows = statement
+        .query_map(params![items_count], parse_uploaded_item_row)
+        .map_err(|error| format!("Failed to query uploaded items: {error}"))?;
+
+    let mut recorded = Vec::new();
+    for row in rows {
+        recorded.push(row.map_err(|error| format!("Failed to read row: {error}"))?);
+    }
+
+    Ok(recorded)
+}
+
 fn main() {
     tauri::Builder::default()
         .plugin(tauri_plugin_updater::Builder::new().build())
         .setup(|app| {
+            if let Err(error) = open_sqlite_connection(app.handle()) {
+                return Err(Box::new(std::io::Error::new(std::io::ErrorKind::Other, error)));
+            }
+
             let file_menu = SubmenuBuilder::new(app, "File")
                 .close_window()
                 .separator()
@@ -915,7 +1260,12 @@ fn main() {
             verify_admin_code,
             get_sync_source_items,
             get_server_connection_status,
-            sync_pending_changes_count
+            sync_pending_changes_count,
+            init_sqlite_backend,
+            ensure_connected_user,
+            create_uploaded_item,
+            list_uploaded_items,
+            record_synced_items
         ])
         .run(tauri::generate_context!())
         .expect("error while running tauri application");

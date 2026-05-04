@@ -53,6 +53,7 @@ const syncItemsStatus = document.getElementById("sync-items-status");
 const syncItemsList = document.getElementById("sync-items-list");
 
 const REQUEST_ADMIN_UNLOCK_EVENT = "flowit://request-admin-unlock";
+const SESSION_STORAGE_KEY = "flowit.connectedUserSession";
 
 let adminCode = "";
 let isAdminUnlocked = false;
@@ -66,6 +67,8 @@ let autoSyncMonitorTimer = null;
 let isAutoSyncMonitorRunning = false;
 let currentServerConnectionLabel = "Checking...";
 let currentServerMountPoint = "";
+let isServerConnected = false;
+let connectedUserSession = null;
 let activeMainTab = "home";
 let lastBackgroundItemsRefreshAt = 0;
 let ignoreEntries = [];
@@ -283,6 +286,7 @@ function setServerStatusBadge(state, message) {
     return;
   }
 
+  isServerConnected = state === "connected";
   serverStatusBadge.textContent = message;
   currentServerConnectionLabel = message;
   serverStatusBadge.classList.remove("server-status-connected", "server-status-disconnected", "server-status-unknown");
@@ -296,6 +300,123 @@ function setServerStatusBadge(state, message) {
   }
 
   refreshUserInfoPanel();
+}
+
+function parseNamePartsFromUsername(username) {
+  const parts = String(username || "")
+    .trim()
+    .split(/[._\-\s]+/)
+    .filter(Boolean);
+
+  if (parts.length === 0) {
+    return {
+      name: "Unknown",
+      surname: "User"
+    };
+  }
+
+  return {
+    name: parts[0],
+    surname: parts.length > 1 ? parts.slice(1).join(" ") : "User"
+  };
+}
+
+function deriveConnectedUserProfile() {
+  const localFolder = localSourceInput?.value?.trim() || "";
+  const username = extractLocalUser(localFolder);
+
+  if (!username || username === "Unknown") {
+    return null;
+  }
+
+  const { name, surname } = parseNamePartsFromUsername(username);
+  return {
+    username,
+    name,
+    surname
+  };
+}
+
+function persistConnectedUserSession(session) {
+  connectedUserSession = session;
+
+  try {
+    if (!session) {
+      window.localStorage.removeItem(SESSION_STORAGE_KEY);
+      return;
+    }
+
+    window.localStorage.setItem(SESSION_STORAGE_KEY, JSON.stringify(session));
+  } catch (error) {
+    console.error(`Failed to persist user session: ${String(error)}`);
+  }
+}
+
+function loadPersistedConnectedUserSession() {
+  try {
+    const raw = window.localStorage.getItem(SESSION_STORAGE_KEY);
+    if (!raw) {
+      connectedUserSession = null;
+      return;
+    }
+
+    const parsed = JSON.parse(raw);
+    if (parsed && typeof parsed.id === "number" && parsed.username) {
+      connectedUserSession = parsed;
+      return;
+    }
+  } catch (error) {
+    console.error(`Failed to load persisted user session: ${String(error)}`);
+  }
+
+  connectedUserSession = null;
+}
+
+async function initializeSqliteBackend() {
+  try {
+    await invoke("init_sqlite_backend");
+  } catch (error) {
+    console.error(`Failed to initialize SQLite backend: ${String(error)}`);
+  }
+}
+
+async function ensureConnectedUserSession(options = {}) {
+  const { clearOnDisconnect = true } = options;
+
+  if (!isServerConnected) {
+    if (clearOnDisconnect) {
+      persistConnectedUserSession(null);
+    }
+    return;
+  }
+
+  const profile = deriveConnectedUserProfile();
+  if (!profile) {
+    return;
+  }
+
+  if (connectedUserSession?.username === profile.username && connectedUserSession?.id) {
+    return;
+  }
+
+  try {
+    const user = await invoke("ensure_connected_user", {
+      username: profile.username,
+      name: profile.name,
+      surname: profile.surname,
+      lastEditedById: connectedUserSession?.id || null
+    });
+
+    if (user?.id) {
+      persistConnectedUserSession(user);
+    }
+  } catch (error) {
+    console.error(`Failed to persist connected user: ${String(error)}`);
+  }
+}
+
+function getConnectedUserSession() {
+  return connectedUserSession;
 }
 
 function setSyncButtonLabel(text) {
@@ -425,12 +546,15 @@ async function refreshServerStatus() {
     currentServerMountPoint = result?.mount_point || "";
     if (result?.connected) {
       setServerStatusBadge("connected", "Connected");
+      await ensureConnectedUserSession({ clearOnDisconnect: false });
     } else {
       setServerStatusBadge("disconnected", "Not connected");
+      persistConnectedUserSession(null);
     }
   } catch (_error) {
     currentServerMountPoint = "";
     setServerStatusBadge("unknown", "Unknown");
+    persistConnectedUserSession(null);
   }
 }
 
@@ -654,6 +778,28 @@ function applySyncResultStatuses(stdout) {
   }
 }
 
+async function recordSyncedItemsToDatabase() {
+  if (!connectedUserSession?.id) {
+    console.warn("No connected user session; skipping upload item recording");
+    return;
+  }
+
+  const doneItems = syncItems.filter((item) => item.status === "done");
+  if (doneItems.length === 0) {
+    return;
+  }
+
+  try {
+    await invoke("record_synced_items", {
+      items: doneItems,
+      lastEditedById: connectedUserSession.id
+    });
+    console.log(`Recorded ${doneItems.length} synced item(s) in database`);
+  } catch (error) {
+    console.error(`Failed to record synced items: ${String(error)}`);
+  }
+}
+
 async function finalizeSyncStatuses(stdout) {
   try {
     const pendingInfo = await invoke("sync_pending_changes_count");
@@ -664,6 +810,7 @@ async function finalizeSyncStatuses(stdout) {
       renderSyncItems();
       const displayItems = getDisplaySyncItems();
       setSyncItemsStatus(`All ${displayItems.length} folders/files are up to date.`);
+      await recordSyncedItemsToDatabase();
       return;
     }
   } catch (_error) {
@@ -671,6 +818,7 @@ async function finalizeSyncStatuses(stdout) {
   }
 
   applySyncResultStatuses(stdout);
+  await recordSyncedItemsToDatabase();
 }
 
 async function loadSyncItems(options = {}) {
@@ -1019,6 +1167,7 @@ async function loadSettings() {
     destSubpathInput.value = settings.dest_subpath || "";
     setSettingsStatus("Settings loaded.");
     refreshUserInfoPanel();
+    await ensureConnectedUserSession({ clearOnDisconnect: false });
   } catch (error) {
     setSettingsStatus(`Failed to load settings: ${String(error)}`, true);
   } finally {
@@ -1041,6 +1190,8 @@ async function saveSettings() {
 
     setSettingsStatus(message || "Settings saved.");
     refreshUserInfoPanel();
+    persistConnectedUserSession(null);
+    await ensureConnectedUserSession({ clearOnDisconnect: false });
     await loadSyncItems({ skipButtonRefresh: true });
     setSyncButtonLabel("Sync Now");
     syncButton.disabled = false;
@@ -1202,6 +1353,8 @@ if (currentView === "getting-started") {
   });
 
   checkStatus();
+  loadPersistedConnectedUserSession();
+  initializeSqliteBackend();
   loadSettings();
   loadAppVersion();
   loadSyncItems({ skipButtonRefresh: true });

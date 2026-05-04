@@ -20,10 +20,6 @@
   --radius-md: 10px;
 }
 
-* {
-  /* box-sizing: border-box; */
-}
-
 html,
 body {
   min-height: 100%;
