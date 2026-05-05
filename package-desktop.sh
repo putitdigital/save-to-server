@@ -138,7 +138,7 @@ fi
 
 git add "$TAURI_CONF" "$CARGO_TOML"
 git commit -m "chore(release): bump version to $NEW_VERSION"
-git push origin "refs/heads/$CURRENT_BRANCH:refs/heads/$CURRENT_BRANCH"
+git push origin "$CURRENT_BRANCH"
 
 echo "[0/4] Checking updater signing environment..."
 load_tauri_signing_key
@@ -169,10 +169,10 @@ echo "[4/4] Tagging release $TAG_NAME..."
 if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
   echo "[4/4] Tag $TAG_NAME already exists — skipping tag creation."
 else
-  git tag -a "refs/tags/$TAG_NAME" -m "Release $TAG_NAME"
+  git tag -a "$TAG_NAME" -m "Release $TAG_NAME"
   echo "[4/4] Created tag $TAG_NAME"
 fi
 
 echo "[4/4] Pushing $TAG_NAME to origin..."
-git push origin "refs/tags/$TAG_NAME:refs/tags/$TAG_NAME"
+git push origin "$TAG_NAME"
 echo "[4/4] Done — $TAG_NAME is live on GitHub."
