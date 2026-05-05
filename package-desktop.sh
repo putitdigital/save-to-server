@@ -7,6 +7,24 @@ BUNDLE_DIR="$DESKTOP_DIR/src-tauri/target/release/bundle"
 DEFAULT_TAURI_KEY_FILE="$HOME/.tauri/flowit.key"
 DEFAULT_TAURI_PASSWORD_FILE="$HOME/.tauri/flowit.key.password"
 
+require_semver_version() {
+  local version="$1"
+  if [[ ! "$version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    echo "[release] ERROR: Invalid app version '$version'"
+    echo "[release]        Expected semantic version format: X.Y.Z"
+    return 1
+  fi
+}
+
+require_release_tag_format() {
+  local tag_name="$1"
+  if [[ ! "$tag_name" =~ ^v[0-9]+\.[0-9]+\.[0-9]+$ ]]; then
+    echo "[release] ERROR: Refusing to create non-release tag '$tag_name'"
+    echo "[release]        Allowed format: vX.Y.Z"
+    return 1
+  fi
+}
+
 load_tauri_signing_key() {
   if [[ -n "${TAURI_SIGNING_PRIVATE_KEY:-}" ]]; then
     return 0
@@ -61,6 +79,7 @@ TAURI_CONF="$DESKTOP_DIR/src-tauri/tauri.conf.json"
 CARGO_TOML="$DESKTOP_DIR/src-tauri/Cargo.toml"
 
 CURRENT_VERSION="$(grep '"version"' "$TAURI_CONF" | head -1 | sed 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')"
+require_semver_version "$CURRENT_VERSION"
 MAJOR="$(echo "$CURRENT_VERSION" | cut -d. -f1)"
 MINOR="$(echo "$CURRENT_VERSION" | cut -d. -f2)"
 PATCH="$(echo "$CURRENT_VERSION" | cut -d. -f3)"
@@ -76,9 +95,15 @@ sed -i '' "s/\"version\": \"$CURRENT_VERSION\"/\"version\": \"$NEW_VERSION\"/" "
 sed -i '' "0,/^version = \"$CURRENT_VERSION\"/{s/^version = \"$CURRENT_VERSION\"/version = \"$NEW_VERSION\"/}" "$CARGO_TOML"
 
 cd "$ROOT_DIR"
+CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
+if [[ -z "$CURRENT_BRANCH" || "$CURRENT_BRANCH" == "HEAD" ]]; then
+  echo "[release] ERROR: Detached HEAD is not supported for automated releases."
+  exit 1
+fi
+
 git add "$TAURI_CONF" "$CARGO_TOML"
 git commit -m "chore(release): bump version to $NEW_VERSION"
-git push origin HEAD
+git push origin "refs/heads/$CURRENT_BRANCH:refs/heads/$CURRENT_BRANCH"
 
 echo "[0/4] Checking updater signing environment..."
 load_tauri_signing_key
@@ -100,6 +125,7 @@ fi
 
 # --- Auto-tag and push release ---
 TAG_NAME="v$NEW_VERSION"
+require_release_tag_format "$TAG_NAME"
 
 cd "$ROOT_DIR"
 echo ""
@@ -108,10 +134,10 @@ echo "[4/4] Tagging release $TAG_NAME..."
 if git rev-parse "$TAG_NAME" >/dev/null 2>&1; then
   echo "[4/4] Tag $TAG_NAME already exists — skipping tag creation."
 else
-  git tag -a "$TAG_NAME" -m "Release $TAG_NAME"
+  git tag -a "refs/tags/$TAG_NAME" -m "Release $TAG_NAME"
   echo "[4/4] Created tag $TAG_NAME"
 fi
 
 echo "[4/4] Pushing $TAG_NAME to origin..."
-git push origin "$TAG_NAME"
+git push origin "refs/tags/$TAG_NAME:refs/tags/$TAG_NAME"
 echo "[4/4] Done — $TAG_NAME is live on GitHub."
