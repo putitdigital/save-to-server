@@ -34,6 +34,10 @@ body {
     radial-gradient(900px 500px at 100% 0%, #1a2240 0%, transparent 60%),
     linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 100%);
 }
+
+body.tour-open {
+  overflow: hidden;
+}
 .dest-subpath-input{
   width: 92%;
 }
@@ -44,6 +48,72 @@ body {
 
 .hidden {
   display: none;
+}
+
+.tour-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 1.5rem;
+}
+
+.tour-overlay.hidden {
+  display: none;
+}
+
+.tour-scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 10, 18, 0.62);
+  backdrop-filter: blur(3px);
+}
+
+.tour-card {
+  position: relative;
+  z-index: 10003;
+  width: min(420px, 100%);
+  padding: 1.1rem;
+  border: 1px solid rgba(113, 201, 255, 0.35);
+  border-radius: 20px;
+  background:
+    radial-gradient(150% 150% at 0% 0%, rgba(79, 195, 247, 0.18) 0%, transparent 45%),
+    linear-gradient(180deg, rgba(19, 31, 43, 0.98), rgba(13, 24, 35, 0.98));
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.48);
+}
+
+.tour-step-label {
+  margin: 0 0 0.4rem;
+  color: var(--accent);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+}
+
+.tour-card h2 {
+  margin: 0 0 0.55rem;
+}
+
+.tour-body {
+  margin: 0;
+  color: var(--muted);
+  line-height: 1.55;
+}
+
+.tour-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.7rem;
+  margin-top: 1rem;
+}
+
+.tour-target {
+  position: relative;
+  z-index: 10001;
+  pointer-events: none;
+  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.95), 0 0 0 8px rgba(79, 195, 247, 0.18);
 }
 
 .app-layout {

@@ -23,6 +23,7 @@ const ignoreInput = document.getElementById("ignore-input");
 const addIgnoreButton = document.getElementById("btn-add-ignore");
 const refreshIgnoreButton = document.getElementById("btn-refresh-ignore");
 const browseSourceButton = document.getElementById("btn-browse-source");
+const startTourButton = document.getElementById("btn-start-tour");
 const refreshSyncItemsButton = document.getElementById("btn-refresh-sync-items");
 const adminCodeInput = document.getElementById("admin-code-input");
 const adminUnlockButton = document.getElementById("btn-admin-unlock");
@@ -53,12 +54,19 @@ const modalUnlockButton = document.getElementById("btn-modal-unlock");
 const modalCancelButton = document.getElementById("btn-modal-cancel");
 const syncItemsStatus = document.getElementById("sync-items-status");
 const syncItemsList = document.getElementById("sync-items-list");
+const appTour = document.getElementById("app-tour");
+const tourStepLabel = document.getElementById("tour-step-label");
+const tourTitle = document.getElementById("tour-title");
+const tourBody = document.getElementById("tour-body");
+const tourNextButton = document.getElementById("btn-tour-next");
+const tourSkipButton = document.getElementById("btn-tour-skip");
 
 const REQUEST_ADMIN_UNLOCK_EVENT = "flowit://request-admin-unlock";
 const SYNC_PROGRESS_EVENT = "flowit://sync-progress";
 const SYNC_COMPLETE_EVENT = "flowit://sync-complete";
 const SESSION_STORAGE_KEY = "flowit.connectedUserSession";
 const SIDEBAR_COLLAPSED_KEY = "flowit.sidebarCollapsed";
+const TOUR_COMPLETED_KEY = "tour_completed";
 
 let adminCode = "";
 let isAdminUnlocked = false;
@@ -82,6 +90,46 @@ let syncProgressLines = [];
 let activeMainTab = "home";
 let lastBackgroundItemsRefreshAt = 0;
 let ignoreEntries = [];
+let activeTourStepIndex = -1;
+let activeTourTarget = null;
+
+const appTourSteps = [
+  {
+    label: "Step 1 of 5",
+    title: "Set Your Local Folder",
+    body: "In Settings, use the Local Folder field or click Browse... to select the folder Flowit should sync from.",
+    tab: "settings",
+    getTarget: () => localSourceInput || browseSourceButton || settingsTabButton
+  },
+  {
+    label: "Step 2 of 5",
+    title: "Set Your Server Folder",
+    body: "In Settings, enter the destination path in the Server Folder field (DEST_SUBPATH).",
+    tab: "settings",
+    getTarget: () => destSubpathInput || settingsTabButton
+  },
+  {
+    label: "Step 3 of 5",
+    title: "Save Settings",
+    body: "Click the Save Settings button to apply and store your folder configuration.",
+    tab: "settings",
+    getTarget: () => saveSettingsButton || settingsTabButton
+  },
+  {
+    label: "Step 4 of 5",
+    title: "Sync Now",
+    body: "Go to Home and click Sync Now to run your first upload to the server.",
+    tab: "home",
+    getTarget: () => syncButton || refreshSyncItemsButton || homeTabButton
+  },
+  {
+    label: "Step 5 of 5",
+    title: "Enable Auto Sync",
+    body: "Return to Settings and turn on the Auto Sync checkbox if you want continuous syncing while connected.",
+    tab: "settings",
+    getTarget: () => autoSyncCheckbox || startTourButton || settingsTabButton
+  }
+];
 
 const AUTO_SYNC_MONITOR_MS = 15000;
 const AUTO_SYNC_ITEMS_REFRESH_MS = 180000;
@@ -196,6 +244,125 @@ function initGettingStartedView() {
     gettingStartedShell.classList.remove("hidden");
     gettingStartedShell.setAttribute("aria-hidden", "false");
   }
+}
+
+function clearTourHighlight() {
+  if (activeTourTarget) {
+    activeTourTarget.classList.remove("tour-target");
+    activeTourTarget = null;
+  }
+}
+
+function setTourOpen(isOpen) {
+  if (!appTour) {
+    return;
+  }
+
+  appTour.classList.toggle("hidden", !isOpen);
+  appTour.setAttribute("aria-hidden", String(!isOpen));
+  document.body.classList.toggle("tour-open", isOpen);
+}
+
+async function markTourCompleted() {
+  try {
+    await invoke("set_app_setting", { key: TOUR_COMPLETED_KEY, value: "true" });
+  } catch (error) {
+    console.error("Failed to persist tour state", error);
+  }
+}
+
+async function closeTour(options = {}) {
+  const { completed = true } = options;
+  clearTourHighlight();
+  activeTourStepIndex = -1;
+  setTourOpen(false);
+
+  if (completed) {
+    await markTourCompleted();
+  }
+}
+
+function renderTourStep(index) {
+  const step = appTourSteps[index];
+  if (!step || !tourStepLabel || !tourTitle || !tourBody || !tourNextButton) {
+    return;
+  }
+
+  clearTourHighlight();
+  switchMainTab(step.tab);
+
+  tourStepLabel.textContent = step.label;
+  tourTitle.textContent = step.title;
+  tourBody.textContent = step.body;
+  tourNextButton.textContent = index === appTourSteps.length - 1 ? "Finish" : "Next";
+
+  const target = step.getTarget?.();
+  if (target instanceof HTMLElement) {
+    activeTourTarget = target;
+    activeTourTarget.classList.add("tour-target");
+    activeTourTarget.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+  }
+}
+
+function startTour() {
+  if (!appTour || !appTourSteps.length) {
+    return;
+  }
+
+  if (adminUnlockModal && !adminUnlockModal.classList.contains("hidden")) {
+    closeAdminUnlockModal();
+  }
+
+  closeAdminUnlockModal();
+  activeTourStepIndex = 0;
+  setTourOpen(true);
+  renderTourStep(activeTourStepIndex);
+}
+
+function completeTourUi() {
+  clearTourHighlight();
+  activeTourStepIndex = -1;
+  setTourOpen(false);
+  switchMainTab("home");
+}
+
+function skipTourUi() {
+  clearTourHighlight();
+  activeTourStepIndex = -1;
+  setTourOpen(false);
+}
+
+async function advanceTour() {
+  if (activeTourStepIndex < 0) {
+    activeTourStepIndex = 0;
+    setTourOpen(true);
+    renderTourStep(activeTourStepIndex);
+    return;
+  }
+
+  if (activeTourStepIndex >= appTourSteps.length - 1) {
+    completeTourUi();
+    await markTourCompleted();
+    return;
+  }
+
+  activeTourStepIndex += 1;
+  renderTourStep(activeTourStepIndex);
+}
+
+async function maybeStartFirstRunTour() {
+  try {
+    const completed = await invoke("get_app_setting", { key: TOUR_COMPLETED_KEY });
+    if (completed === "true") {
+      return;
+    }
+  } catch (error) {
+    console.error("Failed to read tour state", error);
+  }
+
+  window.setTimeout(() => {
+    startTour();
+  }, 400);
 }
 
 function setCommandText(text) {
@@ -1558,6 +1725,7 @@ if (currentView === "getting-started") {
   refreshSyncItemsButton?.addEventListener("click", () => {
     void refreshListAndAutoSync();
   });
+  startTourButton?.addEventListener("click", startTour);
   autoSyncCheckbox?.addEventListener("change", () => {
     const checked = autoSyncCheckbox.checked;
     setAutoSyncEnabled(checked);
@@ -1570,6 +1738,13 @@ if (currentView === "getting-started") {
     void unlockAdminFromMenu();
   });
   modalCancelButton?.addEventListener("click", closeAdminUnlockModal);
+  tourNextButton?.addEventListener("click", () => {
+    void advanceTour();
+  });
+  tourSkipButton?.addEventListener("click", () => {
+    skipTourUi();
+    void markTourCompleted();
+  });
   modalAdminCodeInput?.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       event.preventDefault();
@@ -1583,6 +1758,11 @@ if (currentView === "getting-started") {
 
   void listen(REQUEST_ADMIN_UNLOCK_EVENT, (event) => {
     const action = event?.payload?.action;
+    if (action === "start-tour") {
+      startTour();
+      return;
+    }
+
     if (action === "open-admin-dashboard") {
       if (isAdminUnlocked) {
         showAdminDashboard();
@@ -1620,4 +1800,5 @@ if (currentView === "getting-started") {
   refreshUserInfoPanel();
   switchMainTab("home");
   startAutoSyncMonitor();
+  void maybeStartFirstRunTour();
 }

@@ -16,6 +16,7 @@ use rusqlite::{params, Connection, OptionalExtension};
 use std::os::unix::fs::PermissionsExt;
 
 const HELP_HOW_TO_USE_ID: &str = "help_how_to_use";
+const HELP_START_TOUR_ID: &str = "help_start_tour";
 const HELP_OPEN_README_ID: &str = "help_open_readme";
 const HELP_OPEN_LOGS_ID: &str = "help_open_logs";
 const HELP_ADMIN_HELP_ID: &str = "help_admin_help";
@@ -204,9 +205,41 @@ fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
     let runtime_root = app_data_dir.join(RUNTIME_WORKSPACE_DIR);
     let runtime_run_sh = runtime_root.join("run.sh");
 
+    let refresh_runtime_assets = |runtime_root: &Path| {
+        let Ok(bundled_root) = find_repo_root(app) else {
+            return;
+        };
+
+        let file_entries = ["run.sh", "easy.sh", "ignore", "README.md"];
+        for file_name in file_entries {
+            let source_path = bundled_root.join(file_name);
+            if !source_path.exists() {
+                continue;
+            }
+
+            let destination_path = runtime_root.join(file_name);
+            let _ = fs::copy(&source_path, &destination_path);
+        }
+
+        let source_scripts = bundled_root.join("scripts");
+        if source_scripts.exists() {
+            let _ = copy_dir_recursive(&source_scripts, &runtime_root.join("scripts"));
+        }
+
+        let source_launchd = bundled_root.join("launchd");
+        if source_launchd.exists() {
+            let _ = copy_dir_recursive(&source_launchd, &runtime_root.join("launchd"));
+        }
+    };
+
     if runtime_run_sh.exists() {
+        refresh_runtime_assets(&runtime_root);
         fs::create_dir_all(runtime_root.join("logs"))
             .map_err(|error| format!("Failed to create logs dir: {error}"))?;
+        ensure_executable(&runtime_root.join("run.sh"))?;
+        ensure_executable(&runtime_root.join("easy.sh"))?;
+        ensure_executable(&runtime_root.join("ignore"))?;
+        ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
         return Ok(runtime_root);
     }
 
@@ -486,6 +519,22 @@ fn open_sqlite_connection(app: &tauri::AppHandle) -> Result<Connection, String> 
 
     ensure_sqlite_schema(&connection)?;
     Ok(connection)
+}
+
+fn should_show_start_tour_menu_item(app: &tauri::AppHandle) -> bool {
+    let Ok(connection) = open_sqlite_connection(app) else {
+        return false;
+    };
+
+    let value = connection
+        .query_row(
+            "SELECT value FROM app_settings WHERE key = ?1",
+            params!["tour_completed"],
+            |row| row.get::<_, String>(0),
+        )
+        .optional();
+
+    matches!(value.ok().flatten().as_deref(), Some("true"))
 }
 
 fn parse_user_row(row: &rusqlite::Row<'_>) -> rusqlite::Result<UserRecord> {
@@ -928,13 +977,15 @@ fn read_all_users_sync_log(
         return Err("Unauthorized: invalid admin code".to_string());
     }
 
-    let mount_name = configured_mount_name(&repo_root);
+    let mount_name = configured_mount_name(&repo_root).trim().to_string();
     let dest_subpath = {
         let env_path = local_env_path(&repo_root);
         fs::read_to_string(&env_path)
             .ok()
             .and_then(|c| read_env_value(&c, "DEST_SUBPATH"))
             .unwrap_or_else(|| "Front-End-Dev/TBWA Work Sithe/2026".to_string())
+            .trim()
+            .to_string()
     };
 
     let log_path = PathBuf::from(format!("/Volumes/{}/{}/syncAll.log", mount_name, dest_subpath));
@@ -1470,7 +1521,11 @@ fn main() {
                 .about(Some(about_metadata))
                 .build()?;
 
-            let help_menu = SubmenuBuilder::new(app, "Help")
+            let mut help_menu_builder = SubmenuBuilder::new(app, "Help");
+            if should_show_start_tour_menu_item(app.handle()) {
+                help_menu_builder = help_menu_builder.text(HELP_START_TOUR_ID, "Start Tour");
+            }
+            let help_menu = help_menu_builder
                 .text(HELP_HOW_TO_USE_ID, "How to Use Flowit")
                 .text(HELP_OPEN_README_ID, "Open User Guide (README)")
                 .text(HELP_OPEN_LOGS_ID, "Open Sync Logs Folder")
@@ -1494,6 +1549,21 @@ fn main() {
             Ok(())
         })
         .on_menu_event(|app, event| {
+            if event.id() == HELP_START_TOUR_ID {
+                let payload = AdminUnlockRequest {
+                    action: "start-tour".to_string(),
+                };
+
+                if let Some(window) = app.get_webview_window("main") {
+                    if let Err(error) = window.emit(REQUEST_ADMIN_UNLOCK_EVENT, payload.clone()) {
+                        eprintln!("Failed to emit start tour event to main window: {error}");
+                    }
+                } else if let Err(error) = app.emit(REQUEST_ADMIN_UNLOCK_EVENT, payload) {
+                    eprintln!("Failed to emit start tour event: {error}");
+                }
+                return;
+            }
+
             if event.id() == HELP_HOW_TO_USE_ID {
                 if let Err(error) = open_getting_started_window(app) {
                     eprintln!("{error}");

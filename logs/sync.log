@@ -2274,3 +2274,45 @@ sent 8391 bytes  received 656 bytes  602 bytes/sec
 total size is 139M  speedup is 15402.32
 [2026-05-04 12:37:35] [user: sithembiso sangweni (sithembiso.sangweni)] Sync finished
 [2026-05-04 12:37:35] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-04 12:49:02] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-04 12:49:03] [user: sithembiso sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-04 12:49:04] [user: sithembiso sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 22 files
+./
+macos/
+macos/Flowit.app.tar.gz
+macos/Flowit.app.tar.gz.sig
+macos/Flowit.app/
+macos/Flowit.app/Contents/
+macos/Flowit.app/Contents/Info.plist
+macos/Flowit.app/Contents/MacOS/
+macos/Flowit.app/Contents/MacOS/flowit
+macos/Flowit.app/Contents/Resources/
+macos/Flowit.app/Contents/Resources/icon.icns
+macos/Flowit.app/Contents/Resources/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/
+macos/Flowit.app/Contents/Resources/_up_/_up_/.syncignore
+macos/Flowit.app/Contents/Resources/_up_/_up_/README.md
+macos/Flowit.app/Contents/Resources/_up_/_up_/easy.sh
+macos/Flowit.app/Contents/Resources/_up_/_up_/ignore
+macos/Flowit.app/Contents/Resources/_up_/_up_/run.sh
+macos/Flowit.app/Contents/Resources/_up_/_up_/launchd/
+macos/Flowit.app/Contents/Resources/_up_/_up_/launchd/com.save-to-server.sync.plist
+macos/Flowit.app/Contents/Resources/_up_/_up_/scripts/
+macos/Flowit.app/Contents/Resources/_up_/_up_/scripts/sync_to_smb.sh
+
+sent 22437k bytes  received 344 bytes  993k bytes/sec
+total size is 22432k  speedup is 1.00
+[2026-05-05 08:52:41] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-05 08:52:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-05-05 08:52:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-05 08:56:08] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-05 08:56:09] [user: sithembiso sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-05 08:56:09] [user: sithembiso sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026 -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 2 files
+./
+
+sent 139 bytes  received 32 bytes  184 bytes/sec
+total size is 44160k  speedup is 258241.24
+[2026-05-05 08:56:10] [user: sithembiso sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-05 08:56:11] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run end ====

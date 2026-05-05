@@ -172,6 +172,7 @@
                 <div class="controls controls-settings">
                   <button id="btn-save-settings" class="btn btn-primary">Save Settings</button>
                   <button id="btn-load-settings" class="btn">Reload Settings</button>
+                  <button id="btn-start-tour" class="btn" type="button">Start Tour</button>
                 </div>
 
                 <p id="settings-status" class="settings-status">Loading settings...</p>
@@ -273,6 +274,19 @@
           <button id="btn-modal-unlock" class="btn btn-primary" type="button">Unlock</button>
         </div>
       </div>
+    </div>
+
+    <div id="app-tour" class="tour-overlay hidden" aria-hidden="true">
+      <div class="tour-scrim"></div>
+      <section class="tour-card" role="dialog" aria-modal="true" aria-labelledby="tour-title">
+        <p id="tour-step-label" class="tour-step-label">Welcome</p>
+        <h2 id="tour-title">Welcome to Flowit</h2>
+        <p id="tour-body" class="tour-body">This short tour shows the main places you will use in the app.</p>
+        <div class="tour-actions">
+          <button id="btn-tour-skip" class="btn" type="button">Skip</button>
+          <button id="btn-tour-next" class="btn btn-primary" type="button">Next</button>
+        </div>
+      </section>
     </div>
 
     <script type="module" src="/src/main.js"></script>
