@@ -28,7 +28,7 @@
       "endpoints": [
         "https://github.com/putitdigital/save-to-server/releases/latest/download/latest.json"
       ],
-      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IDU0NjVGQUEyQUE0QzVGREUKUldUZVgweXFvdnBsVkRRdVlHWWRPNCtrRnFxSzM2T0x5cjRLWjE1V2pRZmNjb2JjZ25sUjhFajQK"
+      "pubkey": "dW50cnVzdGVkIGNvbW1lbnQ6IG1pbmlzaWduIHB1YmxpYyBrZXk6IEU4MDdGQTA2MTMwRkMwRDQKUldUVXdBOFRCdm9INkR1cDhUWS9KMGJsd01jQjlFZ1NVVjZIWEtiT2Uvd0RLT2tvdUxhN0U5N0EK"
     }
   },
   "bundle": {

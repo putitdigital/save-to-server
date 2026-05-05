@@ -1,20 +1,20 @@
 :root {
-  --bg: #091018;
-  --bg-2: #0f1a25;
-  --surface: #131f2b;
-  --surface-2: #1a2a39;
-  --surface-3: #203346;
-  --text: #e8f1fb;
-  --muted: #9ab0c8;
-  --accent: #4fc3f7;
-  --accent-strong: #00a6fb;
-  --ok: #90f2be;
-  --warn: #ffd39c;
-  --danger: #ff9f9f;
-  --border: #2a3f54;
-  --border-strong: #385570;
-  --shadow-lg: 0 18px 45px rgba(2, 6, 12, 0.45);
-  --shadow-md: 0 10px 25px rgba(2, 6, 12, 0.32);
+  --bg: #080c14;
+  --bg-2: #111827;
+  --surface: #141b2a;
+  --surface-2: #1a2334;
+  --surface-3: #202c40;
+  --text: #eff4ff;
+  --muted: #a7b6cf;
+  --accent: #d7b36a;
+  --accent-strong: #f2d28e;
+  --ok: #8ee2b8;
+  --warn: #ffd9a0;
+  --danger: #ffadad;
+  --border: #2f3e58;
+  --border-strong: #566988;
+  --shadow-lg: 0 20px 50px rgba(3, 8, 18, 0.5);
+  --shadow-md: 0 12px 30px rgba(3, 8, 18, 0.36);
   --radius-xl: 18px;
   --radius-lg: 14px;
   --radius-md: 10px;
@@ -30,9 +30,10 @@ body {
   font-family: "Space Grotesk", sans-serif;
   color: var(--text);
   background:
-    radial-gradient(1200px 700px at 6% -10%, #16324d 0%, transparent 58%),
-    radial-gradient(900px 500px at 100% 0%, #1a2240 0%, transparent 60%),
+    radial-gradient(920px 620px at -6% -12%, rgba(201, 160, 88, 0.18) 0%, transparent 62%),
+    radial-gradient(980px 640px at 108% -8%, rgba(62, 99, 176, 0.22) 0%, transparent 62%),
     linear-gradient(160deg, var(--bg) 0%, var(--bg-2) 100%);
+  animation: page-enter 420ms cubic-bezier(0.2, 0.65, 0.2, 1) both;
 }
 
 body.tour-open {
@@ -76,11 +77,11 @@ body.tour-open {
   z-index: 10003;
   width: min(420px, 100%);
   padding: 1.1rem;
-  border: 1px solid rgba(113, 201, 255, 0.35);
+  border: 1px solid rgba(215, 179, 106, 0.4);
   border-radius: 20px;
   background:
-    radial-gradient(150% 150% at 0% 0%, rgba(79, 195, 247, 0.18) 0%, transparent 45%),
-    linear-gradient(180deg, rgba(19, 31, 43, 0.98), rgba(13, 24, 35, 0.98));
+    radial-gradient(150% 150% at 0% 0%, rgba(215, 179, 106, 0.14) 0%, transparent 45%),
+    linear-gradient(180deg, rgba(20, 28, 42, 0.98), rgba(12, 18, 28, 0.98));
   box-shadow: 0 24px 60px rgba(0, 0, 0, 0.48);
 }
 
@@ -124,7 +125,9 @@ body.tour-open {
 }
 
 .left-tabs {
-  background: linear-gradient(180deg, #162433, #121e2b);
+  background:
+    radial-gradient(120% 120% at 0% 0%, rgba(215, 179, 106, 0.12) 0%, transparent 40%),
+    linear-gradient(180deg, #172132, #101828);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
@@ -198,10 +201,9 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
   width: 42px;
   height: 42px;
   border-radius: 10px;
-  border: 1px solid #33516b;
-  background: linear-gradient(180deg, #1a2f43, #132434);
+  background: linear-gradient(180deg, #1b2940, #101a2b);
   padding: 0.22rem;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.25);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.34);
   object-fit: contain;
   flex-shrink: 0;
 }
@@ -233,8 +235,8 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 .left-tab {
   width: 100%;
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, #1b2b3b, #152333);
-  color: #bed0e3;
+  background: linear-gradient(180deg, #1d2a3d, #151f2f);
+  color: #d4e0f2;
   border-radius: 12px;
   padding: 0.72rem 0.95rem;
   font-family: inherit;
@@ -262,6 +264,8 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 }
 
 .left-tab:hover {
+  position: relative;
+  z-index: 1;
   transform: translateY(-1px);
   border-color: var(--border-strong);
   box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
@@ -273,9 +277,9 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 }
 
 .left-tab.is-active {
-  color: #081420;
-  border-color: transparent;
-  background: linear-gradient(135deg, var(--accent), var(--accent-strong));
+  color: #ffd9a0;
+  border-color: rgba(242, 210, 142, 0.58);
+
 }
 
 .aside-footer {
@@ -306,11 +310,15 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 }
 
 .panel {
-  background: linear-gradient(180deg, var(--surface), var(--surface-2));
+  background:
+    radial-gradient(130% 140% at 0% 0%, rgba(215, 179, 106, 0.07) 0%, transparent 45%),
+    linear-gradient(180deg, var(--surface), var(--surface-2));
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 1rem;
   box-shadow: var(--shadow-md);
+  backdrop-filter: blur(1.5px);
+  animation: panel-reveal 520ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
 }
 
 .panel h2 {
@@ -325,6 +333,18 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
   gap: 0.9rem;
 }
 
+.panels > .panel:nth-child(1) {
+  animation-delay: 70ms;
+}
+
+.panels > .panel:nth-child(2) {
+  animation-delay: 130ms;
+}
+
+.panels > .panel:nth-child(3) {
+  animation-delay: 190ms;
+}
+
 .controls {
   display: flex;
   flex-wrap: wrap;
@@ -333,19 +353,25 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 
 .btn {
   border: 1px solid var(--border);
-  background: linear-gradient(180deg, #1b2b3b, #152333);
+  background: linear-gradient(180deg, #202c3f, #162131);
   color: var(--text);
   border-radius: 999px;
   padding: 0.55rem 1.05rem;
   font-family: inherit;
   font-weight: 600;
   cursor: pointer;
-  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease;
+  transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
 }
 
 .btn:hover {
   border-color: var(--border-strong);
   transform: translateY(-1px);
+  box-shadow: 0 10px 24px rgba(2, 8, 18, 0.36);
+}
+
+.btn:active {
+  transform: translateY(0) scale(0.985);
+  filter: brightness(0.98);
 }
 
 .btn:focus-visible {
@@ -354,9 +380,9 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 }
 
 .btn-primary {
-  border-color: transparent;
+  border-color: rgba(242, 210, 142, 0.55);
   background: linear-gradient(135deg, var(--accent), var(--accent-strong));
-  color: #05131f;
+  color: #1a1208;
 }
 
 .panel-status {
@@ -392,9 +418,9 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
   justify-content: space-between;
   gap: 0.7rem;
   padding: 0.52rem 0.64rem;
-  border: 1px solid #284057;
+  border: 1px solid #324663;
   border-radius: var(--radius-md);
-  background: #0f1a26;
+  background: linear-gradient(180deg, #121d2c, #0f1826);
 }
 
 .sync-item-path {
@@ -440,8 +466,8 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 }
 
 .user-info-item {
-  background: #0f1a26;
-  border: 1px solid #284057;
+  background: linear-gradient(180deg, #121d2c, #0f1826);
+  border: 1px solid #324663;
   border-radius: var(--radius-md);
   padding: 0.68rem 0.74rem;
   display: grid;
@@ -493,15 +519,15 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
   padding: 0.62rem 0.72rem;
   font: inherit;
   color: var(--text);
-  background: #0f1924;
+  background: #0f1724;
 }
 
 .field input:focus,
 .admin-auth-row input:focus,
 #modal-admin-code-input:focus {
   outline: none;
-  border-color: #58bfee;
-  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.24);
+  border-color: rgba(242, 210, 142, 0.7);
+  box-shadow: 0 0 0 3px rgba(215, 179, 106, 0.2);
 }
 
 .field input::placeholder,
@@ -545,9 +571,9 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
   justify-content: space-between;
   gap: 1rem;
   padding: 0.85rem 0.95rem;
-  border: 1px solid #284057;
+  border: 1px solid #324663;
   border-radius: var(--radius-md);
-  background: linear-gradient(180deg, #122131, #0f1a26);
+  background: linear-gradient(180deg, #152131, #111a28);
   cursor: pointer;
 }
 
@@ -572,7 +598,7 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
   width: 1.2rem;
   height: 1.2rem;
   margin: 0;
-  accent-color: var(--accent-strong);
+  accent-color: #e5c176;
   cursor: pointer;
   flex-shrink: 0;
 }
@@ -586,9 +612,9 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 
 .ignore-card{
   margin-top: 0.7rem;
-  border: 1px solid #284057;
+  border: 1px solid #324663;
   border-radius: var(--radius-md);
-  background: #0f1a26;
+  background: linear-gradient(180deg, #121d2c, #0f1826);
   padding: 0.62rem 0.72rem;
   display: grid;
   gap: 0.28rem;
@@ -614,13 +640,13 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
   padding: 0.62rem 0.72rem;
   font: inherit;
   color: var(--text);
-  background: #0f1924;
+  background: #0f1724;
 }
 
 .ignore-controls input:focus {
   outline: none;
-  border-color: #58bfee;
-  box-shadow: 0 0 0 3px rgba(79, 195, 247, 0.24);
+  border-color: rgba(242, 210, 142, 0.7);
+  box-shadow: 0 0 0 3px rgba(215, 179, 106, 0.2);
 }
 
 .ignore-list {
@@ -673,20 +699,20 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 
 .server-status-connected {
   color: #9df3bf;
-  border-color: #2c6846;
-  background: #183525;
+  border-color: #3c7b58;
+  background: #1a3d2a;
 }
 
 .server-status-disconnected {
   color: #ffc9c9;
-  border-color: #6d3636;
-  background: #402121;
+  border-color: #7e3f3f;
+  background: #4a2626;
 }
 
 .server-status-unknown {
-  color: #ceddef;
-  border-color: #3a536a;
-  background: #1e2d3e;
+  color: #d8e2f3;
+  border-color: #4a6079;
+  background: #202f41;
 }
 
 .panel-admin {
@@ -715,10 +741,10 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
   min-height: 220px;
   max-height: 460px;
   overflow: auto;
-  background: #0a131d;
-  color: #cee2f7;
+  background: linear-gradient(180deg, #0b1420, #0a111a);
+  color: #dae8fa;
   border-radius: var(--radius-md);
-  border: 1px solid #264158;
+  border: 1px solid #39506d;
   font-family: "IBM Plex Mono", monospace;
   font-size: 0.82rem;
   line-height: 1.45;
@@ -732,7 +758,9 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 }
 
 .help-hero {
-  background: linear-gradient(140deg, #10263c, #201c33);
+  background:
+    radial-gradient(130% 150% at 0% 0%, rgba(215, 179, 106, 0.17) 0%, transparent 48%),
+    linear-gradient(140deg, #13243a, #1b2136);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   padding: 1.2rem 1.1rem;
@@ -787,11 +815,47 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 
 .modal-card {
   width: min(430px, 100%);
-  background: linear-gradient(180deg, #162434, #101a27);
+  background:
+    radial-gradient(130% 150% at 0% 0%, rgba(215, 179, 106, 0.12) 0%, transparent 50%),
+    linear-gradient(180deg, #162434, #101a27);
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   box-shadow: var(--shadow-lg);
   padding: 1rem;
+}
+
+@keyframes page-enter {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes panel-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body,
+  .panel,
+  .btn,
+  .left-tab,
+  .tour-card,
+  .tour-target {
+    animation: none !important;
+    transition: none !important;
+  }
 }
 
 .modal-card h2 {
@@ -832,6 +896,7 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
     max-height: calc(100vh - 2rem);
     width: 134px;
     margin: 10px 0px 0px 10px;
+    z-index: 2;
   }
 
   .left-tabs.is-collapsed {
