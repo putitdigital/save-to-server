@@ -209,6 +209,10 @@ Complete these one-time steps:
 	- `TAURI_SIGNING_PRIVATE_KEY`: full contents of `~/.tauri/flowit.key`
 	- `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: the key password you used
 
+	For local one-command packaging, you can also store the password in:
+
+	- `~/.tauri/flowit.key.password`
+
 3. Push this workflow file:
 
 	- `.github/workflows/release-tauri.yml`
@@ -267,6 +271,11 @@ zsh ./package-desktop.sh
 ```
 
 This script installs dependencies (if needed), builds the Tauri app, and prints the package output folder.
+
+It automatically loads these local signing files when present:
+
+- `~/.tauri/flowit.key`
+- `~/.tauri/flowit.key.password`
 
 ### Important notes
 

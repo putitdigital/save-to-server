@@ -1168,6 +1168,23 @@ fn get_sync_source_items(
 }
 
 #[tauri::command]
+fn mount_smb_share(app: tauri::AppHandle) -> Result<(), String> {
+    let repo_root = workspace_root(&app)?;
+    let env_path = local_env_path(&repo_root);
+    let smb_url = fs::read_to_string(&env_path)
+        .ok()
+        .and_then(|content| read_env_value(&content, "SMB_URL"))
+        .unwrap_or_else(|| "smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients".to_string());
+
+    Command::new("open")
+        .arg(&smb_url)
+        .spawn()
+        .map_err(|error| format!("Failed to open SMB share: {error}"))?;
+
+    Ok(())
+}
+
+#[tauri::command]
 fn get_server_connection_status(app: tauri::AppHandle) -> Result<ServerConnectionStatus, String> {
     let repo_root = workspace_root(&app)?;
     let mount_name = configured_mount_name(&repo_root);
@@ -1633,6 +1650,7 @@ fn main() {
             verify_admin_code,
             get_sync_source_items,
             get_server_connection_status,
+            mount_smb_share,
             sync_pending_changes_count,
             init_sqlite_backend,
             ensure_connected_user,

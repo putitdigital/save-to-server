@@ -72,6 +72,22 @@ body.tour-open {
   backdrop-filter: blur(3px);
 }
 
+.tour-scrim.has-hole {
+  clip-path: polygon(
+    0 0,
+    100% 0,
+    100% 100%,
+    0 100%,
+    0 var(--tour-hole-top),
+    var(--tour-hole-left) var(--tour-hole-top),
+    var(--tour-hole-left) var(--tour-hole-bottom),
+    var(--tour-hole-right) var(--tour-hole-bottom),
+    var(--tour-hole-right) var(--tour-hole-top),
+    0 var(--tour-hole-top),
+    0 0
+  );
+}
+
 .tour-card {
   position: relative;
   z-index: 10003;
@@ -690,7 +706,7 @@ transition: border-color 0.18s ease, transform 0.18s ease, box-shadow 0.18s ease
 .server-status-badge {
   border-radius: 999px;
   padding: 0.16rem 0.58rem;
-  font-size: 0.74rem;
+  font-size: 0.64rem;
   font-weight: 700;
   line-height: 1.2;
   border: 1px solid transparent;

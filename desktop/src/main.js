@@ -8,6 +8,7 @@ const commandOutput = document.getElementById("command-output");
 const logOutput = document.getElementById("log-output");
 const logOutputAllUsers = document.getElementById("log-output-for-all-users");
 const syncButton = document.getElementById("btn-sync");
+const connectToServerButton = document.getElementById("btn-connect-to-server");
 const autoSyncCheckbox = document.getElementById("btn-auto-sync-checkbox");
 const updateButton = document.getElementById("btn-check-update") || document.getElementById("btn-update");
 const updateStatus = document.getElementById("update-status") || document.getElementById("btn-update");
@@ -55,6 +56,7 @@ const modalCancelButton = document.getElementById("btn-modal-cancel");
 const syncItemsStatus = document.getElementById("sync-items-status");
 const syncItemsList = document.getElementById("sync-items-list");
 const appTour = document.getElementById("app-tour");
+const tourScrim = appTour?.querySelector(".tour-scrim");
 const tourStepLabel = document.getElementById("tour-step-label");
 const tourTitle = document.getElementById("tour-title");
 const tourBody = document.getElementById("tour-body");
@@ -251,6 +253,33 @@ function clearTourHighlight() {
     activeTourTarget.classList.remove("tour-target");
     activeTourTarget = null;
   }
+
+  if (tourScrim instanceof HTMLElement) {
+    tourScrim.style.removeProperty("--tour-hole-left");
+    tourScrim.style.removeProperty("--tour-hole-top");
+    tourScrim.style.removeProperty("--tour-hole-right");
+    tourScrim.style.removeProperty("--tour-hole-bottom");
+    tourScrim.classList.remove("has-hole");
+  }
+}
+
+function updateTourHighlight() {
+  if (!(activeTourTarget instanceof HTMLElement) || !(tourScrim instanceof HTMLElement)) {
+    return;
+  }
+
+  const padding = 10;
+  const rect = activeTourTarget.getBoundingClientRect();
+  const left = Math.max(0, rect.left - padding);
+  const top = Math.max(0, rect.top - padding);
+  const right = Math.min(window.innerWidth, rect.right + padding);
+  const bottom = Math.min(window.innerHeight, rect.bottom + padding);
+
+  tourScrim.style.setProperty("--tour-hole-left", `${left}px`);
+  tourScrim.style.setProperty("--tour-hole-top", `${top}px`);
+  tourScrim.style.setProperty("--tour-hole-right", `${right}px`);
+  tourScrim.style.setProperty("--tour-hole-bottom", `${bottom}px`);
+  tourScrim.classList.add("has-hole");
 }
 
 function setTourOpen(isOpen) {
@@ -300,7 +329,8 @@ function renderTourStep(index) {
   if (target instanceof HTMLElement) {
     activeTourTarget = target;
     activeTourTarget.classList.add("tour-target");
-    activeTourTarget.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
+    activeTourTarget.scrollIntoView({ behavior: "auto", block: "center", inline: "nearest" });
+    requestAnimationFrame(updateTourHighlight);
   }
 }
 
@@ -510,6 +540,14 @@ function setServerStatusBadge(state, message) {
     serverStatusBadge.classList.add("server-status-disconnected");
   } else {
     serverStatusBadge.classList.add("server-status-unknown");
+  }
+
+  if (connectToServerButton) {
+    if (state === "connected") {
+      connectToServerButton.classList.add("hidden");
+    } else {
+      connectToServerButton.classList.remove("hidden");
+    }
   }
 
   refreshUserInfoPanel();
@@ -1678,6 +1716,23 @@ if (currentView === "getting-started") {
   hideAdminDashboard();
 
   syncButton.addEventListener("click", syncNow);
+
+  connectToServerButton?.addEventListener("click", async () => {
+    connectToServerButton.disabled = true;
+    connectToServerButton.textContent = "Connecting...";
+    try {
+      await invoke("mount_smb_share");
+    } catch (_error) {
+      // mount dialog may still open even on error; ignore
+    }
+    // Re-check status after a short delay to let the OS mount
+    window.setTimeout(async () => {
+      await refreshServerStatus();
+      connectToServerButton.disabled = false;
+      connectToServerButton.textContent = "Connect to Server";
+    }, 3000);
+  });
+
   sidebarToggleButton?.addEventListener("click", toggleSidebar);
   userTabButton?.addEventListener("click", () => {
     switchMainTab("user");
