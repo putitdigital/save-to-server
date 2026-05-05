@@ -79,7 +79,17 @@ TAURI_CONF="$DESKTOP_DIR/src-tauri/tauri.conf.json"
 CARGO_TOML="$DESKTOP_DIR/src-tauri/Cargo.toml"
 
 CURRENT_VERSION="$(grep '"version"' "$TAURI_CONF" | head -1 | sed 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')"
+CARGO_CURRENT_VERSION="$(sed -n -E 's/^version = "([0-9]+\.[0-9]+\.[0-9]+)"$/\1/p' "$CARGO_TOML" | head -1)"
 require_semver_version "$CURRENT_VERSION"
+require_semver_version "$CARGO_CURRENT_VERSION"
+
+if [[ "$CURRENT_VERSION" != "$CARGO_CURRENT_VERSION" ]]; then
+  echo "[release] WARNING: Version mismatch detected"
+  echo "[release]          tauri.conf.json: $CURRENT_VERSION"
+  echo "[release]          Cargo.toml:      $CARGO_CURRENT_VERSION"
+  echo "[release]          Continuing using tauri.conf.json as source of truth."
+fi
+
 MAJOR="$(echo "$CURRENT_VERSION" | cut -d. -f1)"
 MINOR="$(echo "$CURRENT_VERSION" | cut -d. -f2)"
 PATCH="$(echo "$CURRENT_VERSION" | cut -d. -f3)"
@@ -89,10 +99,35 @@ NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
 echo "[0/4] Bumping $CURRENT_VERSION -> $NEW_VERSION"
 
 # Update tauri.conf.json
-sed -i '' "s/\"version\": \"$CURRENT_VERSION\"/\"version\": \"$NEW_VERSION\"/" "$TAURI_CONF"
+python3 -c "
+import re, sys
+path = sys.argv[1]
+new_ver = sys.argv[2]
+content = open(path).read()
+content = re.sub(r'(\"version\"\s*:\s*\")([0-9]+\\.[0-9]+\\.[0-9]+)(\")', r'\\g<1>' + new_ver + r'\\g<3>', content, count=1)
+open(path, 'w').write(content)
+" "$TAURI_CONF" "$NEW_VERSION"
 
-# Update Cargo.toml (only the first version = "..." line which is the package version)
-sed -i '' "0,/^version = \"$CURRENT_VERSION\"/{s/^version = \"$CURRENT_VERSION\"/version = \"$NEW_VERSION\"/}" "$CARGO_TOML"
+# Update Cargo.toml (only the [package] version line, not dependency versions)
+python3 -c "
+import re, sys
+path = sys.argv[1]
+new_ver = sys.argv[2]
+content = open(path).read()
+# Only replace the first bare version = \"...\" line (the [package] version)
+content = re.sub(r'^(version = \")[0-9]+\\.[0-9]+\\.[0-9]+(\")', r'\\g<1>' + new_ver + r'\\g<2>', content, count=1, flags=re.MULTILINE)
+open(path, 'w').write(content)
+" "$CARGO_TOML" "$NEW_VERSION"
+
+UPDATED_TAURI_VERSION="$(grep '"version"' "$TAURI_CONF" | head -1 | sed 's/.*"version"[[:space:]]*:[[:space:]]*"\([^"]*\)".*/\1/')"
+UPDATED_CARGO_VERSION="$(sed -n -E 's/^version = "([0-9]+\.[0-9]+\.[0-9]+)"$/\1/p' "$CARGO_TOML" | head -1)"
+
+if [[ "$UPDATED_TAURI_VERSION" != "$NEW_VERSION" || "$UPDATED_CARGO_VERSION" != "$NEW_VERSION" ]]; then
+  echo "[release] ERROR: Failed to update versions consistently"
+  echo "[release]        tauri.conf.json: $UPDATED_TAURI_VERSION"
+  echo "[release]        Cargo.toml:      $UPDATED_CARGO_VERSION"
+  exit 1
+fi
 
 cd "$ROOT_DIR"
 CURRENT_BRANCH="$(git rev-parse --abbrev-ref HEAD)"
