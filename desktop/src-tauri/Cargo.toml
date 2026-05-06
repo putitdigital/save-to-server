@@ -1,6 +1,6 @@
 [package]
 name = "flowit"
-version = "0.1.10"
+version = "0.1.11"
 description = "Flowit desktop shell for SMB sync scripts"
 authors = ["sithembiso.sangweni"]
 edition = "2021"
