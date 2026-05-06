@@ -2,7 +2,6 @@
 
 This project syncs a local working folder to:
 
-smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
 
 It uses:
 
@@ -35,8 +34,6 @@ This is the easiest way to use the project.
 ## 1) First-time login and Keychain save
 
 Run this once to mount the share using Finder:
-
-open "smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe"
 
 Default destination inside the share is:
 

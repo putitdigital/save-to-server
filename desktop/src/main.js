@@ -16,6 +16,8 @@ const appVersion = document.getElementById("app-version");
 const serverStatusBadge = document.getElementById("server-status-badge");
 const localSourceInput = document.getElementById("local-source-input");
 const destSubpathInput = document.getElementById("dest-subpath-input");
+const smbUrlInput = document.getElementById("smb-url-input");
+const mountNameInput = document.getElementById("mount-name-input");
 const saveSettingsButton = document.getElementById("btn-save-settings");
 const loadSettingsButton = document.getElementById("btn-load-settings");
 const settingsStatus = document.getElementById("settings-status");
@@ -1592,6 +1594,12 @@ async function loadSettings() {
     const settings = await invoke("get_settings");
     localSourceInput.value = settings.local_source || "";
     destSubpathInput.value = settings.dest_subpath || "";
+    if (smbUrlInput) {
+      smbUrlInput.value = settings.smb_url || "";
+    }
+    if (mountNameInput) {
+      mountNameInput.value = settings.mount_name || "";
+    }
 
     // Prefer the DB value for auto_sync so toggling the checkbox persists
     // immediately without requiring "Save Settings".
@@ -1623,11 +1631,15 @@ async function saveSettings() {
   try {
     const localSource = localSourceInput.value.trim();
     const destSubpath = destSubpathInput.value.trim();
+    const smbUrl = smbUrlInput?.value?.trim() || "";
+    const mountName = mountNameInput?.value?.trim() || "";
     const autoSync = Boolean(autoSyncCheckbox?.checked);
 
     const message = await invoke("save_settings", {
       localSource,
       destSubpath,
+      smbUrl,
+      mountName,
       autoSync
     });
 

@@ -44,6 +44,8 @@ struct CommandResult {
 struct AppSettings {
     local_source: String,
     dest_subpath: String,
+    smb_url: String,
+    mount_name: String,
     auto_sync: bool,
 }
 
@@ -521,6 +523,17 @@ fn open_sqlite_connection(app: &tauri::AppHandle) -> Result<Connection, String> 
     Ok(connection)
 }
 
+fn read_app_setting_value(connection: &Connection, key: &str) -> Result<Option<String>, String> {
+    connection
+        .query_row(
+            "SELECT value FROM app_settings WHERE key = ?1",
+            params![key],
+            |row| row.get::<_, String>(0),
+        )
+        .optional()
+        .map_err(|error| format!("Failed to read app setting '{key}': {error}"))
+}
+
 fn should_show_start_tour_menu_item(app: &tauri::AppHandle) -> bool {
     let Ok(connection) = open_sqlite_connection(app) else {
         return false;
@@ -622,11 +635,7 @@ fn build_sync_ignore(repo_root: &Path, source_path: &Path) -> Result<Gitignore, 
 }
 
 fn default_local_source() -> String {
-    let home = std::env::var("HOME").unwrap_or_else(|_| "/Users/you".to_string());
-    format!(
-        "{}/Library/CloudStorage/OneDrive-OneWorkplace/2026",
-        home
-    )
+    String::new()
 }
 
 fn parse_local_env(content: &str) -> AppSettings {
@@ -651,6 +660,8 @@ fn parse_local_env(content: &str) -> AppSettings {
         match key {
             "LOCAL_SOURCE" => settings.local_source = value,
             "DEST_SUBPATH" => settings.dest_subpath = value,
+            "SMB_URL" => settings.smb_url = value,
+            "MOUNT_NAME" => settings.mount_name = value,
             "AUTO_SYNC" => {
                 settings.auto_sync = matches!(
                     value.trim().to_ascii_lowercase().as_str(),
@@ -789,7 +800,16 @@ fn configured_admin_code(repo_root: &Path) -> String {
     "1234".to_string()
 }
 
-fn configured_mount_name(repo_root: &Path) -> String {
+fn configured_mount_name(app: &tauri::AppHandle, repo_root: &Path) -> String {
+    if let Ok(connection) = open_sqlite_connection(app) {
+        if let Ok(Some(from_db)) = read_app_setting_value(&connection, "mount_name") {
+            let trimmed = from_db.trim();
+            if !trimmed.is_empty() {
+                return trimmed.to_string();
+            }
+        }
+    }
+
     let env_path = local_env_path(repo_root);
     if let Ok(content) = fs::read_to_string(env_path) {
         if let Some(from_file) = read_env_value(&content, "MOUNT_NAME") {
@@ -800,7 +820,7 @@ fn configured_mount_name(repo_root: &Path) -> String {
         }
     }
 
-    "TBWA_JHB_Clients".to_string()
+    String::new()
 }
 
 fn escape_env_value(value: &str) -> String {
@@ -977,18 +997,31 @@ fn read_all_users_sync_log(
         return Err("Unauthorized: invalid admin code".to_string());
     }
 
-    let mount_name = configured_mount_name(&repo_root).trim().to_string();
+    let mount_name = configured_mount_name(&app, &repo_root).trim().to_string();
+    if mount_name.is_empty() {
+        return Ok("MOUNT_NAME is not configured yet. Save Settings first.".to_string());
+    }
     let dest_subpath = {
         let env_path = local_env_path(&repo_root);
-        fs::read_to_string(&env_path)
+        let from_db = open_sqlite_connection(&app)
             .ok()
-            .and_then(|c| read_env_value(&c, "DEST_SUBPATH"))
-            .unwrap_or_else(|| "Front-End-Dev/TBWA Work Sithe/2026".to_string())
+            .and_then(|connection| read_app_setting_value(&connection, "server_folder").ok().flatten());
+        from_db
+            .or_else(|| {
+                fs::read_to_string(&env_path)
+                    .ok()
+                    .and_then(|c| read_env_value(&c, "DEST_SUBPATH"))
+            })
+            .unwrap_or_default()
             .trim()
             .to_string()
     };
 
-    let log_path = PathBuf::from(format!("/Volumes/{}/{}/syncAll.log", mount_name, dest_subpath));
+    let log_path = if dest_subpath.is_empty() {
+        PathBuf::from(format!("/Volumes/{}/syncAll.log", mount_name))
+    } else {
+        PathBuf::from(format!("/Volumes/{}/{}/syncAll.log", mount_name, dest_subpath))
+    };
 
     if !log_path.exists() {
         return Ok("No shared log yet. Run a sync while connected to the server.".to_string());
@@ -1020,18 +1053,26 @@ fn save_settings(
     app: tauri::AppHandle,
     local_source: String,
     dest_subpath: String,
+    smb_url: String,
+    mount_name: String,
     auto_sync: bool,
 ) -> Result<String, String> {
     let repo_root = workspace_root(&app)?;
     let env_path = local_env_path(&repo_root);
+    let local_source_trimmed = local_source.trim().to_string();
+    let dest_subpath_trimmed = dest_subpath.trim().to_string();
+    let smb_url_trimmed = smb_url.trim().to_string();
+    let mount_name_trimmed = mount_name.trim().to_string();
     let existing_admin_code = fs::read_to_string(&env_path)
         .ok()
         .and_then(|content| read_env_value(&content, "ADMIN_CODE"));
 
     let mut content = format!(
-        "LOCAL_SOURCE=\"{}\"\nDEST_SUBPATH=\"{}\"\nAUTO_SYNC=\"{}\"\n",
-        escape_env_value(local_source.trim()),
-        escape_env_value(dest_subpath.trim()),
+        "LOCAL_SOURCE=\"{}\"\nDEST_SUBPATH=\"{}\"\nSMB_URL=\"{}\"\nMOUNT_NAME=\"{}\"\nAUTO_SYNC=\"{}\"\n",
+        escape_env_value(&local_source_trimmed),
+        escape_env_value(&dest_subpath_trimmed),
+        escape_env_value(&smb_url_trimmed),
+        escape_env_value(&mount_name_trimmed),
         if auto_sync { "true" } else { "false" }
     );
 
@@ -1041,6 +1082,12 @@ fn save_settings(
 
     fs::write(&env_path, content)
         .map_err(|error| format!("Failed to write {}: {error}", env_path.display()))?;
+
+    let connection = open_sqlite_connection(&app)?;
+    upsert_app_setting(&connection, "local_folder", &local_source_trimmed)?;
+    upsert_app_setting(&connection, "server_folder", &dest_subpath_trimmed)?;
+    upsert_app_setting(&connection, "smb_url", &smb_url_trimmed)?;
+    upsert_app_setting(&connection, "mount_name", &mount_name_trimmed)?;
 
     Ok("Settings saved to .local.env".to_string())
 }
@@ -1171,10 +1218,19 @@ fn get_sync_source_items(
 fn mount_smb_share(app: tauri::AppHandle) -> Result<(), String> {
     let repo_root = workspace_root(&app)?;
     let env_path = local_env_path(&repo_root);
-    let smb_url = fs::read_to_string(&env_path)
-        .ok()
-        .and_then(|content| read_env_value(&content, "SMB_URL"))
-        .unwrap_or_else(|| "smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients".to_string());
+    let connection = open_sqlite_connection(&app)?;
+    let smb_url_from_db = read_app_setting_value(&connection, "smb_url")?;
+    let smb_url = smb_url_from_db
+        .or_else(|| {
+            fs::read_to_string(&env_path)
+                .ok()
+                .and_then(|content| read_env_value(&content, "SMB_URL"))
+        })
+        .unwrap_or_default();
+
+    if smb_url.trim().is_empty() {
+        return Err("SMB_URL is empty. Open Settings, set SMB_URL, and click Save Settings.".to_string());
+    }
 
     Command::new("open")
         .arg(&smb_url)
@@ -1187,7 +1243,14 @@ fn mount_smb_share(app: tauri::AppHandle) -> Result<(), String> {
 #[tauri::command]
 fn get_server_connection_status(app: tauri::AppHandle) -> Result<ServerConnectionStatus, String> {
     let repo_root = workspace_root(&app)?;
-    let mount_name = configured_mount_name(&repo_root);
+    let mount_name = configured_mount_name(&app, &repo_root);
+    if mount_name.trim().is_empty() {
+        return Ok(ServerConnectionStatus {
+            connected: false,
+            mount_point: String::new(),
+            message: "MOUNT_NAME not set".to_string(),
+        });
+    }
     let mount_point = format!("/Volumes/{}", mount_name);
 
     let mount_output = Command::new("mount")
@@ -1465,20 +1528,17 @@ fn record_synced_items(
 #[tauri::command]
 fn get_app_setting(app: tauri::AppHandle, key: String) -> Result<Option<String>, String> {
     let connection = open_sqlite_connection(&app)?;
-    let value = connection
-        .query_row(
-            "SELECT value FROM app_settings WHERE key = ?1",
-            params![key],
-            |row| row.get::<_, String>(0),
-        )
-        .optional()
-        .map_err(|error| format!("Failed to read app setting '{key}': {error}"))?;
+    let value = read_app_setting_value(&connection, &key)?;
     Ok(value)
 }
 
 #[tauri::command]
 fn set_app_setting(app: tauri::AppHandle, key: String, value: String) -> Result<(), String> {
     let connection = open_sqlite_connection(&app)?;
+    upsert_app_setting(&connection, &key, &value)
+}
+
+fn upsert_app_setting(connection: &Connection, key: &str, value: &str) -> Result<(), String> {
     connection
         .execute(
             r#"INSERT INTO app_settings (key, value, "updatedAt")

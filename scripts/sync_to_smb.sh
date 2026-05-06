@@ -11,15 +11,34 @@ if [[ -f "$WORKSPACE_DIR/.local.env" ]]; then
   source "$WORKSPACE_DIR/.local.env"
 fi
 
-DEFAULT_LOCAL_SOURCE="/Users/sithembiso.sangweni/Library/CloudStorage/OneDrive-OneWorkplace/2026"
+FLOWIT_DB_PATH="${FLOWIT_DB_PATH:-$HOME/Library/Application Support/com.flowit.desktop/flowit.db}"
+
+read_db_app_setting() {
+  local _key="$1"
+
+  if ! command -v sqlite3 >/dev/null 2>&1; then
+    return 0
+  fi
+
+  if [[ ! -f "$FLOWIT_DB_PATH" ]]; then
+    return 0
+  fi
+
+  sqlite3 "$FLOWIT_DB_PATH" "SELECT value FROM app_settings WHERE key = '$_key' LIMIT 1;" 2>/dev/null || true
+}
+
+DEFAULT_LOCAL_SOURCE="$(read_db_app_setting "local_folder")"
 LOCAL_SOURCE="${LOCAL_SOURCE:-$DEFAULT_LOCAL_SOURCE}"
 
 # SMB share details
-SMB_URL="${SMB_URL:-smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients}"
-MOUNT_NAME="${MOUNT_NAME:-TBWA_JHB_Clients}"
+DEFAULT_SMB_URL="$(read_db_app_setting "smb_url")"
+SMB_URL="${SMB_URL:-$DEFAULT_SMB_URL}"
+DEFAULT_MOUNT_NAME="$(read_db_app_setting "mount_name")"
+MOUNT_NAME="${MOUNT_NAME:-$DEFAULT_MOUNT_NAME}"
 
 # Optional folder inside the share
-DEST_SUBPATH="${DEST_SUBPATH:-Front-End-Dev/TBWA Work Sithe/2026}"
+DEFAULT_DEST_SUBPATH="$(read_db_app_setting "server_folder")"
+DEST_SUBPATH="${DEST_SUBPATH:-$DEFAULT_DEST_SUBPATH}"
 DELETE_REMOTE="${DELETE_REMOTE:-false}"
 
 EXCLUDE_FILE="${EXCLUDE_FILE:-$WORKSPACE_DIR/.syncignore}"
@@ -84,11 +103,21 @@ MOUNT_POINT="/Volumes/$MOUNT_NAME"
 ensure_mounted() {
   local silent_if_already_mounted="${1:-false}"
 
+  if [[ -z "$MOUNT_NAME" ]]; then
+    log "ERROR: MOUNT_NAME is empty. Set it in Flowit Settings and click Save Settings."
+    return 1
+  fi
+
   if mount | grep -F "on $MOUNT_POINT " >/dev/null 2>&1; then
     if [[ "$silent_if_already_mounted" != "true" ]]; then
       log "Share already mounted at $MOUNT_POINT"
     fi
     return 0
+  fi
+
+  if [[ -z "$SMB_URL" ]]; then
+    log "ERROR: SMB_URL is empty. Set it in Flowit Settings and click Save Settings."
+    return 1
   fi
 
   log "Mounting SMB share: $SMB_URL"
