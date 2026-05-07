@@ -3,6 +3,7 @@ import { invoke } from "@tauri-apps/api/core";
 import { listen } from "@tauri-apps/api/event";
 import { getVersion } from "@tauri-apps/api/app";
 import { check } from "@tauri-apps/plugin-updater";
+import { isPermissionGranted, requestPermission, sendNotification } from "@tauri-apps/plugin-notification";
 
 const commandOutput = document.getElementById("command-output");
 const logOutput = document.getElementById("log-output");
@@ -143,8 +144,12 @@ const appTourSteps = [
 const AUTO_SYNC_MONITOR_MS = 15000;
 const AUTO_SYNC_ITEMS_REFRESH_MS = 180000;
 const BACKGROUND_NETWORK_CHECKS_ENABLED = false;
+const UPDATE_CHECK_INTERVAL_MS = 4 * 60 * 60 * 1000;
 
 const currentView = new URLSearchParams(window.location.search).get("view");
+let updateCheckTimer = null;
+let isBackgroundUpdateCheckRunning = false;
+let lastNotifiedUpdateVersion = "";
 
 function switchMainTab(tab) {
   const tabs = [
@@ -1645,6 +1650,69 @@ async function checkForUpdate() {
   }
 }
 
+async function notifyUpdateAvailable(version) {
+  const normalizedVersion = String(version || "").trim();
+  if (!normalizedVersion || normalizedVersion === lastNotifiedUpdateVersion) {
+    return;
+  }
+
+  lastNotifiedUpdateVersion = normalizedVersion;
+
+  try {
+    let permissionGranted = await isPermissionGranted();
+    if (!permissionGranted) {
+      const permission = await requestPermission();
+      permissionGranted = permission === "granted";
+    }
+
+    if (permissionGranted) {
+      await sendNotification({
+        title: "Flowit Update Available",
+        body: `Version ${normalizedVersion} is available. Open Flowit and click Check for Update.`
+      });
+    }
+  } catch (error) {
+    console.error(`Failed to show update notification: ${String(error)}`);
+  }
+}
+
+async function checkForUpdateSilently() {
+  if (isBackgroundUpdateCheckRunning) {
+    return;
+  }
+
+  isBackgroundUpdateCheckRunning = true;
+  try {
+    const update = await check();
+    if (!update) {
+      return;
+    }
+
+    setUpdateStatus(`update available (v${update.version}). Click Check for Update.`);
+    await notifyUpdateAvailable(update.version);
+  } catch (error) {
+    console.error(`Background update check failed: ${String(error)}`);
+  } finally {
+    isBackgroundUpdateCheckRunning = false;
+  }
+}
+
+function startUpdateCheckMonitor() {
+  if (updateCheckTimer) {
+    window.clearInterval(updateCheckTimer);
+    updateCheckTimer = null;
+  }
+
+  updateCheckTimer = window.setInterval(() => {
+    void checkForUpdateSilently();
+  }, UPDATE_CHECK_INTERVAL_MS);
+
+  // Run one quiet check shortly after startup.
+  window.setTimeout(() => {
+    void checkForUpdateSilently();
+  }, 15000);
+}
+
 async function syncNow() {
   if (!syncButton) {
     return;
@@ -2090,5 +2158,6 @@ if (currentView === "getting-started") {
   refreshUserInfoPanel();
   switchMainTab("home");
   startAutoSyncMonitor();
+  startUpdateCheckMonitor();
   void maybeStartFirstRunTour();
 }

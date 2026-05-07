@@ -1553,6 +1553,7 @@ fn upsert_app_setting(connection: &Connection, key: &str, value: &str) -> Result
 fn main() {
     tauri::Builder::default()
         .manage(SyncRuntime::default())
+        .plugin(tauri_plugin_notification::init())
         .plugin(tauri_plugin_updater::Builder::new().build())
         .setup(|app| {
             if let Err(error) = open_sqlite_connection(app.handle()) {
