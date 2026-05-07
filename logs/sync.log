@@ -2347,3 +2347,45 @@ sent 139 bytes  received 32 bytes  480 bytes/sec
 total size is 44160k  speedup is 258241.24
 [2026-05-06 11:16:30] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
 [2026-05-06 11:16:31] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-07 14:21:26] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-07 14:21:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-05-07 14:21:42] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-07 14:21:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-07 14:21:43] [user: Sithembiso Sangweni (sithembiso.sangweni)] Mounting SMB share: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-07 14:21:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] ERROR: SMB share did not mount at /Volumes/TBWA_JHB_Clients
+[2026-05-07 14:21:59] [user: Sithembiso Sangweni (sithembiso.sangweni)] TIP: Open this URL in Finder and sign in, then run the script again: smb://odcafs1-nas01.omc.oneds.com/TBWA_JHB_Clients
+[2026-05-07 14:22:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-07 14:22:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-07 14:22:55] [user: Sithembiso Sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Documents/2026 w -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 2 files
+./
+nissan/
+
+sent 132 bytes  received 32 bytes  504 bytes/sec
+total size is 0  speedup is 0.00
+[2026-05-07 14:22:56] [user: Sithembiso Sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-07 14:22:57] [user: Sithembiso Sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-07 14:23:55] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-07 14:23:55] [user: sithembiso sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-07 14:23:55] [user: sithembiso sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Documents/2026 w -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 3 files
+./
+nissan/
+nissan/db.php
+
+sent 808 bytes  received 54 bytes  704 bytes/sec
+total size is 592  speedup is 0.69
+[2026-05-07 14:23:58] [user: sithembiso sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-07 14:23:58] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run end ====
+[2026-05-07 14:28:32] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run start ====
+[2026-05-07 14:28:32] [user: sithembiso sangweni (sithembiso.sangweni)] Share already mounted at /Volumes/TBWA_JHB_Clients
+[2026-05-07 14:28:33] [user: sithembiso sangweni (sithembiso.sangweni)] Starting sync: /Users/sithembiso.sangweni/Documents/2026 w -> /Volumes/TBWA_JHB_Clients/Front-End-Dev/TBWA Work Sithe/2026
+Transfer starting: 4 files
+./
+nissan/
+nissan/Screenshot 2026-01-09 at 11.03.18.png
+
+sent 781k bytes  received 60 bytes  386k bytes/sec
+total size is 781k  speedup is 1.00
+[2026-05-07 14:28:36] [user: sithembiso sangweni (sithembiso.sangweni)] Sync finished
+[2026-05-07 14:28:36] [user: sithembiso sangweni (sithembiso.sangweni)] ==== Sync run end ====

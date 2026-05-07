@@ -1,0 +1,24 @@
+# Block direct access to config files
+<Files "config.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "db.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+<Files "helpers.php">
+    Order allow,deny
+    Deny from all
+</Files>
+
+# Force HTTPS
+RewriteEngine On
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Only allow GET and POST
+RewriteCond %{REQUEST_METHOD} !^(GET|POST)$
+RewriteRule .* - [F]

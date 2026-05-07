@@ -71,6 +71,8 @@ const SYNC_COMPLETE_EVENT = "flowit://sync-complete";
 const SESSION_STORAGE_KEY = "flowit.connectedUserSession";
 const SIDEBAR_COLLAPSED_KEY = "flowit.sidebarCollapsed";
 const TOUR_COMPLETED_KEY = "tour_completed";
+const TELEMETRY_API_BASE = "https://putitdigital.co.za/flowit-api/api";
+const TELEMETRY_INSTANCE_ID_KEY = "flowit.telemetryInstanceId";
 
 let adminCode = "";
 let isAdminUnlocked = false;
@@ -96,6 +98,9 @@ let lastBackgroundItemsRefreshAt = 0;
 let ignoreEntries = [];
 let activeTourStepIndex = -1;
 let activeTourTarget = null;
+let cachedAppVersion = "unknown";
+let telemetryAuthToken = "";
+let telemetryTokenExpiresAtMs = 0;
 
 const appTourSteps = [
   {
@@ -520,10 +525,212 @@ async function loadAppVersion() {
 
   try {
     const version = await getVersion();
+    cachedAppVersion = version;
     appVersion.textContent = `v${version}`;
   } catch (_error) {
+    cachedAppVersion = "unknown";
     appVersion.textContent = "Version unavailable";
   }
+}
+
+function createUuidV4() {
+  if (typeof crypto !== "undefined" && typeof crypto.randomUUID === "function") {
+    return crypto.randomUUID();
+  }
+
+  if (typeof crypto !== "undefined" && typeof crypto.getRandomValues === "function") {
+    const bytes = new Uint8Array(16);
+    crypto.getRandomValues(bytes);
+    bytes[6] = (bytes[6] & 0x0f) | 0x40;
+    bytes[8] = (bytes[8] & 0x3f) | 0x80;
+    const hex = Array.from(bytes, (byte) => byte.toString(16).padStart(2, "0")).join("");
+    return `${hex.slice(0, 8)}-${hex.slice(8, 12)}-${hex.slice(12, 16)}-${hex.slice(16, 20)}-${hex.slice(20)}`;
+  }
+
+  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, (char) => {
+    const value = Math.floor(Math.random() * 16);
+    const nibble = char === "x" ? value : (value & 0x3) | 0x8;
+    return nibble.toString(16);
+  });
+}
+
+function getOrCreateTelemetryInstanceId() {
+  try {
+    const existing = window.localStorage.getItem(TELEMETRY_INSTANCE_ID_KEY);
+    if (existing) {
+      return existing;
+    }
+
+    const instanceId = createUuidV4();
+    window.localStorage.setItem(TELEMETRY_INSTANCE_ID_KEY, instanceId);
+    return instanceId;
+  } catch (_error) {
+    return createUuidV4();
+  }
+}
+
+function detectOsName() {
+  const platform = String(navigator?.userAgentData?.platform || navigator?.platform || "").toLowerCase();
+  if (platform.includes("mac")) {
+    return "macOS";
+  }
+  if (platform.includes("win")) {
+    return "Windows";
+  }
+  if (platform.includes("linux")) {
+    return "Linux";
+  }
+  return "Unknown";
+}
+
+function buildTelemetryUrl(path) {
+  return `${TELEMETRY_API_BASE.replace(/\/+$/, "")}/${path.replace(/^\/+/, "")}`;
+}
+
+async function postTelemetry(path, payload) {
+  if (!TELEMETRY_API_BASE) {
+    return;
+  }
+
+  try {
+    const token = await getTelemetryAuthToken();
+    if (!token) {
+      return;
+    }
+
+    let response = await fetch(buildTelemetryUrl(path), {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Telemetry-Token": token
+      },
+      body: JSON.stringify(payload)
+    });
+
+    if (response.status === 401) {
+      const refreshedToken = await getTelemetryAuthToken({ forceRefresh: true });
+      if (!refreshedToken) {
+        return;
+      }
+
+      response = await fetch(buildTelemetryUrl(path), {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Telemetry-Token": refreshedToken
+        },
+        body: JSON.stringify(payload)
+      });
+    }
+
+    if (!response.ok) {
+      console.error(`Telemetry request failed (${path}): HTTP ${response.status}`);
+    }
+  } catch (error) {
+    console.error(`Telemetry request failed (${path}): ${String(error)}`);
+  }
+}
+
+async function getTelemetryAuthToken(options = {}) {
+  const { forceRefresh = false } = options;
+  const now = Date.now();
+
+  if (!forceRefresh && telemetryAuthToken && telemetryTokenExpiresAtMs - now > 15000) {
+    return telemetryAuthToken;
+  }
+
+  try {
+    const response = await fetch(buildTelemetryUrl("telemetry_token.php"), {
+      method: "GET",
+      headers: {
+        Accept: "application/json"
+      }
+    });
+
+    if (!response.ok) {
+      console.error(`Unable to fetch telemetry token: HTTP ${response.status}`);
+      return "";
+    }
+
+    const data = await response.json();
+    const nextToken = String(data?.token || "").trim();
+    const expiresAt = Date.parse(String(data?.expires_at || ""));
+
+    if (!nextToken || Number.isNaN(expiresAt)) {
+      console.error("Telemetry token response missing token or expires_at");
+      return "";
+    }
+
+    telemetryAuthToken = nextToken;
+    telemetryTokenExpiresAtMs = expiresAt;
+    return telemetryAuthToken;
+  } catch (error) {
+    console.error(`Unable to fetch telemetry token: ${String(error)}`);
+    return "";
+  }
+}
+
+async function sendTelemetryEvent(eventType, metadata = {}) {
+  const instanceId = getOrCreateTelemetryInstanceId();
+  const profile = getTelemetryUserProfile();
+  await postTelemetry("track.php", {
+    event_id: createUuidV4(),
+    instance_id: instanceId,
+    event_type: eventType,
+    app_version: cachedAppVersion,
+    os: detectOsName(),
+    username: profile.username,
+    name: profile.name,
+    surname: profile.surname,
+    metadata
+  });
+}
+
+async function initializeTelemetry() {
+  const instanceId = getOrCreateTelemetryInstanceId();
+  const profile = getTelemetryUserProfile();
+
+  await postTelemetry("register.php", {
+    instance_id: instanceId,
+    app_version: cachedAppVersion,
+    os: detectOsName(),
+    username: profile.username,
+    name: profile.name,
+    surname: profile.surname
+  });
+
+  await sendTelemetryEvent("app_open", {
+    view: currentView || "main"
+  });
+}
+
+function getTelemetryUserProfile() {
+  const directUsername = String(connectedUserSession?.username || "").trim();
+  const directName = String(connectedUserSession?.name || "").trim();
+  const directSurname = String(connectedUserSession?.surname || "").trim();
+
+  if (directUsername) {
+    return {
+      username: directUsername,
+      name: directName,
+      surname: directSurname
+    };
+  }
+
+  const derived = deriveConnectedUserProfile();
+  if (derived) {
+    return {
+      username: derived.username,
+      name: derived.name,
+      surname: derived.surname
+    };
+  }
+
+  return {
+    username: "",
+    name: "",
+    surname: ""
+  };
 }
 
 function setServerStatusBadge(state, message) {
@@ -1154,9 +1361,17 @@ async function handleSyncComplete(payload) {
     showCommandResult("Sync", result);
     await finalizeSyncStatuses(result.stdout);
     await refreshLog();
+    void sendTelemetryEvent("sync_completed", {
+      code: result.code,
+      total_items: syncItems.length
+    });
   } else {
     showCommandResult("Sync", result);
     setSyncItemsStatus(`Sync failed: ${result.stderr || "Unknown error"}`, true);
+    void sendTelemetryEvent("sync_failed", {
+      code: result.code,
+      reason: result.stderr || "Unknown error"
+    });
   }
 
   syncItems = syncItems.map((item) => (item.status === "done" ? item : { ...item, status: "pending" }));
@@ -1466,6 +1681,10 @@ async function syncNow() {
       : null;
 
     const response = await invoke("start_sync", { userName });
+    void sendTelemetryEvent("sync_started", {
+      auto_sync: autoSyncEnabled,
+      initiated_by: userName || "unknown"
+    });
     syncProgressTotalCount = Number(response?.totalCount || 0);
     const totalCount = Math.max(syncProgressTotalCount, syncItems.length, 0);
     if (totalCount > 0) {
@@ -1481,6 +1700,10 @@ async function syncNow() {
     syncButton.disabled = false;
     showError("Sync", error);
     setSyncItemsStatus(`Sync failed: ${String(error)}`, true);
+    void sendTelemetryEvent("sync_failed", {
+      code: -1,
+      reason: String(error)
+    });
   }
 }
 
@@ -1858,8 +2081,8 @@ if (currentView === "getting-started") {
   loadSidebarState();
   loadPersistedConnectedUserSession();
   initializeSqliteBackend();
-  loadSettings();
-  loadAppVersion();
+  const settingsLoadPromise = loadSettings();
+  void Promise.allSettled([loadAppVersion(), settingsLoadPromise]).then(() => initializeTelemetry());
   loadSyncItems({ skipButtonRefresh: true });
   loadIgnoreEntries();
   refreshServerStatus();

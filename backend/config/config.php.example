@@ -1,0 +1,21 @@
+# config.php.example
+# Copy this to config.php and fill in your values.
+# Do NOT commit config.php to git.
+
+<?php
+
+define('DB_HOST', 'localhost');
+define('DB_PORT', '3306');
+define('DB_NAME', 'putitdb9l2p6_saveToServer');
+define('DB_USER', 'putitdb9l2p6_sithembiso');
+define('DB_PASS', 'YOUR_DB_PASSWORD_HERE');
+
+// Generate a long random string for this, e.g.:
+// php -r "echo bin2hex(random_bytes(32));"
+define('API_KEY', 'REPLACE_WITH_A_RANDOM_SECRET_KEY');
+
+// Optional dedicated secret used to sign short-lived telemetry tokens.
+// If left empty, API_KEY is used as fallback.
+define('TELEMETRY_TOKEN_SECRET', 'REPLACE_WITH_ANOTHER_RANDOM_SECRET');
+
+define('MIN_APP_VERSION', null);

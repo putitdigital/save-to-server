@@ -1,0 +1,18 @@
+<?php
+
+// Copy this file to config.php and fill in real values.
+// Do not commit config.php to git.
+
+define('DB_HOST', 'localhost');
+define('DB_PORT', 3306);
+define('DB_NAME', 'putitdb9l2p6_flowit');
+define('DB_USER', 'putitdb9l2p6_sithembiso');
+define('DB_PASS', 'REPLACE_WITH_DATABASE_PASSWORD');
+
+// Generate hash on server:
+// php -r "echo password_hash('your-strong-password', PASSWORD_DEFAULT), PHP_EOL;"
+define('DASHBOARD_PASSWORD_HASH', 'REPLACE_WITH_PASSWORD_HASH');
+
+define('APP_NAME', 'Flowit Analytics');
+define('APP_BASE_PATH', '/flowit');
+define('APP_TIMEZONE', 'Africa/Johannesburg');

@@ -1,0 +1,9 @@
+# Never commit real credentials
+config/config.php
+
+# PHP dependency cache
+vendor/
+
+# OS files
+.DS_Store
+Thumbs.db

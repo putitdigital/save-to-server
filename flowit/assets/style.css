@@ -1,0 +1,154 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Helvetica Neue", sans-serif;
+  background: radial-gradient(circle at top right, #f7f4ec, #eef3fb 45%, #e7edf7 100%);
+  color: #182135;
+}
+
+.dashboard {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 20px 40px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.topbar h1 {
+  margin: 0;
+  font-size: 28px;
+}
+
+.topbar a {
+  color: #0d4c92;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.muted {
+  color: #58657c;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 12px;
+  margin-bottom: 22px;
+}
+
+.stat-card {
+  background: #ffffff;
+  border: 1px solid #dde5f2;
+  border-radius: 14px;
+  padding: 14px;
+}
+
+.stat-label {
+  margin: 0;
+  color: #5a6476;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+}
+
+.stat-value {
+  margin: 6px 0 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #102348;
+}
+
+.panel {
+  background: #ffffff;
+  border: 1px solid #dde5f2;
+  border-radius: 14px;
+  padding: 14px;
+  margin-bottom: 16px;
+}
+
+.panel h2 {
+  margin: 0 0 10px;
+  font-size: 18px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 14px;
+}
+
+th, td {
+  text-align: left;
+  padding: 10px 8px;
+  border-bottom: 1px solid #ecf0f7;
+}
+
+thead th {
+  color: #455166;
+  font-weight: 600;
+}
+
+.login-body {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+}
+
+.login-card {
+  width: min(420px, 94vw);
+  background: #fff;
+  border: 1px solid #dde5f2;
+  border-radius: 14px;
+  padding: 20px;
+}
+
+.login-card h1 {
+  margin: 0 0 6px;
+}
+
+.login-card form {
+  margin-top: 14px;
+}
+
+label {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 14px;
+}
+
+input[type="password"] {
+  width: 100%;
+  border: 1px solid #cad6ea;
+  border-radius: 10px;
+  padding: 10px;
+  font-size: 14px;
+}
+
+button {
+  margin-top: 10px;
+  width: 100%;
+  border: 0;
+  border-radius: 10px;
+  padding: 11px 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  background: #0f5bcc;
+  color: #fff;
+}
+
+.error-box {
+  margin-top: 10px;
+  border: 1px solid #f1c8ca;
+  background: #fff3f4;
+  color: #a2272d;
+  border-radius: 10px;
+  padding: 9px 10px;
+}

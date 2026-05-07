@@ -1,0 +1,11 @@
+Options -Indexes
+
+<FilesMatch "^config\.php$">
+  Require all denied
+</FilesMatch>
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{REQUEST_METHOD} ^(TRACE|TRACK) [NC]
+  RewriteRule .* - [F]
+</IfModule>
