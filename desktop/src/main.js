@@ -100,17 +100,17 @@ let activeTourTarget = null;
 const appTourSteps = [
   {
     label: "Step 1 of 5",
-    title: "Set Your Local Folder",
-    body: "In Settings, use the Local Folder field or click Browse... to select the folder Flowit should sync from.",
+    title: "Open Settings",
+    body: "Click the Settings tab in the sidebar to open your configuration.",
     tab: "settings",
-    getTarget: () => localSourceInput || browseSourceButton || settingsTabButton
+    getTarget: () => settingsTabButton
   },
   {
     label: "Step 2 of 5",
-    title: "Set Your Server Folder",
-    body: "In Settings, enter the destination path in the Server Folder field (DEST_SUBPATH).",
+    title: "Configure Your Settings",
+    body: "Fill in your Local Folder, Server Folder, SMB_URL, and MOUNT_NAME to tell Flowit where to sync from and to.",
     tab: "settings",
-    getTarget: () => destSubpathInput || settingsTabButton
+    getTarget: () => document.getElementById("panel-settings") || settingsTabButton
   },
   {
     label: "Step 3 of 5",
@@ -121,17 +121,17 @@ const appTourSteps = [
   },
   {
     label: "Step 4 of 5",
-    title: "Sync Now",
-    body: "Go to Home and click Sync Now to run your first upload to the server.",
+    title: "Go to Home",
+    body: "Click the Home tab in the sidebar to go back to the main dashboard.",
     tab: "home",
-    getTarget: () => syncButton || refreshSyncItemsButton || homeTabButton
+    getTarget: () => homeTabButton
   },
   {
     label: "Step 5 of 5",
-    title: "Enable Auto Sync",
-    body: "Return to Settings and turn on the Auto Sync checkbox if you want continuous syncing while connected.",
-    tab: "settings",
-    getTarget: () => autoSyncCheckbox || startTourButton || settingsTabButton
+    title: "Sync Now",
+    body: "Click Sync Now to run your first upload to the server.",
+    tab: "home",
+    getTarget: () => syncButton || homeTabButton
   }
 ];
 

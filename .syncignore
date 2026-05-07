@@ -11,7 +11,7 @@ venv/
 dist/
 build/
 logs/
-
+.local.env/
 # Add any private files/folders you do not want on the server
 # .env
 # secrets/
