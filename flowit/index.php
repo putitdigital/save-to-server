@@ -51,44 +51,43 @@ $flashSuccess = (string) ($_SESSION['flowit_flash_success'] ?? '');
 unset($_SESSION['flowit_flash_error'], $_SESSION['flowit_flash_success']);
 
 $stats = [
-    'total_named_users' => q_scalar($db, 'SELECT COUNT(*) FROM users'),
-    'total_installations' => q_scalar($db, 'SELECT COUNT(*) FROM app_instances'),
-    'events_today' => q_scalar($db, 'SELECT COUNT(*) FROM activity_events WHERE DATE(event_time) = CURDATE()'),
-    'active_users_today' => q_scalar(
-        $db,
-        'SELECT COUNT(DISTINCT aeu.user_id)
-         FROM activity_event_users aeu
-         INNER JOIN activity_events ae ON ae.event_id = aeu.event_id
-         WHERE DATE(ae.event_time) = CURDATE()'
-    ),
-    'active_users_30d' => q_scalar(
-        $db,
-        'SELECT COUNT(DISTINCT aeu.user_id)
-         FROM activity_event_users aeu
-         INNER JOIN activity_events ae ON ae.event_id = aeu.event_id
-         WHERE ae.event_time >= (NOW() - INTERVAL 30 DAY)'
-    ),
-    'sync_completed_30d' => q_scalar(
-        $db,
-        "SELECT COUNT(*) FROM activity_events WHERE event_type = 'sync_completed' AND event_time >= (NOW() - INTERVAL 30 DAY)"
-    )
+  'total_named_users' => q_scalar($db, 'SELECT COUNT(*) FROM users'),
+  'total_installations' => q_scalar($db, 'SELECT COUNT(*) FROM app_instances'),
+  'events_today' => q_scalar($db, 'SELECT COUNT(*) FROM activity_events WHERE DATE(event_time) = CURDATE()'),
+  'active_users_today' => q_scalar(
+    $db,
+    'SELECT COUNT(DISTINCT aeu.user_id)
+       FROM activity_event_users aeu
+       INNER JOIN activity_events ae ON ae.event_id = aeu.event_id
+      WHERE DATE(ae.event_time) = CURDATE()'
+  ),
+  'active_users_30d' => q_scalar(
+    $db,
+    'SELECT COUNT(DISTINCT aeu.user_id)
+       FROM activity_event_users aeu
+       INNER JOIN activity_events ae ON ae.event_id = aeu.event_id
+      WHERE ae.event_time >= (NOW() - INTERVAL 30 DAY)'
+  ),
+  'sync_completed_30d' => q_scalar(
+    $db,
+    "SELECT COUNT(*) FROM activity_events WHERE event_type = 'sync_completed' AND event_time >= (NOW() - INTERVAL 30 DAY)"
+  )
 ];
 
 $recentUsers = [];
 $userSql = 'SELECT u.username,
                    MAX(ae.event_time) AS last_activity,
                    COUNT(*) AS event_count
-            FROM users u
-            LEFT JOIN activity_event_users aeu ON aeu.user_id = u.id
-            LEFT JOIN activity_events ae ON ae.event_id = aeu.event_id
-            GROUP BY u.id, u.username
-            ORDER BY last_activity DESC
-            LIMIT 15';
-
+              FROM users u
+              LEFT JOIN activity_event_users aeu ON aeu.user_id = u.id
+              LEFT JOIN activity_events ae ON ae.event_id = aeu.event_id
+             GROUP BY u.id, u.username
+             ORDER BY last_activity DESC
+             LIMIT 15';
 if ($userResult = $db->query($userSql)) {
-    while ($row = $userResult->fetch_assoc()) {
-        $recentUsers[] = $row;
-    }
+  while ($row = $userResult->fetch_assoc()) {
+    $recentUsers[] = $row;
+  }
 }
 
 $recentEvents = [];
@@ -96,54 +95,130 @@ $eventSql = "SELECT ae.event_time,
                     ae.event_type,
                     ai.instance_id,
                     u.username
-             FROM activity_events ae
-             LEFT JOIN activity_event_users aeu ON aeu.event_id = ae.event_id
-             LEFT JOIN users u ON u.id = aeu.user_id
-             LEFT JOIN app_instances ai ON ai.instance_id = ae.instance_id
-             ORDER BY ae.event_time DESC
-             LIMIT 30";
+               FROM activity_events ae
+               LEFT JOIN activity_event_users aeu ON aeu.event_id = ae.event_id
+               LEFT JOIN users u ON u.id = aeu.user_id
+               LEFT JOIN app_instances ai ON ai.instance_id = ae.instance_id
+              ORDER BY ae.event_time DESC
+              LIMIT 30";
 if ($eventResult = $db->query($eventSql)) {
-    while ($row = $eventResult->fetch_assoc()) {
-        $recentEvents[] = $row;
-    }
-}
-
-$installations = [];
-if ($showInstallations) {
-  $installSql = "SELECT ai.instance_id,
-              ai.app_version,
-              ai.os,
-              ai.first_seen_at,
-              ai.last_seen_at,
-              COALESCE(ai.desired_sync_enabled, 1) AS desired_sync_enabled,
-              MAX(CASE WHEN ae.event_type = 'sync_started' THEN ae.event_time END) AS last_sync_started_at,
-              MAX(CASE WHEN ae.event_type = 'sync_completed' THEN ae.event_time END) AS last_sync_completed_at,
-              GROUP_CONCAT(DISTINCT u.username ORDER BY u.username SEPARATOR ', ') AS usernames
-           FROM app_instances ai
-           LEFT JOIN activity_events ae ON ae.instance_id = ai.instance_id
-           LEFT JOIN user_instances ui ON ui.instance_id = ai.instance_id
-           LEFT JOIN users u ON u.id = ui.user_id
-           GROUP BY ai.instance_id, ai.app_version, ai.os, ai.first_seen_at, ai.last_seen_at, ai.desired_sync_enabled
-           ORDER BY ai.last_seen_at DESC";
-
-  if ($installResult = $db->query($installSql)) {
-    $now = time();
-    while ($row = $installResult->fetch_assoc()) {
-      $lastSeenTs = strtotime((string) ($row['last_seen_at'] ?? '')) ?: 0;
-      $lastStartedTs = strtotime((string) ($row['last_sync_started_at'] ?? '')) ?: 0;
-      $lastCompletedTs = strtotime((string) ($row['last_sync_completed_at'] ?? '')) ?: 0;
-      $isOnline = $lastSeenTs > 0 && ($now - $lastSeenTs) <= 300;
-      $isSyncing = $isOnline && $lastStartedTs > 0 && ($lastCompletedTs === 0 || $lastStartedTs > $lastCompletedTs);
-      $desiredSyncEnabled = ((int) ($row['desired_sync_enabled'] ?? 1)) === 1;
-
-      $row['is_online'] = $isOnline;
-      $row['is_syncing'] = $isSyncing;
-      $row['desired_sync_enabled'] = $desiredSyncEnabled;
-      $installations[] = $row;
-    }
+  while ($row = $eventResult->fetch_assoc()) {
+    $recentEvents[] = $row;
   }
 }
 
+$installationHealthRows = [];
+$latestKnownVersion = '';
+$notifications = [];
+$notificationCounts = ['high' => 0, 'medium' => 0, 'low' => 0];
+
+$installSql = "SELECT ai.instance_id,
+                      ai.app_version,
+                      ai.os,
+                      ai.first_seen_at,
+                      ai.last_seen_at,
+                      COALESCE(ai.desired_sync_enabled, 1) AS desired_sync_enabled,
+                      MAX(CASE WHEN ae.event_type = 'sync_started' THEN ae.event_time END) AS last_sync_started_at,
+                      MAX(CASE WHEN ae.event_type = 'sync_completed' THEN ae.event_time END) AS last_sync_completed_at,
+                      GROUP_CONCAT(DISTINCT u.username ORDER BY u.username SEPARATOR ', ') AS usernames
+                 FROM app_instances ai
+                 LEFT JOIN activity_events ae ON ae.instance_id = ai.instance_id
+                 LEFT JOIN user_instances ui ON ui.instance_id = ai.instance_id
+                 LEFT JOIN users u ON u.id = ui.user_id
+                GROUP BY ai.instance_id, ai.app_version, ai.os, ai.first_seen_at, ai.last_seen_at, ai.desired_sync_enabled
+                ORDER BY ai.last_seen_at DESC";
+
+if ($installResult = $db->query($installSql)) {
+  $now = time();
+  while ($row = $installResult->fetch_assoc()) {
+    $lastSeenTs = strtotime((string) ($row['last_seen_at'] ?? '')) ?: 0;
+    $lastStartedTs = strtotime((string) ($row['last_sync_started_at'] ?? '')) ?: 0;
+    $lastCompletedTs = strtotime((string) ($row['last_sync_completed_at'] ?? '')) ?: 0;
+    $isOnline = $lastSeenTs > 0 && ($now - $lastSeenTs) <= 300;
+    $isSyncing = $isOnline && $lastStartedTs > 0 && ($lastCompletedTs === 0 || $lastStartedTs > $lastCompletedTs);
+    $desiredSyncEnabled = ((int) ($row['desired_sync_enabled'] ?? 1)) === 1;
+    $issues = [];
+
+    if ($lastSeenTs === 0) {
+      $issues[] = ['severity' => 'high', 'title' => 'No heartbeat', 'detail' => 'Installation has never reported online activity.'];
+    } elseif (($now - $lastSeenTs) > 86400) {
+      $issues[] = ['severity' => 'high', 'title' => 'Offline >24h', 'detail' => 'Device has been offline for more than one day.'];
+    } elseif (($now - $lastSeenTs) > 1800) {
+      $issues[] = ['severity' => 'medium', 'title' => 'Offline >30m', 'detail' => 'Device has not checked in for more than 30 minutes.'];
+    }
+
+    if (!$desiredSyncEnabled) {
+      $issues[] = ['severity' => 'medium', 'title' => 'Sync paused', 'detail' => 'Sync is currently stopped by dashboard override.'];
+    }
+
+    if ($lastStartedTs > 0 && $lastStartedTs > $lastCompletedTs && ($now - $lastStartedTs) > 900) {
+      $issues[] = ['severity' => 'high', 'title' => 'Sync may be stuck', 'detail' => 'Last sync_started has no matching sync_completed for over 15 minutes.'];
+    }
+
+    if (trim((string) ($row['usernames'] ?? '')) === '') {
+      $issues[] = ['severity' => 'medium', 'title' => 'No user linked', 'detail' => 'No user identity is linked to this installation yet.'];
+    }
+
+    $rawVersion = trim((string) ($row['app_version'] ?? ''));
+    $normalizedVersion = ltrim($rawVersion, 'vV');
+    if ($normalizedVersion !== '' && preg_match('/^[0-9]+(\.[0-9]+)*$/', $normalizedVersion)) {
+      if ($latestKnownVersion === '' || version_compare($normalizedVersion, $latestKnownVersion, '>')) {
+        $latestKnownVersion = $normalizedVersion;
+      }
+    } else {
+      $issues[] = ['severity' => 'medium', 'title' => 'Missing app version', 'detail' => 'Installation is not reporting a valid app version.'];
+    }
+
+    $row['is_online'] = $isOnline;
+    $row['is_syncing'] = $isSyncing;
+    $row['desired_sync_enabled'] = $desiredSyncEnabled;
+    $row['normalized_version'] = $normalizedVersion;
+    $row['issues'] = $issues;
+    $installationHealthRows[] = $row;
+  }
+}
+
+foreach ($installationHealthRows as &$installRow) {
+  $normalizedVersion = (string) ($installRow['normalized_version'] ?? '');
+  if ($latestKnownVersion !== '' && $normalizedVersion !== '' && preg_match('/^[0-9]+(\.[0-9]+)*$/', $normalizedVersion) && version_compare($normalizedVersion, $latestKnownVersion, '<')) {
+    $installRow['issues'][] = [
+      'severity' => 'high',
+      'title' => 'Outdated app version',
+      'detail' => 'Running ' . $normalizedVersion . ' while latest is ' . $latestKnownVersion . '.'
+    ];
+  }
+
+  foreach ($installRow['issues'] as $issue) {
+    $severity = (string) ($issue['severity'] ?? 'low');
+    if (!isset($notificationCounts[$severity])) {
+      $notificationCounts[$severity] = 0;
+    }
+    $notificationCounts[$severity]++;
+
+    $notifications[] = [
+      'severity' => $severity,
+      'instance_id' => (string) ($installRow['instance_id'] ?? ''),
+      'title' => (string) ($issue['title'] ?? 'Issue detected'),
+      'detail' => (string) ($issue['detail'] ?? ''),
+      'last_seen_at' => (string) ($installRow['last_seen_at'] ?? '')
+    ];
+  }
+}
+unset($installRow);
+
+usort($notifications, static function (array $a, array $b): int {
+  $weights = ['high' => 3, 'medium' => 2, 'low' => 1];
+  $aWeight = $weights[$a['severity'] ?? 'low'] ?? 1;
+  $bWeight = $weights[$b['severity'] ?? 'low'] ?? 1;
+
+  if ($aWeight !== $bWeight) {
+    return $bWeight <=> $aWeight;
+  }
+
+  return strcmp((string) ($b['last_seen_at'] ?? ''), (string) ($a['last_seen_at'] ?? ''));
+});
+
+$installations = $showInstallations ? $installationHealthRows : [];
 $lastRefreshed = date('Y-m-d H:i:s');
 ?>
 <!doctype html>
@@ -153,6 +228,7 @@ $lastRefreshed = date('Y-m-d H:i:s');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta http-equiv="refresh" content="60">
   <title><?= h(APP_NAME) ?></title>
+  <link rel="icon" type="image/png" href="assets/icon.ico" sizes="16x16" />
   <link rel="stylesheet" href="assets/style.css">
 </head>
 <body>
@@ -194,131 +270,176 @@ $lastRefreshed = date('Y-m-d H:i:s');
       </article>
     </section>
 
-    <?php if ($showInstallations): ?>
-      <section class="panel" id="installations">
-        <div class="panel-head">
-          <h2>Installed Devices</h2>
-          <a href="index.php">Hide</a>
-        </div>
+    <div class="dashboard-layout">
+      <div class="dashboard-main">
+        <?php if ($showInstallations): ?>
+          <section class="panel" id="installations">
+            <div class="panel-head">
+              <h2>Installed Devices</h2>
+              <a href="index.php">Hide</a>
+            </div>
 
-        <?php if ($flashError !== ''): ?>
-          <div class="error-box"><?= h($flashError) ?></div>
+            <?php if ($flashError !== ''): ?>
+              <div class="error-box"><?= h($flashError) ?></div>
+            <?php endif; ?>
+            <?php if ($flashSuccess !== ''): ?>
+              <div class="success-box"><?= h($flashSuccess) ?></div>
+            <?php endif; ?>
+
+            <div class="install-grid">
+              <?php if (count($installations) === 0): ?>
+                <p class="muted">No installations found yet.</p>
+              <?php else: ?>
+                <?php foreach ($installations as $install): ?>
+                  <?php
+                    $isOnline = (bool) ($install['is_online'] ?? false);
+                    $isSyncing = (bool) ($install['is_syncing'] ?? false);
+                    $desiredSyncEnabled = (bool) ($install['desired_sync_enabled'] ?? true);
+                    $installIssues = $install['issues'] ?? [];
+
+                    $syncSummary = 'Idle';
+                    if (!$desiredSyncEnabled) {
+                      $syncSummary = 'Stopped by dashboard';
+                    } elseif ($isSyncing) {
+                      $syncSummary = 'Currently syncing';
+                    } elseif ($isOnline) {
+                      $syncSummary = 'Online, waiting for next sync';
+                    } else {
+                      $syncSummary = 'Offline';
+                    }
+
+                    $syncButtonAction = $desiredSyncEnabled ? 'stop' : 'start';
+                    $syncButtonLabel = $desiredSyncEnabled ? 'Stop Sync' : 'Start Sync';
+                  ?>
+                  <article class="install-card" id="install-<?= h((string) ($install['instance_id'] ?? '')) ?>">
+                    <div class="install-card-head">
+                      <h3><?= h((string) ($install['instance_id'] ?? '')) ?></h3>
+                      <span class="status-badge <?= $isOnline ? 'status-online' : 'status-offline' ?>">
+                        <?= $isOnline ? 'Online' : 'Offline' ?>
+                      </span>
+                    </div>
+                    <p class="muted install-sync-state">Sync state: <?= h($syncSummary) ?></p>
+                    <p class="install-meta">App: <?= h((string) ($install['app_version'] ?? 'N/A')) ?></p>
+                    <p class="install-meta">OS: <?= h((string) ($install['os'] ?? 'N/A')) ?></p>
+                    <p class="install-meta">Users: <?= h((string) ($install['usernames'] ?? 'N/A')) ?></p>
+                    <p class="install-meta">First seen: <?= h((string) ($install['first_seen_at'] ?? 'N/A')) ?></p>
+                    <p class="install-meta">
+                      <?= $isOnline ? 'Last heartbeat' : 'Last online' ?>:
+                      <?= h((string) ($install['last_seen_at'] ?? 'N/A')) ?>
+                    </p>
+
+                    <?php if (count($installIssues) > 0): ?>
+                      <div class="issue-list">
+                        <?php foreach ($installIssues as $issue): ?>
+                          <p class="issue-pill issue-<?= h((string) ($issue['severity'] ?? 'low')) ?>">
+                            <?= h((string) ($issue['title'] ?? 'Issue')) ?>
+                          </p>
+                        <?php endforeach; ?>
+                      </div>
+                    <?php endif; ?>
+
+                    <form class="sync-form" method="post" action="?view=installations#installations">
+                      <input type="hidden" name="csrf_token" value="<?= h($csrfToken) ?>">
+                      <input type="hidden" name="instance_id" value="<?= h((string) ($install['instance_id'] ?? '')) ?>">
+                      <input type="hidden" name="sync_action" value="<?= h($syncButtonAction) ?>">
+                      <button type="submit" class="sync-toggle <?= $desiredSyncEnabled ? 'sync-stop' : 'sync-start' ?>">
+                        <?= h($syncButtonLabel) ?>
+                      </button>
+                    </form>
+                  </article>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </div>
+          </section>
         <?php endif; ?>
-        <?php if ($flashSuccess !== ''): ?>
-          <div class="success-box"><?= h($flashSuccess) ?></div>
-        <?php endif; ?>
 
-        <div class="install-grid">
-          <?php if (count($installations) === 0): ?>
-            <p class="muted">No installations found yet.</p>
-          <?php else: ?>
-            <?php foreach ($installations as $install): ?>
-              <?php
-                $isOnline = (bool) ($install['is_online'] ?? false);
-                $isSyncing = (bool) ($install['is_syncing'] ?? false);
-                $desiredSyncEnabled = (bool) ($install['desired_sync_enabled'] ?? true);
-
-                $syncSummary = 'Idle';
-                if (!$desiredSyncEnabled) {
-                    $syncSummary = 'Stopped by dashboard';
-                } elseif ($isSyncing) {
-                    $syncSummary = 'Currently syncing';
-                } elseif ($isOnline) {
-                    $syncSummary = 'Online, waiting for next sync';
-                } else {
-                    $syncSummary = 'Offline';
-                }
-
-                $syncButtonAction = $desiredSyncEnabled ? 'stop' : 'start';
-                $syncButtonLabel = $desiredSyncEnabled ? 'Stop Sync' : 'Start Sync';
-              ?>
-              <article class="install-card">
-                <div class="install-card-head">
-                  <h3><?= h((string) ($install['instance_id'] ?? '')) ?></h3>
-                  <span class="status-badge <?= $isOnline ? 'status-online' : 'status-offline' ?>">
-                    <?= $isOnline ? 'Online' : 'Offline' ?>
-                  </span>
-                </div>
-                <p class="muted install-sync-state">Sync state: <?= h($syncSummary) ?></p>
-                <p class="install-meta">App: <?= h((string) ($install['app_version'] ?? 'N/A')) ?></p>
-                <p class="install-meta">OS: <?= h((string) ($install['os'] ?? 'N/A')) ?></p>
-                <p class="install-meta">Users: <?= h((string) ($install['usernames'] ?? 'N/A')) ?></p>
-                <p class="install-meta">First seen: <?= h((string) ($install['first_seen_at'] ?? 'N/A')) ?></p>
-                <p class="install-meta">
-                  <?= $isOnline ? 'Last heartbeat' : 'Last online' ?>:
-                  <?= h((string) ($install['last_seen_at'] ?? 'N/A')) ?>
-                </p>
-
-                <form class="sync-form" method="post" action="?view=installations#installations">
-                  <input type="hidden" name="csrf_token" value="<?= h($csrfToken) ?>">
-                  <input type="hidden" name="instance_id" value="<?= h((string) ($install['instance_id'] ?? '')) ?>">
-                  <input type="hidden" name="sync_action" value="<?= h($syncButtonAction) ?>">
-                  <button type="submit" class="sync-toggle <?= $desiredSyncEnabled ? 'sync-stop' : 'sync-start' ?>">
-                    <?= h($syncButtonLabel) ?>
-                  </button>
-                </form>
-              </article>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </div>
-      </section>
-    <?php endif; ?>
-
-    <section class="panel">
-      <h2>Recent Users</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Username</th>
-            <th>Last Activity</th>
-            <th>Total Linked Events</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if (count($recentUsers) === 0): ?>
-            <tr><td colspan="3">No user data yet.</td></tr>
-          <?php else: ?>
-            <?php foreach ($recentUsers as $user): ?>
+        <section class="panel">
+          <h2>Recent Users</h2>
+          <table>
+            <thead>
               <tr>
-                <td><?= h((string) ($user['username'] ?? '')) ?></td>
-                <td><?= h((string) ($user['last_activity'] ?? 'N/A')) ?></td>
-                <td><?= number_format((int) ($user['event_count'] ?? 0)) ?></td>
+                <th>Username</th>
+                <th>Last Activity</th>
+                <th>Total Linked Events</th>
               </tr>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </tbody>
-      </table>
-    </section>
+            </thead>
+            <tbody>
+              <?php if (count($recentUsers) === 0): ?>
+                <tr><td colspan="3">No user data yet.</td></tr>
+              <?php else: ?>
+                <?php foreach ($recentUsers as $user): ?>
+                  <tr>
+                    <td><?= h((string) ($user['username'] ?? '')) ?></td>
+                    <td><?= h((string) ($user['last_activity'] ?? 'N/A')) ?></td>
+                    <td><?= number_format((int) ($user['event_count'] ?? 0)) ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </tbody>
+          </table>
+        </section>
 
-    <section class="panel">
-      <h2>Recent Events</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>Time</th>
-            <th>Event</th>
-            <th>Username</th>
-            <th>Instance</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php if (count($recentEvents) === 0): ?>
-            <tr><td colspan="4">No events found.</td></tr>
-          <?php else: ?>
-            <?php foreach ($recentEvents as $event): ?>
+        <section class="panel">
+          <h2>Recent Events</h2>
+          <table>
+            <thead>
               <tr>
-                <td><?= h((string) ($event['event_time'] ?? '')) ?></td>
-                <td><?= h((string) ($event['event_type'] ?? '')) ?></td>
-                <td><?= h((string) ($event['username'] ?? 'N/A')) ?></td>
-                <td><?= h((string) ($event['instance_id'] ?? '')) ?></td>
+                <th>Time</th>
+                <th>Event</th>
+                <th>Username</th>
+                <th>Instance</th>
               </tr>
-            <?php endforeach; ?>
-          <?php endif; ?>
-        </tbody>
-      </table>
-    </section>
+            </thead>
+            <tbody>
+              <?php if (count($recentEvents) === 0): ?>
+                <tr><td colspan="4">No events found.</td></tr>
+              <?php else: ?>
+                <?php foreach ($recentEvents as $event): ?>
+                  <tr>
+                    <td><?= h((string) ($event['event_time'] ?? '')) ?></td>
+                    <td><?= h((string) ($event['event_type'] ?? '')) ?></td>
+                    <td><?= h((string) ($event['username'] ?? 'N/A')) ?></td>
+                    <td><?= h((string) ($event['instance_id'] ?? '')) ?></td>
+                  </tr>
+                <?php endforeach; ?>
+              <?php endif; ?>
+            </tbody>
+          </table>
+        </section>
 
-    <p class="muted">Auto refresh every 60s. Last refreshed: <?= h($lastRefreshed) ?></p>
+        <p class="muted">Auto refresh every 60s. Last refreshed: <?= h($lastRefreshed) ?></p>
+      </div>
+
+      <aside class="dashboard-aside">
+        <section class="panel notification-panel">
+          <div class="panel-head">
+            <h2>Install Notifications</h2>
+            <a href="?view=installations#installations">View devices</a>
+          </div>
+
+          <div class="notification-counts">
+            <p class="issue-pill issue-high">High: <?= number_format((int) ($notificationCounts['high'] ?? 0)) ?></p>
+            <p class="issue-pill issue-medium">Medium: <?= number_format((int) ($notificationCounts['medium'] ?? 0)) ?></p>
+            <p class="issue-pill issue-low">Info: <?= number_format((int) ($notificationCounts['low'] ?? 0)) ?></p>
+          </div>
+
+          <?php if (count($notifications) === 0): ?>
+            <p class="muted">No current installation vulnerabilities detected.</p>
+          <?php else: ?>
+            <div class="notification-list">
+              <?php foreach (array_slice($notifications, 0, 20) as $notification): ?>
+                <article class="notification-item severity-<?= h((string) ($notification['severity'] ?? 'low')) ?>">
+                  <h3><?= h((string) ($notification['title'] ?? 'Issue')) ?></h3>
+                  <p class="notification-detail"><?= h((string) ($notification['detail'] ?? '')) ?></p>
+                  <p class="notification-meta">Instance: <?= h((string) ($notification['instance_id'] ?? '')) ?></p>
+                  <p class="notification-meta">Last seen: <?= h((string) ($notification['last_seen_at'] ?? 'N/A')) ?></p>
+                </article>
+              <?php endforeach; ?>
+            </div>
+          <?php endif; ?>
+        </section>
+      </aside>
+    </div>
   </main>
 </body>
 </html>

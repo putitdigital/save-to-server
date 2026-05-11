@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" viewBox="0 0 512 512">
+  <!-- Generator: Adobe Illustrator 29.8.6, SVG Export Plug-In . SVG Version: 2.1.1 Build 1)  -->
+  <defs>
+    <style>
+      .st0 {
+        isolation: isolate;
+        opacity: 1;
+      }
+
+      .st1, .st2 {
+        fill: #fecc00;
+      }
+
+      .st3 {
+        fill: #000001;
+      }
+
+      .st2 {
+        stroke: url(#radial-gradient);
+        stroke-miterlimit: 10;
+        stroke-width: .2px;
+      }
+    </style>
+    <radialGradient id="radial-gradient" cx="256" cy="256" fx="256" fy="256" r="232.1" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#6d6e71"/>
+      <stop offset=".1" stop-color="#727376"/>
+      <stop offset=".3" stop-color="#828385"/>
+      <stop offset=".5" stop-color="#9c9d9f"/>
+      <stop offset=".7" stop-color="#c0c1c2"/>
+      <stop offset=".9" stop-color="#eeeeef"/>
+      <stop offset="1" stop-color="#fff"/>
+    </radialGradient>
+  </defs>
+  <rect class="st2" x="24" y="24" width="464" height="464" rx="112" ry="112"/>
+  <path class="st0" d="M106.4,67.4c60.4-1.4,104.8,13,134.8,43.4,31.8,32.2,44.9,74,57.1,115,12.2,42.7,23.5,82.8,54.5,114.1,20.3,20.6,46,34,76.2,41.3l-64.3,63.6c-29.3-11.7-54.9-28.7-77.9-52-46-46.5-62.6-99-75.6-144.4-11.3-38.3-20.9-71.2-41.3-91.8s-47.8-28.7-86.9-27.1l23.5-62.1Z"/>
+  <rect class="st3" x="183.5" y="177" width="145" height="158" rx="36.8" ry="36.8"/>
+  <path class="st1" d="M213.9,196h84.2v21.8h-62.3v24.9h51.4v21.8h-51.4v51.4h-21.8v-120Z"/>
+</svg>

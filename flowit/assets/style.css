@@ -80,6 +80,22 @@ body {
   margin-bottom: 18px;
 }
 
+.dashboard-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 320px;
+  gap: 14px;
+  align-items: start;
+}
+
+.dashboard-main {
+  min-width: 0;
+}
+
+.dashboard-aside {
+  position: sticky;
+  top: 16px;
+}
+
 .stat-card {
   background: linear-gradient(172deg, rgba(255, 255, 255, 0.95) 0%, rgba(248, 251, 255, 0.9) 100%);
   border: 1px solid var(--card-border);
@@ -232,6 +248,36 @@ body {
   font-size: 13px;
 }
 
+.issue-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.issue-pill {
+  margin: 0;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.issue-high {
+  background: #fce7ea;
+  color: #9f2334;
+}
+
+.issue-medium {
+  background: #fff4e1;
+  color: #7e5b15;
+}
+
+.issue-low {
+  background: #e8f1ff;
+  color: #184f8e;
+}
+
 .sync-form {
   margin-top: 12px;
 }
@@ -331,6 +377,61 @@ button {
   color: #17653b;
 }
 
+.notification-panel {
+  max-height: calc(100vh - 34px);
+  overflow: auto;
+}
+
+.notification-counts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.notification-list {
+  display: grid;
+  gap: 8px;
+}
+
+.notification-item {
+  border: 1px solid var(--card-border);
+  border-left-width: 5px;
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.notification-item h3 {
+  margin: 0;
+  font-size: 13px;
+}
+
+.notification-detail {
+  margin: 5px 0;
+  font-size: 12px;
+  color: #3b4960;
+}
+
+.notification-meta {
+  margin: 2px 0;
+  font-size: 11px;
+  color: #5f6f87;
+  word-break: break-all;
+}
+
+.severity-high {
+  border-left-color: #b12e36;
+}
+
+.severity-medium {
+  border-left-color: #9e7322;
+}
+
+.severity-low {
+  border-left-color: #2a6db2;
+}
+
 .login-body {
   min-height: 100vh;
   display: grid;
@@ -387,6 +488,18 @@ button {
 @media (max-width: 760px) {
   .dashboard {
     padding: 22px 14px 34px;
+  }
+
+  .dashboard-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-aside {
+    position: static;
+  }
+
+  .notification-panel {
+    max-height: none;
   }
 
   .topbar {
