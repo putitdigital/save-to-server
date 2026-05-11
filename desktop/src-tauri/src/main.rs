@@ -20,8 +20,10 @@ const HELP_START_TOUR_ID: &str = "help_start_tour";
 const HELP_OPEN_README_ID: &str = "help_open_readme";
 const HELP_OPEN_LOGS_ID: &str = "help_open_logs";
 const HELP_ADMIN_HELP_ID: &str = "help_admin_help";
+const FLOWIT_CHECK_UPDATE_ID: &str = "flowit_check_update";
 const LOGS_OPEN_ADMIN_ID: &str = "logs_open_admin_dashboard";
 const REQUEST_ADMIN_UNLOCK_EVENT: &str = "flowit://request-admin-unlock";
+const REQUEST_UPDATE_CHECK_EVENT: &str = "flowit://request-update-check";
 const SYNC_PROGRESS_EVENT: &str = "flowit://sync-progress";
 const SYNC_COMPLETE_EVENT: &str = "flowit://sync-complete";
 const GETTING_STARTED_WINDOW_LABEL: &str = "getting-started";
@@ -1597,6 +1599,8 @@ fn main() {
 
             let home_menu = SubmenuBuilder::new(app, "Flowit")
                 .about(Some(about_metadata))
+                .separator()
+                .text(FLOWIT_CHECK_UPDATE_ID, "Check for Update")
                 .build()?;
 
             let mut help_menu_builder = SubmenuBuilder::new(app, "Help");
@@ -1627,6 +1631,21 @@ fn main() {
             Ok(())
         })
         .on_menu_event(|app, event| {
+            if event.id() == FLOWIT_CHECK_UPDATE_ID {
+                let payload = AdminUnlockRequest {
+                    action: "check-update".to_string(),
+                };
+
+                if let Some(window) = app.get_webview_window("main") {
+                    if let Err(error) = window.emit(REQUEST_UPDATE_CHECK_EVENT, payload.clone()) {
+                        eprintln!("Failed to emit update-check event to main window: {error}");
+                    }
+                } else if let Err(error) = app.emit(REQUEST_UPDATE_CHECK_EVENT, payload) {
+                    eprintln!("Failed to emit update-check event: {error}");
+                }
+                return;
+            }
+
             if event.id() == HELP_START_TOUR_ID {
                 let payload = AdminUnlockRequest {
                     action: "start-tour".to_string(),

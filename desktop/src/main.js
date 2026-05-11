@@ -67,6 +67,7 @@ const tourNextButton = document.getElementById("btn-tour-next");
 const tourSkipButton = document.getElementById("btn-tour-skip");
 
 const REQUEST_ADMIN_UNLOCK_EVENT = "flowit://request-admin-unlock";
+const REQUEST_UPDATE_CHECK_EVENT = "flowit://request-update-check";
 const SYNC_PROGRESS_EVENT = "flowit://sync-progress";
 const SYNC_COMPLETE_EVENT = "flowit://sync-complete";
 const SESSION_STORAGE_KEY = "flowit.connectedUserSession";
@@ -2132,6 +2133,12 @@ if (currentView === "getting-started") {
     }
   }).catch((error) => {
     console.error("Failed to register admin unlock listener", error);
+  });
+
+  void listen(REQUEST_UPDATE_CHECK_EVENT, () => {
+    void checkForUpdate();
+  }).catch((error) => {
+    console.error("Failed to register update-check listener", error);
   });
 
   void listen(SYNC_PROGRESS_EVENT, (event) => {
