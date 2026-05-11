@@ -80,6 +80,166 @@ body {
   margin-bottom: 18px;
 }
 
+.graph-section {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.chart-card {
+  min-height: 230px;
+}
+
+.chart-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.chart-range-pill {
+  text-decoration: none;
+  color: #36506f;
+  font-size: 11px;
+  font-weight: 700;
+  border: 1px solid rgba(124, 149, 178, 0.45);
+  border-radius: 999px;
+  padding: 4px 8px;
+  background: rgba(246, 250, 255, 0.88);
+}
+
+.chart-range-pill:hover {
+  border-color: rgba(51, 107, 167, 0.55);
+  color: #173a61;
+}
+
+.range-active {
+  color: #ffffff;
+  background: linear-gradient(135deg, #1f7dbb 0%, #0d5f95 100%);
+  border-color: rgba(18, 81, 128, 0.7);
+}
+
+.trend-bars {
+  display: grid;
+  grid-template-columns: repeat(14, minmax(0, 1fr));
+  gap: 6px;
+  align-items: end;
+}
+
+.trend-day {
+  min-width: 0;
+}
+
+.trend-bar-wrap {
+  height: 120px;
+  display: flex;
+  align-items: flex-end;
+}
+
+.trend-bar {
+  width: 100%;
+  border-radius: 8px 8px 4px 4px;
+  background: linear-gradient(180deg, #2f86c4 0%, #0f5d92 100%);
+  box-shadow: 0 6px 12px rgba(14, 87, 138, 0.24);
+}
+
+.trend-label {
+  margin: 6px 0 0;
+  color: #56657b;
+  font-size: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-mix-list {
+  display: grid;
+  gap: 8px;
+}
+
+.event-mix-row {
+  display: grid;
+  grid-template-columns: 90px minmax(0, 1fr) auto;
+  gap: 8px;
+  align-items: center;
+}
+
+.event-mix-label,
+.event-mix-value {
+  margin: 0;
+  font-size: 12px;
+}
+
+.event-mix-label {
+  color: #3e4e66;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.event-mix-value {
+  color: #5d6c84;
+}
+
+.event-mix-track {
+  height: 11px;
+  background: rgba(185, 205, 228, 0.5);
+  border-radius: 999px;
+  overflow: hidden;
+}
+
+.event-mix-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #1f7dbb 0%, #0d5f95 100%);
+}
+
+.health-stack {
+  height: 24px;
+  border-radius: 999px;
+  overflow: hidden;
+  display: flex;
+  background: rgba(184, 202, 225, 0.42);
+  margin-top: 8px;
+}
+
+.health-segment {
+  height: 100%;
+  min-width: 0;
+}
+
+.health-good {
+  background: #23935f;
+}
+
+.health-warn {
+  background: #d49a2a;
+}
+
+.health-critical {
+  background: #bc3f49;
+}
+
+.health-legend {
+  margin-top: 10px;
+  display: grid;
+  gap: 4px;
+}
+
+.health-legend p {
+  margin: 0;
+  font-size: 12px;
+  color: #4b5c74;
+}
+
+.health-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  margin-right: 6px;
+}
+
 .dashboard-layout {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 320px;
@@ -488,6 +648,23 @@ button {
 @media (max-width: 760px) {
   .dashboard {
     padding: 22px 14px 34px;
+  }
+
+  .graph-section {
+    grid-template-columns: 1fr;
+  }
+
+  .trend-bars {
+    gap: 4px;
+  }
+
+  .event-mix-row {
+    grid-template-columns: 72px minmax(0, 1fr) auto;
+    gap: 6px;
+  }
+
+  .chart-controls {
+    width: 100%;
   }
 
   .dashboard-layout {

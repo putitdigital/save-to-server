@@ -11,6 +11,12 @@ if (empty($_SESSION['flowit_csrf_token'])) {
 
 $csrfToken = (string) $_SESSION['flowit_csrf_token'];
 $showInstallations = (($_GET['view'] ?? '') === 'installations');
+$allowedGraphRanges = [7, 14, 30];
+$graphRange = (int) ($_GET['range'] ?? 14);
+if (!in_array($graphRange, $allowedGraphRanges, true)) {
+  $graphRange = 14;
+}
+$graphDaysBack = max(0, $graphRange - 1);
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   $postedToken = (string) ($_POST['csrf_token'] ?? '');
@@ -218,6 +224,88 @@ usort($notifications, static function (array $a, array $b): int {
   return strcmp((string) ($b['last_seen_at'] ?? ''), (string) ($a['last_seen_at'] ?? ''));
 });
 
+$dailyActivity = [];
+for ($i = $graphDaysBack; $i >= 0; $i--) {
+  $dateKey = date('Y-m-d', strtotime('-' . $i . ' days'));
+  $dailyActivity[$dateKey] = [
+    'day' => $dateKey,
+    'label' => date('M j', strtotime($dateKey)),
+    'total_events' => 0,
+    'sync_completed' => 0,
+    'active_installations' => 0,
+  ];
+}
+
+$dailySql = "SELECT DATE(event_time) AS day,
+                    COUNT(*) AS total_events,
+                    SUM(CASE WHEN event_type = 'sync_completed' THEN 1 ELSE 0 END) AS sync_completed,
+                    COUNT(DISTINCT instance_id) AS active_installations
+               FROM activity_events
+              WHERE event_time >= (CURDATE() - INTERVAL {$graphDaysBack} DAY)
+              GROUP BY DATE(event_time)
+              ORDER BY day ASC";
+if ($dailyResult = $db->query($dailySql)) {
+  while ($row = $dailyResult->fetch_assoc()) {
+    $day = (string) ($row['day'] ?? '');
+    if (isset($dailyActivity[$day])) {
+      $dailyActivity[$day]['total_events'] = (int) ($row['total_events'] ?? 0);
+      $dailyActivity[$day]['sync_completed'] = (int) ($row['sync_completed'] ?? 0);
+      $dailyActivity[$day]['active_installations'] = (int) ($row['active_installations'] ?? 0);
+    }
+  }
+}
+$dailyActivity = array_values($dailyActivity);
+$dailyEventsMax = 1;
+foreach ($dailyActivity as $dayRow) {
+  $dailyEventsMax = max($dailyEventsMax, (int) ($dayRow['total_events'] ?? 0));
+}
+
+$eventMix = [];
+$eventMixTotal = 0;
+$eventMixSql = "SELECT event_type, COUNT(*) AS total
+                  FROM activity_events
+                 WHERE event_time >= (NOW() - INTERVAL {$graphRange} DAY)
+                 GROUP BY event_type
+                 ORDER BY total DESC";
+if ($eventMixResult = $db->query($eventMixSql)) {
+  while ($row = $eventMixResult->fetch_assoc()) {
+    $count = (int) ($row['total'] ?? 0);
+    $eventMix[] = [
+      'event_type' => (string) ($row['event_type'] ?? 'unknown'),
+      'total' => $count,
+    ];
+    $eventMixTotal += $count;
+  }
+}
+
+$healthBuckets = [
+  'healthy' => 0,
+  'warning' => 0,
+  'critical' => 0,
+];
+foreach ($installationHealthRows as $installRow) {
+  $highestSeverity = 'low';
+  foreach (($installRow['issues'] ?? []) as $issue) {
+    $severity = (string) ($issue['severity'] ?? 'low');
+    if ($severity === 'high') {
+      $highestSeverity = 'high';
+      break;
+    }
+    if ($severity === 'medium' && $highestSeverity !== 'high') {
+      $highestSeverity = 'medium';
+    }
+  }
+
+  if ($highestSeverity === 'high') {
+    $healthBuckets['critical']++;
+  } elseif ($highestSeverity === 'medium') {
+    $healthBuckets['warning']++;
+  } else {
+    $healthBuckets['healthy']++;
+  }
+}
+$healthTotal = max(1, array_sum($healthBuckets));
+
 $installations = $showInstallations ? $installationHealthRows : [];
 $lastRefreshed = date('Y-m-d H:i:s');
 ?>
@@ -267,6 +355,85 @@ $lastRefreshed = date('Y-m-d H:i:s');
       <article class="stat-card">
         <p class="stat-label">Sync Completed 30d</p>
         <p class="stat-value"><?= number_format($stats['sync_completed_30d']) ?></p>
+      </article>
+    </section>
+    <section class="graph-section" id="graphs">
+      <article class="panel chart-card">
+        <div class="panel-head">
+          <h2>Activity Trend (<?= number_format($graphRange) ?> Days)</h2>
+          <div class="chart-controls">
+            <?php foreach ($allowedGraphRanges as $rangeOption): ?>
+              <?php
+                $rangeQuery = ['range' => $rangeOption];
+                if ($showInstallations) {
+                  $rangeQuery['view'] = 'installations';
+                }
+              ?>
+              <a class="chart-range-pill <?= $graphRange === $rangeOption ? 'range-active' : '' ?>" href="?<?= h(http_build_query($rangeQuery)) ?>#graphs">
+                <?= number_format($rangeOption) ?>d
+              </a>
+            <?php endforeach; ?>
+          </div>
+        </div>
+        <div class="trend-bars" style="grid-template-columns: repeat(<?= max(1, count($dailyActivity)) ?>, minmax(0, 1fr));">
+          <?php foreach ($dailyActivity as $dayRow): ?>
+            <?php
+              $events = (int) ($dayRow['total_events'] ?? 0);
+              $syncCompleted = (int) ($dayRow['sync_completed'] ?? 0);
+              $activeInstalls = (int) ($dayRow['active_installations'] ?? 0);
+              $heightPct = (int) round(($events / $dailyEventsMax) * 100);
+            ?>
+            <div class="trend-day" title="<?= h((string) ($dayRow['label'] ?? '')) ?>: <?= number_format($events) ?> events, <?= number_format($syncCompleted) ?> sync completed, <?= number_format($activeInstalls) ?> active installs">
+              <div class="trend-bar-wrap">
+                <div class="trend-bar" style="height: <?= max(6, $heightPct) ?>%"></div>
+              </div>
+              <p class="trend-label"><?= h((string) ($dayRow['label'] ?? '')) ?></p>
+            </div>
+          <?php endforeach; ?>
+        </div>
+      </article>
+
+      <article class="panel chart-card">
+        <div class="panel-head">
+          <h2>Event Mix (<?= number_format($graphRange) ?> Days)</h2>
+          <span class="muted"><?= number_format($eventMixTotal) ?> total events</span>
+        </div>
+        <?php if (count($eventMix) === 0): ?>
+          <p class="muted">No event data available yet.</p>
+        <?php else: ?>
+          <div class="event-mix-list">
+            <?php foreach (array_slice($eventMix, 0, 8) as $mixRow): ?>
+              <?php
+                $mixCount = (int) ($mixRow['total'] ?? 0);
+                $mixPct = $eventMixTotal > 0 ? ($mixCount / $eventMixTotal) * 100 : 0;
+              ?>
+              <div class="event-mix-row">
+                <p class="event-mix-label"><?= h((string) ($mixRow['event_type'] ?? 'unknown')) ?></p>
+                <div class="event-mix-track">
+                  <div class="event-mix-fill" style="width: <?= max(3, (int) round($mixPct)) ?>%"></div>
+                </div>
+                <p class="event-mix-value"><?= number_format($mixCount) ?> (<?= number_format($mixPct, 1) ?>%)</p>
+              </div>
+            <?php endforeach; ?>
+          </div>
+        <?php endif; ?>
+      </article>
+
+      <article class="panel chart-card">
+        <div class="panel-head">
+          <h2>Installation Health</h2>
+          <span class="muted"><?= number_format(array_sum($healthBuckets)) ?> installations</span>
+        </div>
+        <div class="health-stack" aria-label="Installation health breakdown">
+          <span class="health-segment health-good" style="width: <?= (int) round(($healthBuckets['healthy'] / $healthTotal) * 100) ?>%"></span>
+          <span class="health-segment health-warn" style="width: <?= (int) round(($healthBuckets['warning'] / $healthTotal) * 100) ?>%"></span>
+          <span class="health-segment health-critical" style="width: <?= (int) round(($healthBuckets['critical'] / $healthTotal) * 100) ?>%"></span>
+        </div>
+        <div class="health-legend">
+          <p><span class="health-dot health-good"></span>Healthy: <?= number_format($healthBuckets['healthy']) ?></p>
+          <p><span class="health-dot health-warn"></span>Warning: <?= number_format($healthBuckets['warning']) ?></p>
+          <p><span class="health-dot health-critical"></span>Critical: <?= number_format($healthBuckets['critical']) ?></p>
+        </div>
       </article>
     </section>
 
