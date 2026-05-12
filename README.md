@@ -1,145 +1,79 @@
-# SMB Auto Sync (macOS)
+# Save To Server / Flowit
 
-This project syncs a local working folder to:
+This repository is now a full sync + telemetry platform with four parts:
 
+1. macOS SMB sync automation scripts (`run.sh`, `easy.sh`, `scripts/sync_to_smb.sh`)
+2. Flowit desktop app built with Tauri (`desktop/`)
+3. PHP telemetry ingestion API + MySQL schema (`backend/`)
+4. Password-protected analytics dashboard (`flowit/`)
 
-It uses:
+## What This Project Does
 
-- Finder SMB mount (username/password, optionally saved to Keychain)
-- rsync for fast incremental sync
-- launchd for automatic scheduling
+- Syncs a local folder to an SMB server using `rsync`.
+- Supports manual sync, status checks, health check, and launchd auto-sync.
+- Ships a desktop app UI that wraps sync operations and app settings.
+- Collects telemetry events (`register`, `track`) from app installations.
+- Shows usage analytics, installation health, notifications, and charts in a web dashboard.
 
-## Quick Start (No Coding Needed)
+## Repository Structure
+
+- `run.sh`: CLI entrypoint for sync commands.
+- `easy.sh`: Guided macOS menu for non-technical users.
+- `scripts/sync_to_smb.sh`: Core sync logic (mount, rsync, logging, status, lockfile).
+- `launchd/com.save-to-server.sync.plist`: launchd job template.
+- `desktop/`: Tauri desktop app (Vite frontend + Rust backend).
+- `backend/`: Telemetry API endpoints and SQL migrations.
+- `flowit/`: Analytics dashboard (PHP + MySQL).
+
+## Quick Start (End Users)
 
 1. Double-click `Start Sync.command`.
-2. Pick an option from the menu:
-	- `Sync now`
-	- `Check sync status`
-	- `Set local workspace folder` (opens a desktop folder picker)
-	- `Install auto-sync`
-3. Keep using the same menu whenever needed.
+2. Use menu options in `easy.sh`:
+   - Sync now
+   - Check status
+   - Install auto-sync (launchd)
+   - Set local workspace folder
+3. View logs in `logs/`.
 
-This is the easiest way to use the project.
+## Sync Commands (CLI)
 
-## Files
-
-- run.sh: Short launcher for sync/status commands
-- easy.sh: Guided menu for non-technical users
-- Start Sync.command: Double-click launcher to open the guided menu
-- .local.env: Auto-created local settings (for selected workspace folder)
-- scripts/sync_to_smb.sh: Mounts SMB share and runs rsync
-- .syncignore: Ignore patterns for files/folders not to sync
-- launchd/com.save-to-server.sync.plist: launchd agent template (every 5 minutes)
-
-## 1) First-time login and Keychain save
-
-Run this once to mount the share using Finder:
-
-Default destination inside the share is:
-
-Front-End-Dev/TBWA Work Sithe/2026
-
-When prompted:
-
-- Enter username and password
-- Enable Remember this password in my keychain
-
-## 2) Run a manual sync
-
-Make the script executable:
-
+```bash
 chmod +x ./run.sh
-
-Run sync:
-
 ./run.sh
-
-Check sync status (one command):
-
 ./run.sh status
-
-List paths currently ignored by `.syncignore`:
-
 ./ignore
+```
 
-Logs are written to:
+Optional overrides:
 
-- logs/sync.log
-
-## 3) Optional: Sync a different local folder or target subfolder
-
-You can override defaults with environment variables:
-
-LOCAL_SOURCE="/path/to/source" DEST_SUBPATH="some/folder/on/share" ./run.sh
-
-## 3.1) Delete behavior
-
-By default, the sync only adds and updates files on the server. It does not delete remote files.
-
-If you ever want mirrored delete behavior, run with:
-
+```bash
+LOCAL_SOURCE="/path/to/source" DEST_SUBPATH="server/folder" ./run.sh
 DELETE_REMOTE="true" ./run.sh
+```
 
-## 4) Enable automatic background sync (launchd)
+Notes:
 
-Copy plist into your LaunchAgents folder:
+- Script reads optional overrides from `.local.env`.
+- It can also read defaults from the Flowit SQLite app DB (`FLOWIT_DB_PATH`) when available.
+- Sync logs are written to `logs/sync.log`.
 
+## Auto-Sync (launchd)
+
+Install and load the LaunchAgent:
+
+```bash
 mkdir -p "$HOME/Library/LaunchAgents"
 cp launchd/com.save-to-server.sync.plist "$HOME/Library/LaunchAgents/com.save-to-server.sync.plist"
-
-Load and start it:
-
 launchctl unload "$HOME/Library/LaunchAgents/com.save-to-server.sync.plist" 2>/dev/null || true
 launchctl load "$HOME/Library/LaunchAgents/com.save-to-server.sync.plist"
-
-Check status:
-
 launchctl list | grep com.save-to-server.sync
+```
 
-## 5) Change frequency
+Frequency is controlled by `StartInterval` in `launchd/com.save-to-server.sync.plist`.
 
-Edit StartInterval in:
+## Desktop App (Tauri)
 
-launchd/com.save-to-server.sync.plist
-
-Example values:
-
-- 60 = every minute
-- 300 = every 5 minutes
-- 900 = every 15 minutes
-
-After editing, reload:
-
-launchctl unload "$HOME/Library/LaunchAgents/com.save-to-server.sync.plist"
-launchctl load "$HOME/Library/LaunchAgents/com.save-to-server.sync.plist"
-
-## Notes
-
-- Keep .syncignore updated to avoid uploading private or heavy folders.
-- If the share is not mounted, the script attempts to mount it first.
-
-## Desktop App (Flowit, Tauri)
-
-A Tauri desktop shell is available in `desktop/`.
-It reuses the existing scripts (`run.sh`, `scripts/sync_to_smb.sh`) without changing their logic.
-
-### What the desktop app can do
-
-- Run `Sync now`
-- Check `status`
-- Show the latest lines from `logs/sync.log`
-- Save and reload `LOCAL_SOURCE` and `DEST_SUBPATH` in `.local.env`
-- Protect Sync Log behind an admin code in the app
-
-### Admin code for Sync Log
-
-- Default admin code is `1234`.
-- You can override it with environment variable `FLOWIT_ADMIN_CODE`.
-- Or set `ADMIN_CODE="your-code"` inside `.local.env`.
-
-### Start in development mode
-
-From the project root:
+Run in dev mode:
 
 ```bash
 cd desktop
@@ -147,7 +81,7 @@ npm install
 npm run tauri dev
 ```
 
-### Build a desktop app bundle
+Build desktop bundles:
 
 ```bash
 cd desktop
@@ -155,127 +89,102 @@ npm install
 npm run tauri build
 ```
 
-### Change app icons (Tauri)
-
-Run this from the `desktop/` folder after replacing `src-tauri/icons/source-logo.png` with your new square PNG or SVG:
-
-```bash
-cd desktop
-npm run tauri -- icon src-tauri/icons/source-logo.png -o src-tauri/icons
-```
-
-This regenerates platform icon files used by Tauri (including `.icns`, `.ico`, and PNG sizes) inside `desktop/src-tauri/icons/`.
-
-### In-app updates (users download updates inside the app)
-
-Flowit now includes a **Check for Update** button in the desktop UI.
-
-To enable real updates in production, set these values in `desktop/src-tauri/tauri.conf.json`:
-
-- `plugins.updater.endpoints`: URL that serves updater metadata (`latest.json`)
-- `plugins.updater.pubkey`: public key for verifying signed updates
-
-Current config uses placeholders and must be replaced before release.
-
-Typical maintainer flow:
-
-1. Generate signing keys once (`npm run tauri signer generate`).
-2. Put the public key in `tauri.conf.json` under `plugins.updater.pubkey`.
-3. Keep the private key secure and use it when building release artifacts.
-4. Publish the app bundle artifacts and updater metadata (`latest.json`) to your release host (for example GitHub Releases).
-5. Users click **Check for Update** in the app to download/install updates directly.
-
-### GitHub setup for updater (this repository)
-
-Updater endpoint in `desktop/src-tauri/tauri.conf.json` is set to:
-
-- `https://github.com/putitdigital/save-to-server/releases/latest/download/latest.json`
-
-Complete these one-time steps:
-
-1. Generate keys locally from `desktop/`:
-
-	```bash
-	npm run tauri signer generate -w ~/.tauri/flowit.key
-	```
-
-	Copy the printed public key and set it in `desktop/src-tauri/tauri.conf.json` as `plugins.updater.pubkey`.
-
-2. Add GitHub repository secrets:
-
-	- `TAURI_SIGNING_PRIVATE_KEY`: full contents of `~/.tauri/flowit.key`
-	- `TAURI_SIGNING_PRIVATE_KEY_PASSWORD`: the key password you used
-
-	For local one-command packaging, you can also store the password in:
-
-	- `~/.tauri/flowit.key.password`
-
-3. Push this workflow file:
-
-	- `.github/workflows/release-tauri.yml`
-
-4. Create a version tag and push it:
-
-	```bash
-	git add desktop/src-tauri/Cargo.toml desktop/src-tauri/tauri.conf.json
-	git commit -m "chore(release): bump version to 0.1.3"
-	git push origin main
-	git tag v0.1.3
-	git push origin v0.1.3
-	```
-
-	Quick checks:
-
-	```bash
-	git tag --list "v*" | tail
-	curl -sSL https://github.com/putitdigital/save-to-server/releases/latest/download/latest.json | head -n 20
-	```
-
-GitHub Actions will build and publish release artifacts. Once release assets include `latest.json`, users can click **Check for Update** and install updates directly.
-
-Build outputs (macOS) are created under:
-
-- `desktop/src-tauri/target/release/bundle/dmg/`
-- `desktop/src-tauri/target/release/bundle/macos/`
-
-### Distribute to non-technical users
-
-1. Build the app (`npm run tauri build`).
-2. Share the generated `.dmg` from `desktop/src-tauri/target/release/bundle/dmg/`.
-3. User opens the `.dmg`, drags **Flowit** to **Applications**, and launches it.
-4. On first launch, the app creates a writable local workspace automatically for logs/settings/scripts.
-5. User only needs to use the app UI (no terminal required).
-
-### Optional: one-command packaging for maintainers
-
-From repo root:
+Maintainer packaging helper:
 
 ```bash
 ./package-desktop.sh
 ```
 
-From `desktop/` folder (alternative):
+Updater support is configured in `desktop/src-tauri/tauri.conf.json`.
+
+## Telemetry API (backend)
+
+Main endpoints:
+
+- `backend/api/ping.php` (health)
+- `backend/api/telemetry_token.php` (short-lived token)
+- `backend/api/register.php` (installation registration)
+- `backend/api/track.php` (event ingestion)
+
+Auth:
+
+- API key via `X-Api-Key`
+- Telemetry token via `X-Telemetry-Token` (or API key fallback)
+
+### Backend Setup
+
+1. Copy config:
 
 ```bash
-npm run package:desktop
+cp backend/config/config.php.example backend/config/config.php
 ```
 
-If `./package-desktop.sh` fails with "permission denied" or "command not found", run:
+2. Fill database and secrets in `backend/config/config.php`.
+
+3. Run migrations in order:
+
+- `backend/migrations/001_create_tables.sql`
+- `backend/migrations/002_add_user_identity_links.sql`
+- `backend/migrations/003_add_sync_control_to_app_instances.sql`
+
+## Flowit Dashboard (`flowit/`)
+
+Features currently included:
+
+- Login-protected dashboard
+- KPI cards (users, installs, DAU/MAU-style metrics)
+- Installations view with per-device Start/Stop sync action
+- Right-side notification panel with severity grouping
+- Installation vulnerability/health detection
+- Graphs with 7/14/30-day range controls:
+  - Activity trend
+  - Event mix
+  - Installation health distribution
+
+### Dashboard Setup
+
+1. Copy config:
 
 ```bash
-chmod +x ./package-desktop.sh
-zsh ./package-desktop.sh
+cp flowit/config/config.php.example flowit/config/config.php
 ```
 
-This script installs dependencies (if needed), builds the Tauri app, and prints the package output folder.
+2. Set DB credentials and dashboard password hash in `flowit/config/config.php`.
 
-It automatically loads these local signing files when present:
+Generate password hash:
 
-- `~/.tauri/flowit.key`
-- `~/.tauri/flowit.key.password`
+```bash
+php -r "echo password_hash('your-strong-password', PASSWORD_DEFAULT), PHP_EOL;"
+```
 
-### Important notes
+3. Serve from repo root using PHP built-in server:
 
-- The app expects `run.sh`, `scripts/`, and `logs/` to exist in this repository.
-- On first sync, macOS may still prompt for SMB authentication if Keychain is not already configured.
-- If Gatekeeper shows an "unidentified developer" warning for unsigned builds, right-click the app and choose **Open** the first time.
+```bash
+php -S 127.0.0.1:8080
+```
+
+Open:
+
+- `http://127.0.0.1:8080/flowit/login.php`
+
+## Logs
+
+- `logs/sync.log`: sync history
+- `logs/launchd.out.log`: launchd stdout
+- `logs/launchd.err.log`: launchd stderr
+
+## Prerequisites
+
+- macOS (for launchd scripts and desktop workflow)
+- `zsh`, `rsync`
+- Node.js + npm (desktop app)
+- Rust + Cargo + Tauri CLI (desktop app build)
+- PHP + MySQL/MariaDB (backend API and dashboard)
+- Optional: `sqlite3` (to read desktop app settings into sync script)
+
+## Troubleshooting
+
+- If `php` is missing, install it before running dashboard/API locally.
+- If launchd job appears loaded but no sync happens, check `logs/launchd.err.log` first.
+- If sync prompts for SMB credentials repeatedly, verify Keychain saved credentials and share access.
+- If dashboard install controls do not affect clients, ensure desktop/agent side consumes `desired_sync_enabled` state.
