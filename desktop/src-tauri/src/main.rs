@@ -28,6 +28,14 @@ const SYNC_PROGRESS_EVENT: &str = "flowit://sync-progress";
 const SYNC_COMPLETE_EVENT: &str = "flowit://sync-complete";
 const GETTING_STARTED_WINDOW_LABEL: &str = "getting-started";
 const RUNTIME_WORKSPACE_DIR: &str = "runtime-workspace";
+#[cfg(unix)]
+const EMBEDDED_RUN_SH: &str = include_str!("../../../run.sh");
+#[cfg(unix)]
+const EMBEDDED_SYNC_SH: &str = include_str!("../../../scripts/sync_to_smb.sh");
+#[cfg(windows)]
+const EMBEDDED_RUN_PS1: &str = include_str!("../../../run.ps1");
+#[cfg(windows)]
+const EMBEDDED_SYNC_PS1: &str = include_str!("../../../scripts/sync_to_smb.ps1");
 
 #[derive(Serialize, Clone)]
 struct AdminUnlockRequest {
@@ -197,6 +205,42 @@ fn copy_dir_recursive(source: &Path, destination: &Path) -> Result<(), String> {
     Ok(())
 }
 
+fn write_file_if_missing(path: &Path, content: &str) -> Result<(), String> {
+    if path.exists() {
+        return Ok(());
+    }
+
+    if let Some(parent) = path.parent() {
+        fs::create_dir_all(parent)
+            .map_err(|error| format!("Failed to create {}: {error}", parent.display()))?;
+    }
+
+    fs::write(path, content)
+        .map_err(|error| format!("Failed to write {}: {error}", path.display()))
+}
+
+fn hydrate_runtime_workspace_from_embedded(runtime_root: &Path) -> Result<(), String> {
+    #[cfg(unix)]
+    {
+        write_file_if_missing(&runtime_root.join("run.sh"), EMBEDDED_RUN_SH)?;
+        write_file_if_missing(
+            &runtime_root.join("scripts/sync_to_smb.sh"),
+            EMBEDDED_SYNC_SH,
+        )?;
+    }
+
+    #[cfg(windows)]
+    {
+        write_file_if_missing(&runtime_root.join("run.ps1"), EMBEDDED_RUN_PS1)?;
+        write_file_if_missing(
+            &runtime_root.join("scripts/sync_to_smb.ps1"),
+            EMBEDDED_SYNC_PS1,
+        )?;
+    }
+
+    Ok(())
+}
+
 #[cfg(unix)]
 fn ensure_executable(path: &Path) -> Result<(), String> {
     let metadata = fs::metadata(path)
@@ -273,6 +317,7 @@ fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
 
     if runtime_run_script.exists() {
         refresh_runtime_assets(&runtime_root);
+        hydrate_runtime_workspace_from_embedded(&runtime_root)?;
         fs::create_dir_all(runtime_root.join("logs"))
             .map_err(|error| format!("Failed to create logs dir: {error}"))?;
         #[cfg(unix)]
@@ -315,6 +360,8 @@ fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
             let _ = copy_dir_recursive(&source_path, &destination_path);
         }
     }
+
+    hydrate_runtime_workspace_from_embedded(&runtime_root)?;
 
     fs::create_dir_all(runtime_root.join("logs"))
         .map_err(|error| format!("Failed to create logs dir: {error}"))?;
