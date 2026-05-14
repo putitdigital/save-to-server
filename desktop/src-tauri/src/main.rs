@@ -141,6 +141,17 @@ fn candidate_roots(app: &tauri::AppHandle) -> Result<Vec<PathBuf>, String> {
     roots.push(resource_dir.clone());
     roots.push(resource_dir.join("resources"));
 
+    // Additional fallback paths for macOS app bundles
+    #[cfg(target_os = "macos")]
+    {
+        // Try the app's directory (parent of Contents)
+        if let Some(parent) = resource_dir.parent() {
+            if let Some(grandparent) = parent.parent() {
+                roots.push(grandparent.to_path_buf());
+            }
+        }
+    }
+
     Ok(roots)
 }
 
@@ -274,39 +285,35 @@ fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
         return Ok(runtime_root);
     }
 
-    let bundled_root = find_repo_root(app)?;
     fs::create_dir_all(&runtime_root)
         .map_err(|error| format!("Failed to create runtime workspace: {error}"))?;
 
-    let file_entries = [
-        "run.sh", "easy.sh", "ignore", ".syncignore", "README.md",
-        "run.ps1", "easy.ps1", "Start Sync.bat",
-    ];
-    for file_name in file_entries {
-        let source_path = bundled_root.join(file_name);
-        if !source_path.exists() {
-            continue;
+    // Try to find and copy bundled resources, but don't fail if they can't be found
+    if let Ok(bundled_root) = find_repo_root(app) {
+        let file_entries = [
+            "run.sh", "easy.sh", "ignore", ".syncignore", "README.md",
+            "run.ps1", "easy.ps1", "Start Sync.bat",
+        ];
+        for file_name in file_entries {
+            let source_path = bundled_root.join(file_name);
+            if !source_path.exists() {
+                continue;
+            }
+
+            let destination_path = runtime_root.join(file_name);
+            let _ = fs::copy(&source_path, &destination_path);
         }
 
-        let destination_path = runtime_root.join(file_name);
-        fs::copy(&source_path, &destination_path).map_err(|error| {
-            format!(
-                "Failed to copy {} to {}: {error}",
-                source_path.display(),
-                destination_path.display()
-            )
-        })?;
-    }
+        let dir_entries = ["scripts", "launchd", "logs"];
+        for dir_name in dir_entries {
+            let source_path = bundled_root.join(dir_name);
+            if !source_path.exists() {
+                continue;
+            }
 
-    let dir_entries = ["scripts", "launchd", "logs"];
-    for dir_name in dir_entries {
-        let source_path = bundled_root.join(dir_name);
-        if !source_path.exists() {
-            continue;
+            let destination_path = runtime_root.join(dir_name);
+            let _ = copy_dir_recursive(&source_path, &destination_path);
         }
-
-        let destination_path = runtime_root.join(dir_name);
-        copy_dir_recursive(&source_path, &destination_path)?;
     }
 
     fs::create_dir_all(runtime_root.join("logs"))
@@ -314,10 +321,18 @@ fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
 
     #[cfg(unix)]
     {
-        ensure_executable(&runtime_root.join("run.sh"))?;
-        ensure_executable(&runtime_root.join("easy.sh"))?;
-        ensure_executable(&runtime_root.join("ignore"))?;
-        ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+        if runtime_root.join("run.sh").exists() {
+            ensure_executable(&runtime_root.join("run.sh"))?;
+        }
+        if runtime_root.join("easy.sh").exists() {
+            ensure_executable(&runtime_root.join("easy.sh"))?;
+        }
+        if runtime_root.join("ignore").exists() {
+            ensure_executable(&runtime_root.join("ignore"))?;
+        }
+        if runtime_root.join("scripts/sync_to_smb.sh").exists() {
+            ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+        }
     }
 
     Ok(runtime_root)
