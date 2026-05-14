@@ -322,10 +322,18 @@ fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
             .map_err(|error| format!("Failed to create logs dir: {error}"))?;
         #[cfg(unix)]
         {
-            ensure_executable(&runtime_root.join("run.sh"))?;
-            ensure_executable(&runtime_root.join("easy.sh"))?;
-            ensure_executable(&runtime_root.join("ignore"))?;
-            ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+            if runtime_root.join("run.sh").exists() {
+                ensure_executable(&runtime_root.join("run.sh"))?;
+            }
+            if runtime_root.join("easy.sh").exists() {
+                ensure_executable(&runtime_root.join("easy.sh"))?;
+            }
+            if runtime_root.join("ignore").exists() {
+                ensure_executable(&runtime_root.join("ignore"))?;
+            }
+            if runtime_root.join("scripts/sync_to_smb.sh").exists() {
+                ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+            }
         }
         return Ok(runtime_root);
     }
