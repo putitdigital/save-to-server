@@ -141,17 +141,29 @@ fn candidate_roots(app: &tauri::AppHandle) -> Result<Vec<PathBuf>, String> {
     roots.push(resource_dir.clone());
     roots.push(resource_dir.join("resources"));
 
+    // Additional fallback paths for macOS app bundles
+    #[cfg(target_os = "macos")]
+    {
+        // Try the app's directory (parent of Contents)
+        if let Some(parent) = resource_dir.parent() {
+            if let Some(grandparent) = parent.parent() {
+                roots.push(grandparent.to_path_buf());
+            }
+        }
+    }
+
     Ok(roots)
 }
 
 fn find_repo_root(app: &tauri::AppHandle) -> Result<PathBuf, String> {
+    let marker = platform_run_script_name();
     for root in candidate_roots(app)? {
-        if root.join("run.sh").exists() {
+        if root.join(marker).exists() {
             return Ok(root);
         }
     }
 
-    Err("Could not find run.sh in known app paths".to_string())
+    Err(format!("Could not find {marker} in known app paths"))
 }
 
 fn copy_dir_recursive(source: &Path, destination: &Path) -> Result<(), String> {
@@ -200,6 +212,26 @@ fn ensure_executable(_path: &Path) -> Result<(), String> {
     Ok(())
 }
 
+/// Returns the sync entry-point script name for the current platform.
+fn platform_run_script_name() -> &'static str {
+    if cfg!(windows) { "run.ps1" } else { "run.sh" }
+}
+
+/// Returns the SMB mount point path for the current platform.
+/// On macOS/Linux: /Volumes/<name>  |  On Windows: <LETTER>:
+fn platform_mount_point(mount_name: &str) -> String {
+    if cfg!(windows) {
+        let drive = mount_name.trim().trim_end_matches(':');
+        if drive.is_empty() {
+            String::new()
+        } else {
+            format!("{}:", drive.to_uppercase())
+        }
+    } else {
+        format!("/Volumes/{}", mount_name)
+    }
+}
+
 fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
     let app_data_dir = app
         .path()
@@ -207,14 +239,17 @@ fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
         .map_err(|error| format!("Failed to locate app data dir: {error}"))?;
 
     let runtime_root = app_data_dir.join(RUNTIME_WORKSPACE_DIR);
-    let runtime_run_sh = runtime_root.join("run.sh");
+    let runtime_run_script = runtime_root.join(platform_run_script_name());
 
     let refresh_runtime_assets = |runtime_root: &Path| {
         let Ok(bundled_root) = find_repo_root(app) else {
             return;
         };
 
-        let file_entries = ["run.sh", "easy.sh", "ignore", "README.md"];
+        let file_entries = [
+            "run.sh", "easy.sh", "ignore", "README.md",
+            "run.ps1", "easy.ps1", "Start Sync.bat",
+        ];
         for file_name in file_entries {
             let source_path = bundled_root.join(file_name);
             if !source_path.exists() {
@@ -236,56 +271,69 @@ fn ensure_runtime_workspace(app: &tauri::AppHandle) -> Result<PathBuf, String> {
         }
     };
 
-    if runtime_run_sh.exists() {
+    if runtime_run_script.exists() {
         refresh_runtime_assets(&runtime_root);
         fs::create_dir_all(runtime_root.join("logs"))
             .map_err(|error| format!("Failed to create logs dir: {error}"))?;
-        ensure_executable(&runtime_root.join("run.sh"))?;
-        ensure_executable(&runtime_root.join("easy.sh"))?;
-        ensure_executable(&runtime_root.join("ignore"))?;
-        ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+        #[cfg(unix)]
+        {
+            ensure_executable(&runtime_root.join("run.sh"))?;
+            ensure_executable(&runtime_root.join("easy.sh"))?;
+            ensure_executable(&runtime_root.join("ignore"))?;
+            ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+        }
         return Ok(runtime_root);
     }
 
-    let bundled_root = find_repo_root(app)?;
     fs::create_dir_all(&runtime_root)
         .map_err(|error| format!("Failed to create runtime workspace: {error}"))?;
 
-    let file_entries = ["run.sh", "easy.sh", "ignore", ".syncignore", "README.md"];
-    for file_name in file_entries {
-        let source_path = bundled_root.join(file_name);
-        if !source_path.exists() {
-            continue;
+    // Try to find and copy bundled resources, but don't fail if they can't be found
+    if let Ok(bundled_root) = find_repo_root(app) {
+        let file_entries = [
+            "run.sh", "easy.sh", "ignore", ".syncignore", "README.md",
+            "run.ps1", "easy.ps1", "Start Sync.bat",
+        ];
+        for file_name in file_entries {
+            let source_path = bundled_root.join(file_name);
+            if !source_path.exists() {
+                continue;
+            }
+
+            let destination_path = runtime_root.join(file_name);
+            let _ = fs::copy(&source_path, &destination_path);
         }
 
-        let destination_path = runtime_root.join(file_name);
-        fs::copy(&source_path, &destination_path).map_err(|error| {
-            format!(
-                "Failed to copy {} to {}: {error}",
-                source_path.display(),
-                destination_path.display()
-            )
-        })?;
-    }
+        let dir_entries = ["scripts", "launchd", "logs"];
+        for dir_name in dir_entries {
+            let source_path = bundled_root.join(dir_name);
+            if !source_path.exists() {
+                continue;
+            }
 
-    let dir_entries = ["scripts", "launchd", "logs"];
-    for dir_name in dir_entries {
-        let source_path = bundled_root.join(dir_name);
-        if !source_path.exists() {
-            continue;
+            let destination_path = runtime_root.join(dir_name);
+            let _ = copy_dir_recursive(&source_path, &destination_path);
         }
-
-        let destination_path = runtime_root.join(dir_name);
-        copy_dir_recursive(&source_path, &destination_path)?;
     }
 
     fs::create_dir_all(runtime_root.join("logs"))
         .map_err(|error| format!("Failed to create logs dir: {error}"))?;
 
-    ensure_executable(&runtime_root.join("run.sh"))?;
-    ensure_executable(&runtime_root.join("easy.sh"))?;
-    ensure_executable(&runtime_root.join("ignore"))?;
-    ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+    #[cfg(unix)]
+    {
+        if runtime_root.join("run.sh").exists() {
+            ensure_executable(&runtime_root.join("run.sh"))?;
+        }
+        if runtime_root.join("easy.sh").exists() {
+            ensure_executable(&runtime_root.join("easy.sh"))?;
+        }
+        if runtime_root.join("ignore").exists() {
+            ensure_executable(&runtime_root.join("ignore"))?;
+        }
+        if runtime_root.join("scripts/sync_to_smb.sh").exists() {
+            ensure_executable(&runtime_root.join("scripts/sync_to_smb.sh"))?;
+        }
+    }
 
     Ok(runtime_root)
 }
@@ -300,10 +348,22 @@ fn workspace_root(app: &tauri::AppHandle) -> Result<PathBuf, String> {
 
 fn run_sync_script(app: &tauri::AppHandle, args: &[&str], user_name: Option<&str>) -> Result<CommandResult, String> {
     let repo_root = workspace_root(app)?;
-    let script_path = repo_root.join("run.sh");
 
-    let mut cmd = Command::new("/bin/zsh");
-    cmd.arg(script_path).args(args).current_dir(&repo_root);
+    #[cfg(windows)]
+    let mut cmd = {
+        let mut c = Command::new("powershell.exe");
+        c.args(["-ExecutionPolicy", "Bypass", "-NoProfile", "-File"])
+         .arg(repo_root.join("run.ps1"));
+        c
+    };
+    #[cfg(not(windows))]
+    let mut cmd = {
+        let mut c = Command::new("/bin/zsh");
+        c.arg(repo_root.join("run.sh"));
+        c
+    };
+
+    cmd.args(args).current_dir(&repo_root);
     if let Some(name) = user_name {
         cmd.env("FLOWIT_USER", name);
     }
@@ -354,6 +414,8 @@ fn parse_sync_output_path(line: &str) -> Option<String> {
         || trimmed.starts_with("Total bytes received:")
         || trimmed.starts_with("speedup is ")
         || trimmed.starts_with("[")
+        || trimmed.starts_with("---")   // robocopy separator line
+        || trimmed.starts_with("ROBOCOPY") // robocopy job header
     {
         return None;
     }
@@ -367,11 +429,22 @@ fn run_sync_script_with_progress(
     user_name: Option<&str>,
 ) -> Result<(CommandResult, usize), String> {
     let repo_root = workspace_root(app)?;
-    let script_path = repo_root.join("run.sh");
 
-    let mut cmd = Command::new("/bin/zsh");
-    cmd.arg(script_path)
-        .current_dir(&repo_root)
+    #[cfg(windows)]
+    let mut cmd = {
+        let mut c = Command::new("powershell.exe");
+        c.args(["-ExecutionPolicy", "Bypass", "-NoProfile", "-File"])
+         .arg(repo_root.join("run.ps1"));
+        c
+    };
+    #[cfg(not(windows))]
+    let mut cmd = {
+        let mut c = Command::new("/bin/zsh");
+        c.arg(repo_root.join("run.sh"));
+        c
+    };
+
+    cmd.current_dir(&repo_root)
         .stdout(Stdio::piped())
         .stderr(Stdio::piped());
     if let Some(name) = user_name {
@@ -1019,10 +1092,13 @@ fn read_all_users_sync_log(
             .to_string()
     };
 
-    let log_path = if dest_subpath.is_empty() {
-        PathBuf::from(format!("/Volumes/{}/syncAll.log", mount_name))
-    } else {
-        PathBuf::from(format!("/Volumes/{}/{}/syncAll.log", mount_name, dest_subpath))
+    let log_path = {
+        let mount_base = PathBuf::from(platform_mount_point(&mount_name));
+        if dest_subpath.is_empty() {
+            mount_base.join("syncAll.log")
+        } else {
+            mount_base.join(&dest_subpath).join("syncAll.log")
+        }
     };
 
     if !log_path.exists() {
@@ -1234,10 +1310,34 @@ fn mount_smb_share(app: tauri::AppHandle) -> Result<(), String> {
         return Err("SMB_URL is empty. Open Settings, set SMB_URL, and click Save Settings.".to_string());
     }
 
-    Command::new("open")
-        .arg(&smb_url)
-        .spawn()
-        .map_err(|error| format!("Failed to open SMB share: {error}"))?;
+    #[cfg(windows)]
+    {
+        let mount_name = configured_mount_name(&app, &repo_root);
+        let drive = mount_name.trim().trim_end_matches(':').to_uppercase();
+        if drive.is_empty() {
+            return Err("MOUNT_NAME is empty. Set a drive letter (e.g. Z) in Settings.".to_string());
+        }
+        // Convert smb://server/share  ->  \\server\share
+        let unc = if let Some(rest) = smb_url.trim().strip_prefix("smb://") {
+            format!("\\\\{}", rest.replace('/', "\\"))
+        } else {
+            smb_url.trim().to_string()
+        };
+        Command::new("cmd")
+            .args(["/C", "net", "use"])
+            .arg(format!("{drive}:"))
+            .arg(&unc)
+            .arg("/persistent:no")
+            .spawn()
+            .map_err(|error| format!("Failed to map SMB share: {error}"))?;
+    }
+    #[cfg(not(windows))]
+    {
+        Command::new("open")
+            .arg(&smb_url)
+            .spawn()
+            .map_err(|error| format!("Failed to open SMB share: {error}"))?;
+    }
 
     Ok(())
 }
@@ -1253,15 +1353,21 @@ fn get_server_connection_status(app: tauri::AppHandle) -> Result<ServerConnectio
             message: "MOUNT_NAME not set".to_string(),
         });
     }
-    let mount_point = format!("/Volumes/{}", mount_name);
 
-    let mount_output = Command::new("mount")
-        .output()
-        .map_err(|error| format!("Failed to execute mount command: {error}"))?;
+    let mount_point = platform_mount_point(&mount_name);
 
-    let mounts = String::from_utf8_lossy(&mount_output.stdout);
-    let marker = format!("on {} ", mount_point);
-    let connected = mounts.contains(&marker);
+    #[cfg(windows)]
+    let connected = Path::new(&mount_point).exists();
+
+    #[cfg(not(windows))]
+    let connected = {
+        let mount_output = Command::new("mount")
+            .output()
+            .map_err(|error| format!("Failed to execute mount command: {error}"))?;
+        let mounts = String::from_utf8_lossy(&mount_output.stdout);
+        let marker = format!("on {} ", mount_point);
+        mounts.contains(&marker)
+    };
 
     let message = if connected {
         "Connected".to_string()
